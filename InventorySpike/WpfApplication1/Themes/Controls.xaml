@@ -1,0 +1,397 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:cal="http://www.caliburnproject.org"
+                    xmlns:controls="clr-namespace:SeaStar.Viewer.Controls"
+                    xmlns:local="clr-namespace:SeaStar.Viewer"
+                    xmlns:converters="clr-namespace:SeaStar.Viewer.Converters">
+    
+    <Style TargetType="Button">
+        <Setter Property="Height" Value="25" />
+        <Setter Property="Padding"  Value="5 0" />
+        <Setter Property="Margin"  Value="5 5" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment"  Value="Center" />
+    </Style>
+
+    <!--<Style x:Key="MenuButtonBase"
+           BasedOn="{x:Null}"
+           TargetType="{x:Type controls:MenuButton}">
+        <Setter Property="Padding" Value="0 1 4 1" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Template" Value="{StaticResource ImageMenuButtonTemplate}" />
+    </Style>-->
+
+    <!--<ControlTemplate x:Key="ImageUnRadioButtonTemplate" TargetType="{x:Type controls:UnRadioButton}">
+        <ContentPresenter Content="{TemplateBinding Content}" />
+    </ControlTemplate>-->
+
+    <!--<ControlTemplate x:Key="ImageButtonTemplate" TargetType="{x:Type controls:ImageButton}">
+        <Grid x:Name="Grid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Border x:Name="Background"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="3">
+                <StackPanel HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Orientation="Horizontal">
+                    <Image x:Name="ButtonImage"
+                           Width="{Binding ImageWidth,
+                                           RelativeSource={RelativeSource TemplatedParent}}"
+                           Height="{Binding ImageHeight,
+                                            RelativeSource={RelativeSource TemplatedParent}}"
+                           Margin="0 0 1 0"
+                           RenderOptions.BitmapScalingMode="HighQuality"
+                           RenderTransformOrigin="0.5,0.5"
+                           Source="{Binding ImageSet.NormalImage,
+                                            RelativeSource={RelativeSource TemplatedParent}}"
+                           Stretch="Uniform"
+                           ToolTip="{TemplateBinding ToolTip}" />
+                </StackPanel>
+            </Border>
+            <ContentPresenter x:Name="Content"
+                              Grid.Row="1"
+                              Margin="1 0 1 0"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              RecognizesAccessKey="True"
+                              Visibility="{Binding RelativeSource={RelativeSource TemplatedParent},
+                                                   Path=ContentVisibility}" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsPressed" Value="false" />
+                    <Condition Property="IsMouseOver" Value="false" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="ButtonImage" Property="Source" Value="{Binding ImageSet.NormalImage, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter Property="Cursor" Value="Arrow" />
+                <Setter TargetName="Background" Property="Background" Value="Transparent" />
+                <Setter TargetName="Background" Property="BorderBrush" Value="Transparent" />
+                <Setter TargetName="Background" Property="BorderThickness" Value="1" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsEnabled" Value="true" />
+                    <Condition Property="IsMouseOver" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="ButtonImage" Property="Source" Value="{Binding ImageSet.HoverImage, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter Property="Cursor" Value="Hand" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsEnabled" Value="true" />
+                    <Condition Property="IsPressed" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="ButtonImage" Property="Source" Value="{Binding ImageSet.PressedImage, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter TargetName="Background" Property="BorderBrush" Value="#FFC2762B" />
+                <Setter TargetName="Background" Property="BorderThickness" Value="1" />
+            </MultiTrigger>
+
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Foreground" Value="#FF9B9DA1" />
+                <Setter TargetName="ButtonImage" Property="Source" Value="{Binding ImageSet.DisabledImage, RelativeSource={RelativeSource TemplatedParent}}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>-->
+
+    <!--<Style x:Key="ImageButtonBase"
+           BasedOn="{x:Null}"
+           TargetType="{x:Type controls:ImageButton}">
+        <Setter Property="Padding" Value="0 1 4 1" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Template" Value="{StaticResource ImageButtonTemplate}" />
+    </Style>-->
+
+    <!--<ControlTemplate x:Key="ImageRadioButtonTemplate" TargetType="{x:Type controls:ImageRadioButton}">
+        <Grid x:Name="Grid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Border x:Name="Background"
+                    HorizontalAlignment="Center"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="3">
+                <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                    <Image x:Name="ButtonImage"
+                           Width="{Binding ImageWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                           Height="{Binding ImageHeight, RelativeSource={RelativeSource TemplatedParent}}"
+                           Margin="0 0 1 0"
+                           RenderOptions.BitmapScalingMode="HighQuality"
+                           RenderTransformOrigin="0.5,0.5"
+                           Source="{Binding UncheckedImage, RelativeSource={RelativeSource TemplatedParent}}"
+                           Stretch="Uniform"
+                           ToolTip="{TemplateBinding ToolTip}" />
+                </Grid>
+            </Border>
+            <ContentPresenter x:Name="Content"
+                              Grid.Row="1"
+                              Margin="1 0 1 0"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              RecognizesAccessKey="True"
+                              Visibility="{Binding RelativeSource={RelativeSource TemplatedParent},
+                                                   Path=ContentVisibility}" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsChecked" Value="false" />
+                    <Condition Property="IsMouseOver" Value="false" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="ButtonImage" Property="Source" Value="{Binding ImageSet.UncheckedImage, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter Property="Cursor" Value="Arrow" />
+                <Setter TargetName="Background" Property="Background" Value="Transparent" />
+                <Setter TargetName="Background" Property="BorderBrush" Value="Transparent" />
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="IsChecked" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="ButtonImage" Property="Source" Value="{Binding ImageSet.PressedImage, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter Property="Cursor" Value="Hand" />
+                --><!--  lighter border  --><!--
+                <Setter TargetName="Background" Property="BorderBrush" Value="{StaticResource ImageButtonLightBorder}" />
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="False" />
+                    <Condition Property="IsChecked" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="ButtonImage" Property="Source" Value="{Binding ImageSet.CheckedImage, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter Property="Cursor" Value="Hand" />
+                --><!--  darker border  --><!--
+                <Setter TargetName="Background" Property="BorderBrush" Value="{StaticResource ImageButtonMediumBorder}" />
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="IsChecked" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="ButtonImage" Property="Source" Value="{Binding ImageSet.HoverImage, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter Property="Cursor" Value="Hand" />
+                --><!--  darker border  --><!--
+                <Setter TargetName="Background" Property="BorderBrush" Value="{StaticResource ImageButtonMediumBorder}" />
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="False" />
+                    <Condition Property="IsChecked" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="ButtonImage" Property="Source" Value="{Binding ImageSet.UncheckedImage, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter TargetName="Background" Property="BorderBrush" Value="Transparent" />
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsPressed" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="ButtonImage" Property="Source" Value="{Binding ImageSet.PressedImage, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter Property="Cursor" Value="Hand" />
+                --><!--  darkest border  --><!--
+                <Setter TargetName="Background" Property="BorderBrush" Value="{StaticResource ImageButtonDarkBorder}" />
+            </MultiTrigger>
+
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="IsChecked" Value="False" />
+                <Setter Property="Foreground" Value="#FF9B9DA1" />
+                <Setter TargetName="ButtonImage" Property="Source" Value="{Binding ImageSet.DisabledImage, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter TargetName="Background" Property="BorderBrush" Value="Transparent" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>-->
+
+    <!--<ControlTemplate x:Key="ImageRadioButtonWithBackgroundTemplate" TargetType="{x:Type controls:ImageRadioButton}">
+        <Grid x:Name="Grid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Border x:Name="Background"
+                    HorizontalAlignment="Center"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="2"
+                    CornerRadius="3">
+                <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                    <Rectangle x:Name="BackgroundRect" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="{TemplateBinding BackgroundFill}" Opacity="1.0"
+                               Width="{Binding ImageWidth, RelativeSource={RelativeSource TemplatedParent}}" Height="{Binding ImageHeight, RelativeSource={RelativeSource TemplatedParent}}" >
+                        <Rectangle.OpacityMask>
+                            <ImageBrush ImageSource="/Images/ButtonImages/button_background.png"  Stretch="Uniform" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <Image x:Name="ButtonImage"
+                           Margin="0 0 0 0"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           RenderOptions.BitmapScalingMode="HighQuality"
+                           RenderTransformOrigin="0.5,0.5"
+                           Source="{Binding ImageSet.UncheckedImage, RelativeSource={RelativeSource TemplatedParent}}"
+                           Stretch="Uniform"
+                           ToolTip="{TemplateBinding ToolTip}" 
+                           Opacity="1.0"/>
+                </Grid>
+            </Border>
+            <ContentPresenter x:Name="Content"
+                              Grid.Row="1"
+                              Margin="1 0 1 0"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              RecognizesAccessKey="True"
+                              Visibility="{Binding RelativeSource={RelativeSource TemplatedParent},
+                                                   Path=ContentVisibility}" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsChecked" Value="false" />
+                    <Condition Property="IsMouseOver" Value="false" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="ButtonImage" Property="Source" Value="{Binding ImageSet.UncheckedImage, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter Property="Cursor" Value="Arrow" />
+                <Setter TargetName="Background" Property="Background" Value="Transparent" />
+                <Setter TargetName="Background" Property="BorderBrush" Value="Transparent" />
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="False" />
+                    <Condition Property="IsChecked" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="ButtonImage" Property="Source" Value="{Binding ImageSet.CheckedImage, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter Property="Cursor" Value="Hand" />
+                --><!--  darker border  --><!--
+                <Setter TargetName="Background" Property="BorderBrush" Value="{StaticResource ImageButtonMediumBorder}" />
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="IsChecked" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="ButtonImage" Property="Source" Value="{Binding ImageSet.PressedImage, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter Property="Cursor" Value="Hand" />
+                --><!--  lighter border  --><!--
+                <Setter TargetName="Background" Property="BorderBrush" Value="{StaticResource ImageButtonLightBorder}" />
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="IsChecked" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="ButtonImage" Property="Source" Value="{Binding ImageSet.HoverImage, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter Property="Cursor" Value="Hand" />
+                --><!--  darker border  --><!--
+                <Setter TargetName="Background" Property="BorderBrush" Value="{StaticResource ImageButtonMediumBorder}" />
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="False" />
+                    <Condition Property="IsChecked" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="ButtonImage" Property="Source" Value="{Binding ImageSet.UncheckedImage, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter TargetName="Background" Property="BorderBrush" Value="Transparent" />
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsPressed" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="ButtonImage" Property="Source" Value="{Binding ImageSet.PressedImage, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter Property="Cursor" Value="Hand" />
+                --><!--  darkest border  --><!--
+                <Setter TargetName="Background" Property="BorderBrush" Value="{StaticResource ImageButtonDarkBorder}" />
+            </MultiTrigger>
+
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="IsChecked" Value="False" />
+                <Setter Property="Foreground" Value="#FF9B9DA1" />
+                <Setter TargetName="ButtonImage" Property="Source" Value="{Binding ImageSet.DisabledImage, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter TargetName="Background" Property="BorderBrush" Value="Transparent" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="CalendarButtonLabel" TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="FontWeight" Value="DemiBold" />
+        <Setter Property="Margin" Value="3 3" />
+    </Style>-->
+
+    
+    <Style TargetType="{x:Type DatePicker}" x:Key="SeaStarDatePickerStyle" BasedOn="{StaticResource CommonDatePicker}">
+        <Setter Property="CalendarStyle" Value="{StaticResource SeaStarCalendarStyle}" />
+    </Style>
+
+    <!--<Style x:Key="ImageRadioButtonBase"
+           BasedOn="{x:Null}"
+           TargetType="{x:Type controls:ImageRadioButton}">
+        <Setter Property="IsThreeState" Value="False" />
+        <Setter Property="IsEnabled" Value="True" />
+        <Setter Property="Padding" Value="0 1 4 1" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Template" Value="{StaticResource ImageRadioButtonTemplate}" />
+    </Style>-->
+
+    <Style x:Key="LinkButton" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <TextBlock Margin="0 5 0 0">
+                        <ContentPresenter />
+                    </TextBlock>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Foreground" Value="Blue" />
+        <Setter Property="Margin" Value="0,0,0,0" />
+        <Setter Property="Padding" Value="0,0,0,0" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Foreground" Value="Red" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>
