@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Client.Views
 {
     /// <summary>
-    /// Interaction logic for MainView.xaml
+    /// Interaction logic for DockView.xaml
     /// </summary>
-    public partial class MainView : Window
+    public partial class DockView : UserControl
     {
-        public MainView()
+        public DockView()
         {
             InitializeComponent();
         }

@@ -32,6 +32,17 @@ namespace Client.Framework
 
         #endregion
 
+        #region misc
+
+        public virtual string DisplayName { get; set; }
+
+        public virtual bool IsDirty()
+        {
+            return false;
+        }
+
+        #endregion
+
         protected void SubscribeToEvents()
         {
             if (!_subscribed)

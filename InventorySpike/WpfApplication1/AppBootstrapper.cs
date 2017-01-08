@@ -20,6 +20,7 @@ using LogManager = log4net.LogManager;
 using Caliburn.Micro.Logging.log4net;
 using Client.Classes;
 using Client.Framework;
+using Client.Framework.Docking;
 using Client.ViewModels;
 
 namespace Client
@@ -137,9 +138,9 @@ namespace Client
         {
             base.OnStartup(sender, e);
 
-            SplashScreen splash = new SplashScreen(@"Images\Splash.png");
-            splash.Show(autoClose: false, topMost: true);
-            splash.Close(TimeSpan.FromSeconds(1));
+            //SplashScreen splash = new SplashScreen(@"Images\Splash.png");
+            //splash.Show(autoClose: false, topMost: true);
+            //splash.Close(TimeSpan.FromSeconds(1));
 
             DisplayRootViewFor<IShell>();
 
@@ -259,10 +260,6 @@ namespace Client
             this.Container.RegisterInstance(Settings.Default);  // Singleton
             this.Container.RegisterInstance(serviceLocator); // Singleton
 
-            // Caliburn types
-            this.Container.RegisterType<IEventAggregator, EventAggregator>(new ContainerControlledLifetimeManager());
-            //this.Container.RegisterType<ISeaStarWindowManager, SeaStarWindowManager>(new ContainerControlledLifetimeManager());
-
             // Must initially setup localhost endpoints to avoid unity stack overflow exception
             Settings settings = Settings.Default;
             //Uri netTcpUriBase = new Uri(String.Format("net.tcp://{0}:{1}/", settings.VesselServer, settings.VesselServerPort));
@@ -273,16 +270,20 @@ namespace Client
 
             // UI services
             //this.Container.RegisterType<IDockLayoutUpdateService, DockLayoutUpdateService>();
-            //this.Container.RegisterType<IApplicationContext, ApplicationContext>(new ContainerControlledLifetimeManager());
+            this.Container.RegisterType<IApplicationContext, ApplicationContext>(new ContainerControlledLifetimeManager());
 
             // ViewModels
             this.Container.RegisterType<IShell, MainViewModel>();
+            this.Container.RegisterType<StatusBarViewModel>(new ContainerControlledLifetimeManager());
+            this.Container.RegisterType<MenuViewModel>(new ContainerControlledLifetimeManager());
+            this.Container.RegisterType<DockViewModel>(new ContainerControlledLifetimeManager());
+            this.Container.RegisterType<StatusBarViewModel>(new ContainerControlledLifetimeManager());
 
             // Caliburn types
             this.Container.RegisterType<IEventAggregator, EventAggregator>(new ContainerControlledLifetimeManager());
             this.Container.RegisterType<IWindowManager, InvWindowManager>(new ContainerControlledLifetimeManager());
             this.Container.RegisterType<IInvWindowManager, InvWindowManager>(new ContainerControlledLifetimeManager());
-            //this.Container.RegisterType<StatusBarViewModel>(new ContainerControlledLifetimeManager());
+            this.Container.RegisterType<IDockWindowManager, DockWindowManager>(new ContainerControlledLifetimeManager());
         }
 
         //private void RegisterServiceChannel<TChannel>(string name)

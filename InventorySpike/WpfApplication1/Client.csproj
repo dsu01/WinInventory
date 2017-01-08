@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Client</RootNamespace>
-    <AssemblyName>Client</AssemblyName>
+    <AssemblyName>InvClient</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -27,6 +27,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -40,6 +41,14 @@
   <ItemGroup>
     <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AvalonDock, Version=1.3.3600.0, Culture=neutral, PublicKeyToken=85a1e0ada7ec13e4, processorArchitecture=MSIL">
+      <HintPath>..\packages\AvalonDock-1.x.1.3.3600.2\lib\net40\AvalonDock.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AvalonDock.Themes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AvalonDock-1.x.1.3.3600.2\lib\net40\AvalonDock.Themes.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Caliburn.Micro, Version=3.0.1.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
@@ -61,6 +70,15 @@
     <Reference Include="Caliburn.Micro.Platform.Core, Version=3.0.1.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
       <HintPath>..\packages\Caliburn.Micro.3.0.1\lib\net45\Caliburn.Micro.Platform.Core.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="DevComponents.WPF.Controls">
+      <HintPath>..\Library\DevComponents.WPF.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.WpfEditors">
+      <HintPath>..\Library\DevComponents.WpfEditors.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.WpfRibbon">
+      <HintPath>..\Library\DevComponents.WpfRibbon.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -129,34 +147,6 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.2.16567.21060, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.AvalonDock.3.2.16567.21060\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.2.16567.21060, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.AvalonDock.Themes.Aero.3.2.16567.21060\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.2.16567.21060, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.AvalonDock.Themes.Metro.3.2.16567.21060\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.MetroAccent, Version=3.2.16567.21060, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.AvalonDock.Themes.MetroAccent.3.2.16567.21060\lib\net40\Xceed.Wpf.AvalonDock.Themes.MetroAccent.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Office2007, Version=3.2.16567.21060, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.AvalonDock.Themes.Office2007.3.2.16567.21060\lib\net40\Xceed.Wpf.AvalonDock.Themes.Office2007.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.2.16567.21060, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.AvalonDock.Themes.VS2010.3.2.16567.21060\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Windows10, Version=3.2.16567.21060, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Wpf.AvalonDock.Themes.Windows10.3.2.16567.21060\lib\net40\Xceed.Wpf.AvalonDock.Themes.Windows10.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Xceed.Wpf.DataGrid, Version=2.9.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
       <HintPath>..\packages\Extended.Wpf.Toolkit.2.9\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
       <Private>True</Private>
@@ -187,12 +177,32 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\ApplicationContext.cs" />
     <Compile Include="Classes\Settings.cs" />
+    <Compile Include="Classes\WpfExtensions.cs" />
+    <Compile Include="Controls\CommandBar.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter .cs" />
     <Compile Include="Converters\NegationConverter.cs" />
+    <Compile Include="Framework\CursorHelper.cs" />
+    <Compile Include="Framework\Docking\BaseDockableContent.cs" />
+    <Compile Include="Framework\Docking\Commands\CustomDockCommands.cs" />
+    <Compile Include="Framework\Docking\ContentArea.cs" />
+    <Compile Include="Framework\Docking\DockableContentConductor.cs" />
+    <Compile Include="Framework\Docking\DockWindowManager.cs" />
+    <Compile Include="Framework\Docking\IDockViewModel.cs" />
+    <Compile Include="Framework\Docking\IDockWindowManager.cs" />
     <Compile Include="Framework\InvWindowManager.cs" />
     <Compile Include="Interfaces\IInvWindowManager.cs" />
+    <Compile Include="ViewModels\DockViewModel.cs" />
+    <Compile Include="ViewModels\MenuView.xaml.cs">
+      <DependentUpon>MenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\MenuViewModel.cs" />
+    <Compile Include="ViewModels\StatusBarViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="Views\DockView.xaml.cs">
+      <DependentUpon>DockView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -205,6 +215,9 @@
     <Compile Include="Interfaces\IShell.cs" />
     <Compile Include="Framework\ScreenViewModelBase.cs" />
     <Compile Include="Framework\ViewModelBase.cs" />
+    <Compile Include="Views\StatusBarView.xaml.cs">
+      <DependentUpon>StatusBarView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Themes\Controls.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -213,11 +226,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Themes\CommandBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="ViewModels\MenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DockView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StatusBarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -246,12 +275,88 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Behaviors\" />
-    <Folder Include="Controls\" />
-    <Folder Include="Resources\" />
+    <Folder Include="Images\" />
     <Folder Include="UserControls\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Splash.png" />
+    <SplashScreen Include="Resources\Images\Splash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\AI_16x16.png" />
+    <Resource Include="Resources\Images\available.png" />
+    <Resource Include="Resources\Images\BlueGlow.png" />
+    <Resource Include="Resources\Images\ButtonImages\accept.png" />
+    <Resource Include="Resources\Images\ButtonImages\add.png" />
+    <Resource Include="Resources\Images\ButtonImages\arrow_refresh.png" />
+    <Resource Include="Resources\Images\ButtonImages\balance.png" />
+    <Resource Include="Resources\Images\ButtonImages\blank.png" />
+    <Resource Include="Resources\Images\ButtonImages\book-bookmark.png" />
+    <Resource Include="Resources\Images\ButtonImages\book_open.png" />
+    <Resource Include="Resources\Images\ButtonImages\cancel.png" />
+    <Resource Include="Resources\Images\ButtonImages\chain--plus.png" />
+    <Resource Include="Resources\Images\ButtonImages\cog.png" />
+    <Resource Include="Resources\Images\ButtonImages\cross_octagon_fram.png" />
+    <Resource Include="Resources\Images\ButtonImages\data_sort.png" />
+    <Resource Include="Resources\Images\ButtonImages\delete.png" />
+    <Resource Include="Resources\Images\ButtonImages\disk.png" />
+    <Resource Include="Resources\Images\ButtonImages\document_inspector.png" />
+    <Resource Include="Resources\Images\ButtonImages\door_in.png" />
+    <Resource Include="Resources\Images\ButtonImages\folder_add.png" />
+    <Resource Include="Resources\Images\ButtonImages\generic_folder.png" />
+    <Resource Include="Resources\Images\ButtonImages\layer_select.png" />
+    <Resource Include="Resources\Images\ButtonImages\magnifier.png" />
+    <Resource Include="Resources\Images\ButtonImages\page_refresh.png" />
+    <Resource Include="Resources\Images\ButtonImages\page_white_add.png" />
+    <Resource Include="Resources\Images\ButtonImages\page_white_get.png" />
+    <Resource Include="Resources\Images\ButtonImages\printer.png" />
+    <Resource Include="Resources\Images\ButtonImages\resultset_first.png" />
+    <Resource Include="Resources\Images\ButtonImages\resultset_last.png" />
+    <Resource Include="Resources\Images\ButtonImages\shapes_many_select.png" />
+    <Resource Include="Resources\Images\ButtonImages\submit.png" />
+    <Resource Include="Resources\Images\ButtonImages\table-select-cells.png" />
+    <Resource Include="Resources\Images\ButtonImages\table_multiple.png" />
+    <Resource Include="Resources\Images\ButtonImages\text_list_numbers.png" />
+    <Resource Include="Resources\Images\ButtonImages\undo.png" />
+    <Resource Include="Resources\Images\cog.png" />
+    <Resource Include="Resources\Images\csv_small.png" />
+    <Resource Include="Resources\Images\excel_small.png" />
+    <Resource Include="Resources\Images\FDIC_BW.png" />
+    <Resource Include="Resources\Images\FI_16x16.png" />
+    <Resource Include="Resources\Images\folder_16x16.gif" />
+    <Resource Include="Resources\Images\html_small.png" />
+    <Resource Include="Resources\Images\image_small.png" />
+    <Resource Include="Resources\Images\newsplash-2.png" />
+    <Resource Include="Resources\Images\newsplash.png" />
+    <Resource Include="Resources\Images\offline.png" />
+    <Resource Include="Resources\Images\Open_16x16.png" />
+    <Resource Include="Resources\Images\outlook_small.png" />
+    <Resource Include="Resources\Images\pdficon_small.png" />
+    <Resource Include="Resources\Images\pps_small.png" />
+    <Resource Include="Resources\Images\InventoryIcon.png" />
+    <Resource Include="Resources\Images\question_small.png" />
+    <Resource Include="Resources\Images\RichTextboxImages\charactergrowfont.png" />
+    <Resource Include="Resources\Images\RichTextboxImages\charactershrinkfont.png" />
+    <Resource Include="Resources\Images\RichTextboxImages\editcopy.png" />
+    <Resource Include="Resources\Images\RichTextboxImages\editcut.png" />
+    <Resource Include="Resources\Images\RichTextboxImages\editpaste.png" />
+    <Resource Include="Resources\Images\RichTextboxImages\editredo.png" />
+    <Resource Include="Resources\Images\RichTextboxImages\editundo.png" />
+    <Resource Include="Resources\Images\RichTextboxImages\listbullets.png" />
+    <Resource Include="Resources\Images\RichTextboxImages\listnumbering.png" />
+    <Resource Include="Resources\Images\RichTextboxImages\paragraphcenterjustify.png" />
+    <Resource Include="Resources\Images\RichTextboxImages\paragraphdecreaseindentation.png" />
+    <Resource Include="Resources\Images\RichTextboxImages\paragraphfulljustify.png" />
+    <Resource Include="Resources\Images\RichTextboxImages\paragraphincreaseindentation.png" />
+    <Resource Include="Resources\Images\RichTextboxImages\paragraphleftjustify.png" />
+    <Resource Include="Resources\Images\RichTextboxImages\paragraphrightjustify.png" />
+    <Resource Include="Resources\Images\Sample Splash.png" />
+    <Resource Include="Resources\Images\SI_16x16.png" />
+    <Resource Include="Resources\Images\Splash-2.png" />
+    <Resource Include="Resources\Images\SplashBanner.jpg" />
+    <Resource Include="Resources\Images\updated.ico" />
+    <Resource Include="Resources\Images\Users.png" />
+    <Resource Include="Resources\Images\word_small.png" />
+    <Resource Include="Resources\Images\zip_small.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.1.29.2\build\dotnet\Fody.targets" Condition="Exists('..\packages\Fody.1.29.2\build\dotnet\Fody.targets')" />

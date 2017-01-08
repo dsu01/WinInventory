@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -28,7 +29,6 @@ namespace Client.ViewModels
         // Fields
         private IServiceLocator _serviceLocator;
 
-        public string Title { get; set; }
         private readonly IInvWindowManager _windowManager;
         private readonly Settings Settings;
 
@@ -44,7 +44,6 @@ namespace Client.ViewModels
 
         private void Init()
         {
-            //Title = Resources.MainWindowRes.AppName + " - " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
 
         /// <summary>
@@ -53,7 +52,11 @@ namespace Client.ViewModels
         public MainViewModel(IInvWindowManager windowManager,
                         IServiceLocator serviceLocator,
                         IEventAggregator eventAggregator,
-                        Settings settings)
+                        Settings settings,
+                        IApplicationContext applicationContext,
+                        StatusBarViewModel statusBarViewModel,
+                        MenuViewModel menuViewModel,
+                        DockViewModel dockViewModel)
             : base(eventAggregator)
         {
             Init();
@@ -61,20 +64,64 @@ namespace Client.ViewModels
             this._windowManager = windowManager;
             this._serviceLocator = serviceLocator;
             this.Settings = settings;
+            this.ApplicationContext = applicationContext;
+
+            StatusBarRegion = statusBarViewModel;
+            MenuRegion = menuViewModel;
+            DockRegion = dockViewModel;
 
             this.SubscribeToEvents();
         }
 
         #endregion
 
+        #region Event Handlers
 
-        public void OnKeyUp(KeyEventArgs e)
+        public void UnloadEvent(CancelEventArgs args)
         {
-            //if (e.Key == Key.F5)
+            if (!IoC.Get<IInvWindowManager>().Confirm(string.Empty, "Are you sure you want to exit CMMS Inventory?"))
+            {
+                args.Cancel = true;
+                return;
+            }
+
+            //var dockingWindowManager = IoC.Get<IDockWindowManager>();
+            //if (dockingWindowManager != null && !dockingWindowManager.CloseAllWindows())
             //{
-            //    EventAggregator.PublishOnUIThread(new CheckForUpdatesMessage());
-            //    EventAggregator.PublishOnUIThread(new CheckForDataUpdatesMessage());
+            //    args.Cancel = true;
             //}
         }
+
+        /// <summary>
+        /// app clean up
+        /// </summary>
+        public void OnClosed()
+        {
+        }
+
+        #endregion
+
+        #region Properties
+
+        public MenuViewModel MenuRegion { get; set; }
+
+        public DockViewModel DockRegion { get; set; }
+
+        public StatusBarViewModel StatusBarRegion { get; set; }
+
+        public IApplicationContext ApplicationContext { get; set; }
+
+        public string Title
+        {
+            get
+            {
+                var title = "CMMS Inventory";
+                if (ApplicationContext.ActiveUser != null)
+                    title = "CMMS Inventory - " + ApplicationContext.ActiveUser;
+                return title;
+            }
+        }
+
+        #endregion
     }
 }

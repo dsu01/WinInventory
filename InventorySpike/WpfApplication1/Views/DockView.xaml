@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="Client.Views.DockView"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:avalonDock="clr-namespace:AvalonDock;assembly=AvalonDock"
+             mc:Ignorable="d"
+             d:DesignHeight="500" d:DesignWidth="800"
+             cal:Bind.Model="{Binding}">
+    <Grid>
+        <avalonDock:DockingManager x:Name="MasterDockingManager">
+            <avalonDock:DockingManager.Background>
+                <ImageBrush ImageSource="../Resources/Images/BlueGlow.png" />
+            </avalonDock:DockingManager.Background>
+        </avalonDock:DockingManager>
+    </Grid>
+</UserControl>

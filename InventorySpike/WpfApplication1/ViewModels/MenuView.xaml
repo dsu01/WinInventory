@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="Client.ViewModels.MenuView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
+             xmlns:micro="http://www.caliburnproject.org"
+             mc:Ignorable="d" d:DesignHeight="25" d:DesignWidth="300"
+             micro:Bind.Model="{Binding}">
+    <FrameworkElement.Resources>
+        <LinearGradientBrush x:Key="OpenBackground" StartPoint=".5,0" EndPoint=".5,1">
+            <GradientStop Color="Transparent" Offset="0.0" />
+            <GradientStop Color="Transparent" Offset=".4" />
+            <GradientStop Color="Transparent" Offset="0.9" />
+            <GradientStop Color="Orange" Offset="0.9" />
+        </LinearGradientBrush>
+
+        <!--<LinearGradientBrush x:Key="OpenBackground" StartPoint=".5,0" EndPoint=".5,1">
+            <GradientStop Color="WhiteSmoke" Offset="0.0" />
+            <GradientStop Color="WhiteSmoke" Offset=".4" />
+            <GradientStop Color="White" Offset="0.7" />
+            <GradientStop Color="Orange" Offset="0.7" />
+        </LinearGradientBrush>-->
+    </FrameworkElement.Resources>
+    <Menu Name="MainMenu" Width="Auto" Height="25" ItemsSource="{Binding Items}">
+        <Menu.ItemContainerStyle>
+            <Style TargetType="MenuItem">
+                <Setter Property="Header" Value="{Binding DisplayName}" />
+                <Setter Property="ItemsSource" Value="{Binding Items}" />
+                <Setter Property="IsEnabled" Value="{Binding CanExecute}" />
+                <Setter Property="micro:Message.Attach" Value="[Event Click] = [Action Execute()]" />
+
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsItemOpen}" Value="True">
+                        <Setter Property="Background" Value="{StaticResource OpenBackground}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding IsItemOpen}" Value="False">
+                        <Setter Property="Background" Value="Transparent" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Menu.ItemContainerStyle>
+    </Menu>
+</UserControl>
