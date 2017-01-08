@@ -5,10 +5,156 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Client.Views"
              xmlns:cal="http://www.caliburnproject.org"
+             xmlns:Controls="clr-namespace:DevComponents.WPF.Controls;assembly=DevComponents.WPF.Controls"
+             xmlns:wpfEditors="clr-namespace:DevComponents.WpfEditors;assembly=DevComponents.WpfEditors"
+             xmlns:framework="clr-namespace:Client.Framework"
+             xmlns:converters="clr-namespace:Client.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              cal:Bind.Model="{Binding}">
-    <Grid>
-            <TextBlock Text="Facilities/Systems" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <converters:FacilityToHeaderConverter x:Key="FacilityToHeaderConverter" />
+
+        <HierarchicalDataTemplate x:Key="TreeNodeTemplate" ItemsSource="{Binding Children}">
+            <HierarchicalDataTemplate.Resources>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                    <Setter Property="FontFamily" Value="Segoe UI" />
+                    <Setter Property="FontFamily" Value="Tahoma" />
+                    <Setter Property="FontSize" Value="12" />
+                    <Setter Property="Padding" Value="1 3 5 3" />
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                </Style>
+            </HierarchicalDataTemplate.Resources>
+            <StackPanel Orientation="Horizontal">
+                <Image x:Name="TreeNodeImage"  Width="16" Height="16" Margin="3,0" />
+                <TextBlock x:Name="TreeNodeLabel" Foreground="Black" Text="{Binding Path=Value, Converter={StaticResource FacilityToHeaderConverter}}" />
+            </StackPanel>
+            <DataTemplate.Triggers>
+                <!--<DataTrigger Binding="{Binding Path=TreeNodeType}" Value="0">
+                    <Setter TargetName="TreeNodeImage" Property="Source" Value="../../../Resources/Images/folder_16x16.gif" />
+                    <Setter TargetName="TreeNodeLabel" Property="FontSize" Value="13" />
+                </DataTrigger>-->
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Path=TreeNodeType}" Value="{x:Static framework:TreeNodeType.System}" />
+                        <Condition Binding="{Binding Path=IsOpen}" Value="false" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter TargetName="TreeNodeImage" Property="Source" Value="../../../Resources/Images/FI_16x16.png" />
+                    <Setter TargetName="TreeNodeLabel" Property="FontWeight" Value="Bold" />
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Path=TreeNodeType}" Value="{x:Static framework:TreeNodeType.System}" />
+                        <Condition Binding="{Binding Path=IsOpen}" Value="true" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter TargetName="TreeNodeImage" Property="Source" Value="../../../Resources/Images/Open_16x16.png" />
+                    <Setter TargetName="TreeNodeLabel" Property="FontWeight" Value="Bold" />
+                </MultiDataTrigger>
+
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Path=TreeNodeType}" Value="{x:Static framework:TreeNodeType.Equipment}" />
+                        <Condition Binding="{Binding Path=IsOpen}" Value="false" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter TargetName="TreeNodeImage" Property="Source" Value="../../../Resources/Images/AI_16x16.png" />
+                    <Setter TargetName="TreeNodeLabel" Property="FontWeight" Value="Bold" />
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Path=TreeNodeType}" Value="{x:Static framework:TreeNodeType.Equipment}" />
+                        <Condition Binding="{Binding Path=IsOpen}" Value="true" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter TargetName="TreeNodeImage" Property="Source" Value="../../../Resources/Images/Open_16x16.png" />
+                    <Setter TargetName="TreeNodeLabel" Property="FontWeight" Value="Bold" />
+                </MultiDataTrigger>
+
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Path=TreeNodeType}" Value="{x:Static framework:TreeNodeType.Component}" />
+                        <Condition Binding="{Binding Path=IsOpen}" Value="false" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter TargetName="TreeNodeImage" Property="Source" Value="../../../Resources/Images/SI_16x16.png" />
+                    <Setter TargetName="TreeNodeLabel" Property="FontWeight" Value="Bold" />
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Path=TreeNodeType}" Value="{x:Static framework:TreeNodeType.Component}" />
+                        <Condition Binding="{Binding Path=IsOpen}" Value="true" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter TargetName="TreeNodeImage" Property="Source" Value="../../../Resources/Images/Open_16x16.png" />
+                    <Setter TargetName="TreeNodeLabel" Property="FontWeight" Value="Bold" />
+                </MultiDataTrigger>
+            </DataTemplate.Triggers>
+        </HierarchicalDataTemplate>
+
+        <Style TargetType="{x:Type TreeView}">
+            <Setter Property="ItemTemplate" Value="{StaticResource TreeNodeTemplate}" />
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type TreeViewItem}">
+                        <Setter Property="IsExpanded" Value="True" />
+                        <Setter Property="ItemsSource" Value="{Binding Children}" />
+                        <Setter Property="cal:Message.Attach" Value="[Event Selected] = [Action SelectInstitution($dataContext,$eventArgs)]; [Event MouseDoubleClick] = [Action ActivateInstitutionWithoutGuard($dataContext)]" />
+                        <Setter Property="Tag" Value="{Binding DataContext,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}" />
+                        <Setter Property="ContextMenu">
+                            <Setter.Value>
+                                <ContextMenu DataContext="{Binding Path=PlacementTarget.Tag,RelativeSource={x:Static RelativeSource.Self}}">
+                                    <MenuItem Header="Open" cal:Message.Attach="ActivateInstitution()" IsEnabled="{Binding CanActivateInstitution, Mode=OneWay}" />
+                                    <MenuItem Header="Delete" cal:Message.Attach="DeleteInstitution" IsEnabled="{Binding CanDeleteInstitution, Mode=OneWay}" />
+                                    <MenuItem Header="Add Component" cal:Message.Attach="AddFormerInstitution()" IsEnabled="{Binding CanAddFormerInstitution, Mode=OneWay}" />
+                                </ContextMenu>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                        </Style.Triggers>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <SolidColorBrush x:Key="{ComponentResourceKey {x:Type Controls:ButtonResources}, {x:Static Controls:ButtonResources.ButtonNormalInnerBorderBrushKey}}" Color="Transparent" />
+        <SolidColorBrush x:Key="{ComponentResourceKey {x:Type Controls:ButtonResources}, {x:Static Controls:ButtonResources.ButtonHoverBorderBrushKey}}" Color="Transparent" />
+        <SolidColorBrush x:Key="{ComponentResourceKey {x:Type Controls:ButtonResources}, {x:Static Controls:ButtonResources.ButtonHoverInnerBorderBrushKey}}" Color="Transparent" />
+        <SolidColorBrush x:Key="{ComponentResourceKey {x:Type Controls:ButtonResources}, {x:Static Controls:ButtonResources.ButtonCheckedBorderBrushKey}}" Color="Transparent" />
+        <SolidColorBrush x:Key="{ComponentResourceKey {x:Type Controls:ButtonResources}, {x:Static Controls:ButtonResources.ButtonCheckedInnerBorderBrushKey}}" Color="Transparent" />
+        <SolidColorBrush x:Key="{ComponentResourceKey {x:Type Controls:ButtonResources}, {x:Static Controls:ButtonResources.ButtonPressedBorderBrushKey}}" Color="Transparent" />
+        <SolidColorBrush x:Key="{ComponentResourceKey {x:Type Controls:ButtonResources}, {x:Static Controls:ButtonResources.ButtonPressedInnerBorderBrushKey}}" Color="Transparent" />
+    </UserControl.Resources>
+
+    <UserControl.ContextMenu>
+        <ContextMenu DataContext="{Binding Path=PlacementTarget.DataContext,RelativeSource={x:Static RelativeSource.Self}}">
+            <MenuItem Header="Add" cal:Message.Attach="AddInstitution" IsEnabled="{Binding CanAddInstitution, Mode=OneWay}" />
+        </ContextMenu>
+    </UserControl.ContextMenu>
+
+    <Grid KeyboardNavigation.TabNavigation="Cycle">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="1" Visibility="{Binding IsCompletedSelected, Converter={StaticResource BoolToVisibilityConverter}}" x:Name="SearchPanel">
+            <TextBlock DockPanel.Dock="Left" Text="Search:" VerticalAlignment="Center" x:Name="SearchStringTitle" />
+            <TextBox DockPanel.Dock="Right" Text="" VerticalAlignment="Center" x:Name="SearchString" TextWrapping="Wrap" />
+        </DockPanel>
+
+        <wpfEditors:SuperTabControl ControlBoxTabMenuVisibility="Visible" TabStripPlacement="Bottom" Margin="4" Grid.Row="2">
+            <wpfEditors:SuperTabItem Header="E Systems" IsSelected="{Binding IsElectricalSystemsSelected, Mode=TwoWay}" ToolTip="Electrical Systems" AutomationProperties.Name="">
+                <TreeView ItemsSource="{Binding ElectricalSystems}" />
+            </wpfEditors:SuperTabItem>
+            <wpfEditors:SuperTabItem Header="M Systems" IsSelected="False" ToolTip="Mechanical Systems" AutomationProperties.Name="">
+                <TreeView ItemsSource="{Binding MechanicalSystems}" />
+            </wpfEditors:SuperTabItem>
+            <wpfEditors:SuperTabItem Header="E Equipments" IsSelected="False" ToolTip="Electrical Equipments" AutomationProperties.Name="">
+                <TreeView ItemsSource="{Binding ElectricalEquipment}" />
+            </wpfEditors:SuperTabItem>
+            <wpfEditors:SuperTabItem Header="M Equipments" IsSelected="False" ToolTip="Electrical Equipments" AutomationProperties.Name="">
+                <TreeView ItemsSource="{Binding MechanicalEquipment}" />
+            </wpfEditors:SuperTabItem>
+        </wpfEditors:SuperTabControl>
     </Grid>
 </UserControl>
+

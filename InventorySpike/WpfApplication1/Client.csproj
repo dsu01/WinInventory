@@ -182,6 +182,7 @@
     <Compile Include="Classes\WpfExtensions.cs" />
     <Compile Include="Controls\CommandBar.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter .cs" />
+    <Compile Include="Converters\FacilityToHeader.cs" />
     <Compile Include="Converters\NegationConverter.cs" />
     <Compile Include="Framework\CursorHelper.cs" />
     <Compile Include="Framework\Docking\BaseDockableContent.cs" />
@@ -192,6 +193,7 @@
     <Compile Include="Framework\Docking\IDockViewModel.cs" />
     <Compile Include="Framework\Docking\IDockWindowManager.cs" />
     <Compile Include="Framework\InvWindowManager.cs" />
+    <Compile Include="Framework\TreeNode.cs" />
     <Compile Include="Interfaces\IInvWindowManager.cs" />
     <Compile Include="ViewModels\DockViewModel.cs" />
     <Compile Include="ViewModels\MenuView.xaml.cs">
@@ -283,7 +285,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Behaviors\" />
-    <Folder Include="Images\" />
     <Folder Include="UserControls\" />
   </ItemGroup>
   <ItemGroup>

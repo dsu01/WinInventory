@@ -22,6 +22,7 @@ using Client.Classes;
 using Client.Framework;
 using Client.Framework.Docking;
 using Client.ViewModels;
+using Inventory.Business.Services;
 
 namespace Client
 {
@@ -154,7 +155,7 @@ namespace Client
             if (facilitiesVM != null)
             {
                 var manager = IoC.Get<IDockWindowManager>();
-                manager.ShowDockedWindow(facilitiesVM, DockArea.Master, null, true, DockSide.Left, 300, true, false);
+                manager.ShowDockedWindow(facilitiesVM, DockArea.Master, null, true, DockSide.Left, 400, true, false);
             }
 
             //FindServerAsync().ContinueWith(t =>
@@ -279,10 +280,9 @@ namespace Client
             //ConfigureVesselServerEndpoints(netTcpUriBase);
 
             // Services
-            //RegisterServiceChannel<IFfmService>("FfmService");
+            this.Container.RegisterType<IFacilitiesService, FacilitiesService>();
 
             // UI services
-            //this.Container.RegisterType<IDockLayoutUpdateService, DockLayoutUpdateService>();
             this.Container.RegisterType<IApplicationContext, ApplicationContext>(new ContainerControlledLifetimeManager());
 
             // ViewModels
