@@ -21,7 +21,7 @@ namespace Client.Framework.Docking
         private const string MyLayoutFile = @".\AvalonDock.config";
 
         //MEF constructor
-        protected DockWindowManager()
+        public DockWindowManager()
         {
             _documentArea = DockArea.Master;
             _openMenuItems = new List<DockArea>();
@@ -142,7 +142,7 @@ namespace Client.Framework.Docking
             // TODO
             //if (anchor == AnchorStyle.Left && dockArea != DockArea.Master)
             //{
-            //    var istview = IoC.Get<InstitutionsViewModel>();
+            //    var istview = IoC.Get<FacilitiesViewModel>();
             //    var instdockable = GetDockable(istview, null, DockArea.Master);
 
             //    instdockable.Show(dockingManager, anchor);
@@ -484,7 +484,7 @@ namespace Client.Framework.Docking
             //        dockablecontent.Close();
             //    }
 
-            //    var istview = IoC.Get<InstitutionsViewModel>();
+            //    var istview = IoC.Get<FacilitiesViewModel>();
             //    HideDockWindow(istview);
             //}
 

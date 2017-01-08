@@ -144,6 +144,19 @@ namespace Client
 
             DisplayRootViewFor<IShell>();
 
+            var applicationContext = IoC.Get<IApplicationContext>();
+            if ((applicationContext == null) || (applicationContext.ActiveUser == null))
+            {
+                ShutdownApp("App cannot start due to an internal error.");
+            }
+
+            var facilitiesVM = IoC.Get<FacilitiesViewModel>();
+            if (facilitiesVM != null)
+            {
+                var manager = IoC.Get<IDockWindowManager>();
+                manager.ShowDockedWindow(facilitiesVM, DockArea.Master, null, true, DockSide.Left, 300, true, false);
+            }
+
             //FindServerAsync().ContinueWith(t =>
             //{
             //    if (t.IsFaulted)
@@ -278,6 +291,7 @@ namespace Client
             this.Container.RegisterType<MenuViewModel>(new ContainerControlledLifetimeManager());
             this.Container.RegisterType<DockViewModel>(new ContainerControlledLifetimeManager());
             this.Container.RegisterType<StatusBarViewModel>(new ContainerControlledLifetimeManager());
+            this.Container.RegisterType<FacilitiesViewModel>(new ContainerControlledLifetimeManager());
 
             // Caliburn types
             this.Container.RegisterType<IEventAggregator, EventAggregator>(new ContainerControlledLifetimeManager());
@@ -378,7 +392,16 @@ namespace Client
 
         private void DisplayShutdownMessage()
         {
-            //Execute.OnUIThread(() => MessageBox.Show(AppBootstrapperRes.ShutdownMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error));
+            Execute.OnUIThread(() => MessageBox.Show("Shutting down app now...", "Error", MessageBoxButton.OK, MessageBoxImage.Error));
+        }
+
+        private void ShutdownApp(string message)
+        {
+            Execute.OnUIThread(() =>
+            {
+                MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Application.Current.Shutdown();
+            });
         }
 
         #endregion
