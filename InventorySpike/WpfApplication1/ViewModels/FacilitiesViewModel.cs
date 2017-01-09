@@ -11,6 +11,7 @@ using System.Windows.Threading;
 using Caliburn.Micro;
 using Client.Classes;
 using Client.Framework;
+using Client.Framework.Docking;
 using Client.Properties;
 using Inventory.Business;
 using Inventory.Business.Services;
@@ -87,9 +88,13 @@ namespace Client.ViewModels
             //        ActivateInstitution();
             //    }
             //}
+
+            var facilityDetailVM = new FacilityDetailViewModel(new InvFacility(), null, _windowManager, EventAggregator, _facilitiesService, Settings);
+            var manager = IoC.Get<IDockWindowManager>();
+            manager.ShowDocumentWindow(facilityDetailVM, null);
         }
 
-        public void SelectInstitution(TreeNode<object> treeNode, EventArgs eventArgs)
+        public void SelectFacility(TreeNode<object> treeNode, EventArgs eventArgs)
         {
             if (treeNode == null)
                 return;
@@ -104,7 +109,7 @@ namespace Client.ViewModels
                 //SelectedTreeItem = treeNode;
                 //SelectedFormerInstitutionStatusValues = null;
             }
-            
+
             if (eventArgs is RoutedEventArgs)
                 ((RoutedEventArgs)eventArgs).Handled = true;
         }

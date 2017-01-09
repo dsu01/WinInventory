@@ -101,9 +101,9 @@
                         <Setter Property="ContextMenu">
                             <Setter.Value>
                                 <ContextMenu DataContext="{Binding Path=PlacementTarget.Tag,RelativeSource={x:Static RelativeSource.Self}}">
-                                    <MenuItem Header="Open" cal:Message.Attach="ActivateInstitution()" IsEnabled="{Binding CanActivateInstitution, Mode=OneWay}" />
-                                    <MenuItem Header="Delete" cal:Message.Attach="DeleteInstitution" IsEnabled="{Binding CanDeleteInstitution, Mode=OneWay}" />
-                                    <MenuItem Header="Add Component" cal:Message.Attach="AddFormerInstitution()" IsEnabled="{Binding CanAddFormerInstitution, Mode=OneWay}" />
+                                    <MenuItem Header="Open" cal:Message.Attach="OpenFacility($dataContext)" IsEnabled="{Binding CanActivateInstitution, Mode=OneWay}" />
+                                    <MenuItem Header="Delete" cal:Message.Attach="OpenFacility($dataContext)" IsEnabled="{Binding CanDeleteInstitution, Mode=OneWay}" />
+                                    <MenuItem Header="Add Component" cal:Message.Attach="OpenFacility($dataContext)" IsEnabled="{Binding CanAddFormerInstitution, Mode=OneWay}" />
                                 </ContextMenu>
                             </Setter.Value>
                         </Setter>

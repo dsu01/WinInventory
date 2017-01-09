@@ -195,11 +195,20 @@
     <Compile Include="Framework\Docking\DockWindowManager.cs" />
     <Compile Include="Framework\Docking\IDockViewModel.cs" />
     <Compile Include="Framework\Docking\IDockWindowManager.cs" />
+    <Compile Include="Framework\EntityViewModel.cs" />
+    <Compile Include="Framework\IEntityViewModel.cs" />
+    <Compile Include="Framework\IHasChanges.cs" />
     <Compile Include="Framework\InvWindowManager.cs" />
+    <Compile Include="Framework\IValidatable.cs" />
     <Compile Include="Framework\TreeNode.cs" />
     <Compile Include="Interfaces\IInvWindowManager.cs" />
     <Compile Include="ViewModels\DockViewModel.cs" />
-    <Compile Include="ViewModels\MenuView.xaml.cs">
+    <Compile Include="ViewModels\FacilityInfoViewModel.cs" />
+    <Compile Include="ViewModels\FacilityDetailViewModel.cs" />
+    <Compile Include="Views\FacilityDetailView.xaml.cs">
+      <DependentUpon>FacilityDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MenuView.xaml.cs">
       <DependentUpon>MenuView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\FacilitiesViewModel.cs" />
@@ -243,7 +252,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ViewModels\MenuView.xaml">
+    <Page Include="Views\FacilityDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

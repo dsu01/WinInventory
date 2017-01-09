@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Client.ViewModels
+namespace Client.Views
 {
     /// <summary>
-    /// Interaction logic for MenuView.xaml
+    /// Interaction logic for FacilityDetailView.xaml
     /// </summary>
-    public partial class MenuView : UserControl
+    public partial class FacilityDetailView : UserControl
     {
-        public MenuView()
+        public FacilityDetailView()
         {
             InitializeComponent();
         }
