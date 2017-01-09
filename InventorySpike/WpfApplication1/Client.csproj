@@ -177,6 +177,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ActionItems\AdminActionItem.cs" />
+    <Compile Include="ActionItems\CreateActionItem.cs" />
     <Compile Include="Classes\ApplicationContext.cs" />
     <Compile Include="Classes\Settings.cs" />
     <Compile Include="Classes\WpfExtensions.cs" />
@@ -184,6 +186,7 @@
     <Compile Include="Converters\BoolToVisibilityConverter .cs" />
     <Compile Include="Converters\FacilityToHeader.cs" />
     <Compile Include="Converters\NegationConverter.cs" />
+    <Compile Include="Framework\ActionItem.cs" />
     <Compile Include="Framework\CursorHelper.cs" />
     <Compile Include="Framework\Docking\BaseDockableContent.cs" />
     <Compile Include="Framework\Docking\Commands\CustomDockCommands.cs" />

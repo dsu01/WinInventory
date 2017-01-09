@@ -12,6 +12,7 @@ using Caliburn.Micro;
 using Client.Classes;
 using Client.Framework;
 using Client.Properties;
+using Inventory.Business;
 using Inventory.Business.Services;
 using Microsoft.Practices.ServiceLocation;
 using PropertyChanged;
@@ -72,6 +73,41 @@ namespace Client.ViewModels
         public bool IsElectricalSystemsSelected { get; set; }
 
         public BindableCollection<TreeNode<object>> ElectricalSystems { get; set; }
+
+        #endregion
+
+        #region Public Methods
+
+        public void OpenFacility(object context)
+        {
+            //if (context == SelectedTreeItem)
+            //{
+            //    if (CanActivateInstitution)
+            //    {
+            //        ActivateInstitution();
+            //    }
+            //}
+        }
+
+        public void SelectInstitution(TreeNode<object> treeNode, EventArgs eventArgs)
+        {
+            if (treeNode == null)
+                return;
+
+            // are we in root
+            if (treeNode.Value is InvFacility)
+            {
+                //var institutionSelected = treeNode.Value == null
+                //                              ? null
+                //                              : _institutionService.GetInstitutionById((treeNode.Value as InstitutionTreeItem).InstitutionId);
+                //_applicationContext.SelectedInstitution = institutionSelected;
+                //SelectedTreeItem = treeNode;
+                //SelectedFormerInstitutionStatusValues = null;
+            }
+            
+            if (eventArgs is RoutedEventArgs)
+                ((RoutedEventArgs)eventArgs).Handled = true;
+        }
 
         #endregion
 

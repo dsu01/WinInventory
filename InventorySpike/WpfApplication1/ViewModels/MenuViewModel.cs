@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 using Caliburn.Micro;
+using Client.ActionItems;
 using Client.Classes;
 using Client.Framework;
 using Client.Properties;
@@ -33,21 +34,11 @@ namespace Client.ViewModels
 
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MainViewModel"/> class.
-        /// </summary>
         protected MenuViewModel()
         {
             Init();
         }
 
-        private void Init()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the MainWindowViewModel class.
-        /// </summary>
         public MenuViewModel(IInvWindowManager windowManager,
                         IEventAggregator eventAggregator,
                         Settings settings)
@@ -62,5 +53,20 @@ namespace Client.ViewModels
         }
 
         #endregion
+
+        #region Properties
+
+        public ObservableCollection<IActionItem> Items { get; private set; }
+
+        #endregion
+
+        private void Init()
+        {
+            Items = new ObservableCollection<IActionItem>()
+            {
+                new CreateActionItem(),
+                new AdminActionItem(),
+            };
+        }
     }
 }

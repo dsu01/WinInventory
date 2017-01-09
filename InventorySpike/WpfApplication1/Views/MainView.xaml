@@ -18,7 +18,6 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <DockPanel Background="White">
-        <!--<TextBlock DockPanel.Dock="Top" Text="{Binding Title}" FontSize="36"/>-->
         <ContentControl x:Name="StatusBarRegion" DockPanel.Dock="Bottom" Width="Auto" Height="25" />
         <ContentControl x:Name="MenuRegion" DockPanel.Dock="Top" Width="Auto" Height="25" />
         <ContentControl x:Name="DockRegion" />

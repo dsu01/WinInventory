@@ -22,7 +22,7 @@
             <GradientStop Color="Orange" Offset="0.7" />
         </LinearGradientBrush>-->
     </FrameworkElement.Resources>
-    <Menu Name="MainMenu" Width="Auto" Height="25" ItemsSource="{Binding Items}">
+    <Menu Name="MainMenu" Width="Auto" Height="25" ItemsSource="{Binding Items}" Margin="5 2">
         <Menu.ItemContainerStyle>
             <Style TargetType="MenuItem">
                 <Setter Property="Header" Value="{Binding DisplayName}" />
@@ -31,12 +31,12 @@
                 <Setter Property="micro:Message.Attach" Value="[Event Click] = [Action Execute()]" />
 
                 <Style.Triggers>
-                    <DataTrigger Binding="{Binding IsItemOpen}" Value="True">
+                    <!--<DataTrigger Binding="{Binding IsItemOpen}" Value="True">
                         <Setter Property="Background" Value="{StaticResource OpenBackground}" />
                     </DataTrigger>
                     <DataTrigger Binding="{Binding IsItemOpen}" Value="False">
                         <Setter Property="Background" Value="Transparent" />
-                    </DataTrigger>
+                    </DataTrigger>-->
                 </Style.Triggers>
             </Style>
         </Menu.ItemContainerStyle>
