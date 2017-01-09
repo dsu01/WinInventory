@@ -3,7 +3,8 @@
                     xmlns:cal="http://www.caliburnproject.org"
                     xmlns:controls="clr-namespace:SeaStar.Viewer.Controls"
                     xmlns:local="clr-namespace:SeaStar.Viewer"
-                    xmlns:converters="clr-namespace:SeaStar.Viewer.Converters">
+                    xmlns:converters="clr-namespace:SeaStar.Viewer.Converters"
+                    xmlns:local1="clr-namespace:Client.Controls">
     
     <Style TargetType="Button">
         <Setter Property="Height" Value="25" />
@@ -394,4 +395,318 @@
         </Style.Triggers>
     </Style>
 
+    <ControlTemplate x:Key="ImageButtonTemplate" TargetType="{x:Type local1:ImageButton}">
+        <Grid x:Name="Grid">
+            <Border
+                x:Name="Background"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="3"
+>
+
+                <StackPanel Orientation="Horizontal" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
+                    <Image x:Name="ButtonImage"
+               Source="{Binding NormalImage, RelativeSource={RelativeSource TemplatedParent}}"
+               Height="{Binding ImageSize, RelativeSource={RelativeSource TemplatedParent}}"
+               Width="{Binding ImageSize, RelativeSource={RelativeSource TemplatedParent}}"
+               ToolTip="{TemplateBinding ToolTip}"
+                           RenderTransformOrigin="0.5,0.5"
+                           Margin="0 0 1 0"
+ />
+                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="1 0 0 0"
+                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="True" />
+                </StackPanel>
+            </Border>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsPressed" Value="false" />
+                    <Condition Property="IsMouseOver" Value="false" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="ButtonImage" Property="Source" Value="{Binding NormalImage, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter Property="Cursor" Value="Arrow" />
+
+                <Setter Property="Background" Value="Transparent" TargetName="Background" />
+
+                <Setter Property="BorderBrush" Value="Transparent" TargetName="Background" />
+                <Setter Property="BorderThickness" Value="1" TargetName="Background" />
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsEnabled" Value="true" />
+                    <Condition Property="IsMouseOver" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="ButtonImage" Property="Source" Value="{Binding HoverImage, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter Property="Background" TargetName="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                            <GradientStop Color="#FFFCE9A3" Offset="0" />
+                            <GradientStop Color="#FFFDF7D3" Offset="1" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderBrush" Value="#FFF2CD54" TargetName="Background" />
+                <Setter Property="BorderThickness" Value="1" TargetName="Background" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsEnabled" Value="true" />
+                    <Condition Property="IsPressed" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="ButtonImage" Property="Source" Value="{Binding PressedImage, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter Property="Background" TargetName="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFF6CA69" Offset="0" />
+                            <GradientStop Color="#FFFEE287" Offset="0.901" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderBrush" Value="#FFC2762B" TargetName="Background" />
+                <Setter Property="BorderThickness" Value="1" TargetName="Background" />
+            </MultiTrigger>
+
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Foreground" Value="#FF9B9DA1" />
+                <Setter TargetName="ButtonImage" Property="Source" Value="{Binding DisabledImage, RelativeSource={RelativeSource TemplatedParent}}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style TargetType="{x:Type local1:ImageButton}" BasedOn="{x:Null}" x:Key="ImageButtonBase">
+        <Setter Property="Padding" Value="0 1 4 1" />
+
+        <Setter Property="ImageSize" Value="16" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontFamily" Value="Arial" />
+        <Setter Property="Width" Value="100" />
+        <Setter Property="Template" Value="{StaticResource ImageButtonTemplate}" />
+    </Style>
+
+    <Style x:Key="Save_ImageButton" TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/ButtonImages/disk.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/ButtonImages/disk.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/ButtonImages/disk.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/ButtonImages/disk.png" />
+    </Style>
+
+    <Style x:Key="Cancel_ImageButton" TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/ButtonImages/undo.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/ButtonImages/undo.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/ButtonImages/undo.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/ButtonImages/undo.png" />
+    </Style>
+
+    <Style x:Key="Add_ImageButton" TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/ButtonImages/add.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/ButtonImages/add.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/ButtonImages/add.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/ButtonImages/add.png" />
+    </Style>
+
+    <Style x:Key="Export_ImageButton" TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/ButtonImages/page_white_get.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/ButtonImages/page_white_get.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/ButtonImages/page_white_get.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/ButtonImages/page_white_get.png" />
+    </Style>
+
+    <Style x:Key="Delete_ImageButton" TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/ButtonImages/delete.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/ButtonImages/delete.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/ButtonImages/delete.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/ButtonImages/delete.png" />
+    </Style>
+
+    <Style x:Key="Open_ImageButton" TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/ButtonImages/magnifier.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/ButtonImages/magnifier.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/ButtonImages/magnifier.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/ButtonImages/magnifier.png" />
+    </Style>
+
+    <Style x:Key="Refresh_ImageButton" TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/ButtonImages/arrow_refresh.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/ButtonImages/arrow_refresh.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/ButtonImages/arrow_refresh.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/ButtonImages/arrow_refresh.png" />
+    </Style>
+
+    <Style x:Key="PopulateJackets_ImageButton" TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/ButtonImages/text_list_numbers.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/ButtonImages/text_list_numbers.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/ButtonImages/text_list_numbers.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/ButtonImages/text_list_numbers.png" />
+    </Style>
+
+    <Style x:Key="PreviewJackets_ImageButton" TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/ButtonImages/document_inspector.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/ButtonImages/document_inspector.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/ButtonImages/document_inspector.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/ButtonImages/document_inspector.png" />
+    </Style>
+
+    <Style x:Key="GenerateJackets_ImageButton" TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/ButtonImages/generic_folder.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/ButtonImages/generic_folder.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/ButtonImages/generic_folder.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/ButtonImages/generic_folder.png" />
+    </Style>
+
+    <Style x:Key="MultiRowAssignment_ImageButton" TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/ButtonImages/table_multiple.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/ButtonImages/table_multiple.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/ButtonImages/table_multiple.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/ButtonImages/table_multiple.png" />
+    </Style>
+
+    <Style x:Key="DefaultSplits_ImageButton" TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/ButtonImages/balance.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/ButtonImages/balance.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/ButtonImages/balance.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/ButtonImages/balance.png" />
+    </Style>
+
+    <Style x:Key="LinkSubsidiary_ImageButton" TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/ButtonImages/chain--plus.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/ButtonImages/chain--plus.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/ButtonImages/chain--plus.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/ButtonImages/chain--plus.png" />
+    </Style>
+
+    <Style x:Key="CreatePackage_ImageButton" TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/ButtonImages/book_open.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/ButtonImages/book_open.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/ButtonImages/book_open.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/ButtonImages/book_open.png" />
+    </Style>
+
+    <Style x:Key="ViewPackage_ImageButton" TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/pdficon_small.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/pdficon_small.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/pdficon_small.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/pdficon_small.png" />
+    </Style>
+
+    <Style x:Key="Back_ImageButton" TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/ButtonImages/resultset_first.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/ButtonImages/resultset_first.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/ButtonImages/resultset_first.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/ButtonImages/resultset_first.png" />
+    </Style>
+
+    <Style x:Key="Next_ImageButton" TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/ButtonImages/resultset_last.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/ButtonImages/resultset_last.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/ButtonImages/resultset_last.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/ButtonImages/resultset_last.png" />
+    </Style>
+
+    <Style x:Key="Print_ImageButton" TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/ButtonImages/printer.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/ButtonImages/printer.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/ButtonImages/printer.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/ButtonImages/printer.png" />
+    </Style>
+
+    <Style x:Key="NewAdjustment_ImageButton" TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/ButtonImages/add.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/ButtonImages/add.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/ButtonImages/add.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/ButtonImages/add.png" />
+    </Style>
+
+    <Style x:Key="Submit_ImageButton" TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/ButtonImages/submit.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/ButtonImages/submit.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/ButtonImages/submit.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/ButtonImages/submit.png" />
+    </Style>
+
+    <Style x:Key="Approve_ImageButton" TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/ButtonImages/accept.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/ButtonImages/accept.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/ButtonImages/accept.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/ButtonImages/accept.png" />
+    </Style>
+
+    <Style x:Key="Reject_ImageButton" TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/ButtonImages/cancel.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/ButtonImages/cancel.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/ButtonImages/cancel.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/ButtonImages/cancel.png" />
+    </Style>
+
+    <Style x:Key="RetrieveMemoData_ImageButton" TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/ButtonImages/page_refresh.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/ButtonImages/page_refresh.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/ButtonImages/page_refresh.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/ButtonImages/page_refresh.png" />
+    </Style>
+
+    <Style x:Key="View_ImageButton" TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/ButtonImages/magnifier.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/ButtonImages/magnifier.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/ButtonImages/magnifier.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/ButtonImages/magnifier.png" />
+    </Style>
+
+    <Style x:Key="Versions_ImageButton" TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/ButtonImages/book-bookmark.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/ButtonImages/book-bookmark.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/ButtonImages/book-bookmark.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/ButtonImages/book-bookmark.png" />
+    </Style>
+
+    <Style x:Key="SelectAll_ImageButton" TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/ButtonImages/shapes_many_select.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/ButtonImages/shapes_many_select.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/ButtonImages/shapes_many_select.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/ButtonImages/shapes_many_select.png" />
+    </Style>
+
+    <Style x:Key="Clear_ImageButton" TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/ButtonImages/layer_select.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/ButtonImages/layer_select.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/ButtonImages/layer_select.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/ButtonImages/layer_select.png" />
+    </Style>
+
+    <Style x:Key="AddSection_ImageButton" TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/ButtonImages/folder_add.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/ButtonImages/folder_add.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/ButtonImages/folder_add.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/ButtonImages/folder_add.png" />
+    </Style>
+
+    <Style x:Key="AddDocument_ImageButton" TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/ButtonImages/page_white_add.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/ButtonImages/page_white_add.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/ButtonImages/page_white_add.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/ButtonImages/page_white_add.png" />
+    </Style>
+
+    <!--Default Button - no image shown (if the properties are left blank it will throw exceptions and cause slowdowns-->
+    <Style TargetType="{x:Type local1:ImageButton}" BasedOn="{StaticResource ImageButtonBase}">
+        <Setter Property="NormalImage" Value="/Resources/Images/ButtonImages/blank.png" />
+        <Setter Property="HoverImage"  Value="/Resources/Images/ButtonImages/blank.png" />
+        <Setter Property="PressedImage" Value="/Resources/Images/ButtonImages/blank.png" />
+        <Setter Property="DisabledImage" Value="/Resources/Images/ButtonImages/blank.png" />
+        <Setter Property="ImageSize" Value="0" />
+    </Style>
+    
 </ResourceDictionary>

@@ -5,11 +5,32 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
              xmlns:micro="http://www.caliburnproject.org"
+             xmlns:controls="clr-namespace:Client.Controls"
+             xmlns:wpfEditors="clr-namespace:DevComponents.WpfEditors;assembly=DevComponents.WpfEditors"
              mc:Ignorable="d" d:DesignHeight="25" d:DesignWidth="300"
              micro:Bind.Model="{Binding}">
-    <Grid>
-            
-        <TextBlock Text="Facility Details" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        
+    <Grid KeyboardNavigation.TabNavigation="Cycle">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <controls:CommandBar Margin="0 0 0 5" Grid.Row="0">
+            <controls:ImageButton Content="_Save"  x:Name="Save" Style="{StaticResource ResourceKey=Save_ImageButton}" ToolTip="Save Changes" />
+            <Separator Style="{StaticResource CmdBarSeparatorStyle}" />
+            <controls:ImageButton Content="_Cancel" x:Name="Cancel"  Style="{StaticResource ResourceKey=Cancel_ImageButton}" ToolTip="Cancel Changes" />
+        </controls:CommandBar>
+
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.Row="1">
+            <wpfEditors:SuperTabControl ControlBoxTabMenuVisibility="Visible" TabStripPlacement="Top" Margin="5 5">
+                <wpfEditors:SuperTabItem Header="Info Card" IsSelected="true" ToolTip="Info Card" AutomationProperties.Name="">
+                </wpfEditors:SuperTabItem>
+                <wpfEditors:SuperTabItem Header="Components" IsSelected="false" ToolTip="Components" AutomationProperties.Name="">
+                </wpfEditors:SuperTabItem>
+                <wpfEditors:SuperTabItem Header="Attachments" IsSelected="false" ToolTip="Attachments" AutomationProperties.Name="">
+                </wpfEditors:SuperTabItem>
+            </wpfEditors:SuperTabControl>
+        </ScrollViewer>
+
     </Grid>
 </UserControl>

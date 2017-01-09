@@ -183,6 +183,7 @@
     <Compile Include="Classes\Settings.cs" />
     <Compile Include="Classes\WpfExtensions.cs" />
     <Compile Include="Controls\CommandBar.cs" />
+    <Compile Include="Controls\ImageButton.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter .cs" />
     <Compile Include="Converters\FacilityToHeader.cs" />
     <Compile Include="Converters\NegationConverter.cs" />
