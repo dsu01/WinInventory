@@ -179,6 +179,7 @@
     </ApplicationDefinition>
     <Compile Include="ActionItems\AdminActionItem.cs" />
     <Compile Include="ActionItems\CreateActionItem.cs" />
+    <Compile Include="Behaviors\DialogCloser.cs" />
     <Compile Include="Classes\ApplicationContext.cs" />
     <Compile Include="Classes\Settings.cs" />
     <Compile Include="Classes\WpfExtensions.cs" />
@@ -197,6 +198,7 @@
     <Compile Include="Framework\Docking\IDockViewModel.cs" />
     <Compile Include="Framework\Docking\IDockWindowManager.cs" />
     <Compile Include="Framework\EntityViewModel.cs" />
+    <Compile Include="Framework\IDialog.cs" />
     <Compile Include="Framework\IEntityViewModel.cs" />
     <Compile Include="Framework\IHasChanges.cs" />
     <Compile Include="Framework\InvWindowManager.cs" />
@@ -204,10 +206,17 @@
     <Compile Include="Framework\TreeNode.cs" />
     <Compile Include="Interfaces\IInvWindowManager.cs" />
     <Compile Include="ViewModels\DockViewModel.cs" />
+    <Compile Include="ViewModels\FacilityCreateViewModel.cs" />
     <Compile Include="ViewModels\FacilityInfoViewModel.cs" />
     <Compile Include="ViewModels\FacilityDetailViewModel.cs" />
+    <Compile Include="Views\FacilityCreateView.xaml.cs">
+      <DependentUpon>FacilityCreateView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\FacilityDetailView.xaml.cs">
       <DependentUpon>FacilityDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FacilityInfoView.xaml.cs">
+      <DependentUpon>FacilityInfoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MenuView.xaml.cs">
       <DependentUpon>MenuView.xaml</DependentUpon>
@@ -253,7 +262,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\FacilityCreateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\FacilityDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FacilityInfoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -301,7 +318,6 @@
     <Resource Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Behaviors\" />
     <Folder Include="UserControls\" />
   </ItemGroup>
   <ItemGroup>

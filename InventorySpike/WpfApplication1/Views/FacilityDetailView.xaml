@@ -6,7 +6,9 @@
              xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
              xmlns:micro="http://www.caliburnproject.org"
              xmlns:controls="clr-namespace:Client.Controls"
+             xmlns:local="clr-namespace:Client.Views"
              xmlns:wpfEditors="clr-namespace:DevComponents.WpfEditors;assembly=DevComponents.WpfEditors"
+             xmlns:controls1="clr-namespace:Client.Controls"
              mc:Ignorable="d" d:DesignHeight="25" d:DesignWidth="300"
              micro:Bind.Model="{Binding}">
     <Grid KeyboardNavigation.TabNavigation="Cycle">
@@ -15,15 +17,18 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <controls:CommandBar Margin="0 0 0 5" Grid.Row="0">
-            <controls:ImageButton Content="_Save"  x:Name="Save" Style="{StaticResource ResourceKey=Save_ImageButton}" ToolTip="Save Changes" />
+        <controls1:CommandBar Margin="0 0 0 5" Grid.Row="0">
+            <controls1:ImageButton Content="_Save"  x:Name="Save" Style="{StaticResource ResourceKey=Save_ImageButton}" ToolTip="Save Changes" />
             <Separator Style="{StaticResource CmdBarSeparatorStyle}" />
-            <controls:ImageButton Content="_Cancel" x:Name="Cancel"  Style="{StaticResource ResourceKey=Cancel_ImageButton}" ToolTip="Cancel Changes" />
-        </controls:CommandBar>
+            <controls1:ImageButton Content="_Cancel" x:Name="Cancel"  Style="{StaticResource ResourceKey=Cancel_ImageButton}" ToolTip="Cancel Changes" />
+        </controls1:CommandBar>
 
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.Row="1">
             <wpfEditors:SuperTabControl ControlBoxTabMenuVisibility="Visible" TabStripPlacement="Top" Margin="5 5">
-                <wpfEditors:SuperTabItem Header="Info Card" IsSelected="true" ToolTip="Info Card" AutomationProperties.Name="">
+                <wpfEditors:SuperTabItem Header="Inventory Card" IsSelected="true" ToolTip="Info Card" AutomationProperties.Name="">
+                    <Grid>
+                        <local:FacilityInfoView DataContext="{Binding FacilityInfoViewModel}"/>
+                    </Grid>
                 </wpfEditors:SuperTabItem>
                 <wpfEditors:SuperTabItem Header="Components" IsSelected="false" ToolTip="Components" AutomationProperties.Name="">
                 </wpfEditors:SuperTabItem>

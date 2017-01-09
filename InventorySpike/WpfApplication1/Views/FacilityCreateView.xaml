@@ -1,0 +1,35 @@
+﻿<Window x:Class="Client.Views.FacilityCreateView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:behaviors="clr-namespace:Client.Behaviors"
+             xmlns:controls="clr-namespace:Client.Controls"
+             xmlns:views="clr-namespace:Client.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="600" d:DesignWidth="600" 
+             cal:Bind.Model="{Binding}"
+             behaviors:DialogCloser.DialogResult="{Binding DialogResult}"
+             Background="White" WindowStartupLocation="CenterScreen"
+             WindowStyle="SingleBorderWindow" SizeToContent="WidthAndHeight" ResizeMode="NoResize"
+                Title="Create Facility"
+         >
+    <Grid KeyboardNavigation.TabNavigation="Cycle">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <controls:CommandBar Margin="0 0 0 5" Grid.Row="0">
+            <controls:ImageButton Content="_Save"  x:Name="Save" Style="{StaticResource ResourceKey=Save_ImageButton}" ToolTip="Save Changes" />
+            <Separator Style="{StaticResource CmdBarSeparatorStyle}" />
+            <controls:ImageButton Content="_Cancel" x:Name="Cancel"  Style="{StaticResource ResourceKey=Cancel_ImageButton}" ToolTip="Cancel Changes" />
+        </controls:CommandBar>
+
+        <Grid Margin="5 5" Grid.Row="1">
+            <views:FacilityInfoView DataContext="{Binding FacilityInfoViewModel}"/>
+        </Grid>
+
+    </Grid>
+</Window>

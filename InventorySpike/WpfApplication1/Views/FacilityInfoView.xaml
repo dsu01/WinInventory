@@ -1,0 +1,140 @@
+﻿<UserControl x:Class="Client.Views.FacilityInfoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
+             xmlns:micro="http://www.caliburnproject.org"
+             xmlns:controls="clr-namespace:Client.Controls"
+             xmlns:wpfEditors="clr-namespace:DevComponents.WpfEditors;assembly=DevComponents.WpfEditors"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" d:DesignHeight="25" d:DesignWidth="300"
+             micro:Bind.Model="{Binding}">
+    <Grid Margin="5 5">
+        <Grid.Resources>
+
+            <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}" >
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="VerticalContentAlignment" Value="top" />
+                <Setter Property="Margin" Value="5 0" />
+            </Style>
+            
+            <Style TargetType="Button">
+                <Setter Property="Height" Value="25" />
+                <Setter Property="Margin"  Value="5 5" />
+                <Setter Property="Padding"  Value="3 2" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment"  Value="Center" />
+            </Style>
+
+            <Style TargetType="TextBlock" x:Key="LeftLabelStyle" BasedOn="{StaticResource {x:Type TextBlock}}">
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="5 5 5 5" />
+            </Style>
+
+            <Style TargetType="TextBlock" x:Key="RightLabelStyle" BasedOn="{StaticResource LeftLabelStyle}">
+                <Setter Property="Margin" Value="15 5 5 5" />
+            </Style>
+
+            <Style TargetType="xctk:DateTimePicker" BasedOn="{StaticResource CommonDateTimePicker}">
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="Width" Value="135" />
+                <Setter Property="Format" Value="Custom" />
+                <Setter Property="FormatString" Value="MM/dd/yyyy HH:mm" />
+                <Setter Property="Watermark" Value="Select Date" />
+            </Style>
+
+            <Style TargetType="xctk:MaskedTextBox" BasedOn="{StaticResource CommonMaskedTextBox}" >
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Width" Value="130" />
+                <Setter Property="Height" Value="23" />
+                <Setter Property="Margin" Value="2 5 5 5" />
+            </Style>
+
+            <Style TargetType="TextBox" BasedOn="{StaticResource BaseTextBox}" x:Key="BigTextBoxStyle">
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Width" Value="130" />
+                <Setter Property="Height" Value="23" />
+                <Setter Property="Margin" Value="2 5 5 5" />
+            </Style>
+
+            <Style TargetType="TextBox" BasedOn="{StaticResource BigTextBoxStyle}" x:Key="ReadOnlyTextBoxStyle">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=Model.Vehicle.IsLocal}" Value="True">
+                        <Setter Property="FontWeight" Value="DemiBold" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style TargetType="TextBox" BasedOn="{StaticResource BaseTextBox}" x:Key="CommentTextBoxStyle">
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Height" Value="23" />
+                <Setter Property="Margin" Value="2 5 5 5" />
+            </Style>
+
+            <Style TargetType="TextBox" BasedOn="{StaticResource BaseTextBox}" x:Key="SmallTextBoxStyle">
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Width" Value="80" />
+                <Setter Property="Height" Value="23" />
+                <Setter Property="Margin" Value="2 5 5 5" />
+            </Style>
+
+            <Style TargetType="ComboBox" BasedOn="{StaticResource BaseComboBox}" >
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Width" Value="130" />
+                <Setter Property="Height" Value="23" />
+                <Setter Property="Margin" Value="2 5 5 5" />
+            </Style>
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="2" Text="Facility Inventory Card" Style="{StaticResource LeftLabelStyle}"/>
+        <TextBlock Grid.Row="0"  Grid.Column="2" Text="Facility #" Style="{StaticResource LeftLabelStyle}"/>
+
+        <TextBlock Grid.Row="1"  Grid.Column="0" Text="System"  Style="{StaticResource LeftLabelStyle}"/>
+        <TextBlock Grid.Row="1"  Grid.Column="2" Text="Facility ID"  Style="{StaticResource RightLabelStyle}"/>
+
+        <TextBlock Grid.Row="2"  Grid.Column="0" Text="Function"  Style="{StaticResource LeftLabelStyle}"/>
+        <!--<TextBlock Grid.Row="2"  Grid.Column="2" Text="AAALAC"  Style="{StaticResource RightLabelStyle}"/>-->
+
+        <TextBlock Grid.Row="3"  Grid.Column="0" Text="Building"  Style="{StaticResource LeftLabelStyle}"/>
+        <TextBlock Grid.Row="3"  Grid.Column="2" Text="Floor"  Style="{StaticResource RightLabelStyle}"/>
+
+        <TextBlock Grid.Row="4"  Grid.Column="0" Text="Work Request#"  Style="{StaticResource LeftLabelStyle}"/>
+
+        <TextBox Grid.Row="0" Grid.Column="3" Text="{Binding Model.Facility_}" Style="{StaticResource ReadOnlyTextBoxStyle}" IsReadOnly="True" TextWrapping="NoWrap"/>
+
+        <ComboBox Grid.Row="1" Grid.Column="1" Text="{Binding Model.FacilitySystem}" IsReadOnly="False"/>
+        <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding Model.FacilityID}" IsReadOnly="False" TextWrapping="NoWrap"/>
+
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Model.FacilityFunction}" IsReadOnly="False" TextWrapping="NoWrap"/>
+        <CheckBox Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Content="AAALAC" IsChecked="True"/>
+
+        <ComboBox Grid.Row="3" Grid.Column="1" Text="{Binding Model.Building}" IsReadOnly="False"/>
+        <TextBox Grid.Row="3" Grid.Column="3" Text="{Binding Model.Floor}" IsReadOnly="False" TextWrapping="NoWrap"/>
+
+        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Model.WorkRequest_}" IsReadOnly="False" TextWrapping="NoWrap"/>
+        
+    </Grid>
+</UserControl>

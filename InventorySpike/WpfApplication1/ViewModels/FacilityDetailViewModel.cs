@@ -29,7 +29,6 @@ namespace Client.ViewModels
 
         // Fields
         private readonly IInvWindowManager _windowManager;
-        private readonly Settings Settings;
         private readonly IFacilitiesService _facilitiesService;
 
         #region Constructors
@@ -49,12 +48,11 @@ namespace Client.ViewModels
                         FacilityInfoViewModel facilityInfoViewModel,
                         IInvWindowManager windowManager,
                         IEventAggregator eventAggregator,
-                        IFacilitiesService facilitiesService,
-                        Settings settings)
+                        IFacilitiesService facilitiesService
+            )
             : base(facility, eventAggregator)
         {
             _windowManager = windowManager;
-            Settings = settings;
             _facilitiesService = facilitiesService;
             FacilityInfoViewModel = facilityInfoViewModel;
 
@@ -77,11 +75,15 @@ namespace Client.ViewModels
 
         #region Public Methods
 
+        public async Task SaveFacility(Action<InvFacility> successAction, System.Action failedAction)
+        {
+
+        }
 
         #endregion
 
-        #region Private Methods
+            #region Private Methods
 
-        #endregion
-    }
+            #endregion
+        }
 }

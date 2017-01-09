@@ -81,15 +81,14 @@ namespace Client.ViewModels
 
         public void OpenFacility(object context)
         {
-            //if (context == SelectedTreeItem)
-            //{
-            //    if (CanActivateInstitution)
-            //    {
-            //        ActivateInstitution();
-            //    }
-            //}
+            var treeNode = context as TreeNode<object>;
+            if (treeNode == null) return;
 
-            var facilityDetailVM = new FacilityDetailViewModel(new InvFacility(), null, _windowManager, EventAggregator, _facilitiesService, Settings);
+            var facility = treeNode.Value as InvFacility;
+            if (facility == null) return;
+
+            var facilityInfoVm = new FacilityInfoViewModel(facility, this.EventAggregator);
+            var facilityDetailVM = new FacilityDetailViewModel(facility, facilityInfoVm, _windowManager, EventAggregator, _facilitiesService);
             var manager = IoC.Get<IDockWindowManager>();
             manager.ShowDocumentWindow(facilityDetailVM, null);
         }
