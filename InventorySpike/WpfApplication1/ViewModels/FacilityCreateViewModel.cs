@@ -12,6 +12,7 @@ using Caliburn.Micro;
 using Client.Classes;
 using Client.Framework;
 using Client.Properties;
+using Client.ViewModels.Messages;
 using Inventory.Business;
 using Inventory.Business.Services;
 using Microsoft.Practices.ServiceLocation;
@@ -114,6 +115,12 @@ namespace Client.ViewModels
                 this.Facility.Model = facility;
                 _windowManager.Inform("Create Facility", "Facility saved successfully");
                 this.DialogResult = true;
+
+                EventAggregator.PublishOnUIThread(new FacilityUpdatedMessage()
+                {
+                    FacilityUpdateType = FacilityUpdateType.Create,
+                    Facility = facility,
+                });
             },
             delegate
             {

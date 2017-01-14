@@ -13,6 +13,7 @@ using Client.Classes;
 using Client.Framework;
 using Client.Framework.Docking;
 using Client.Properties;
+using Client.ViewModels.Messages;
 using Inventory.Business;
 using Inventory.Business.Services;
 using Microsoft.Practices.ServiceLocation;
@@ -24,7 +25,7 @@ using LogManager = log4net.LogManager;
 namespace Client.ViewModels
 {
     [ImplementPropertyChanged]
-    public class FacilitiesViewModel : ScreenViewModelBase, IShell
+    public class FacilitiesViewModel : ScreenViewModelBase, IShell, IHandle<FacilityUpdatedMessage>
     {
         private static ILog logger = LogManager.GetLogger(typeof(MenuViewModel));
 
@@ -90,8 +91,8 @@ namespace Client.ViewModels
             var facility = treeNode.Value as InvFacility;
             if (facility == null) return;
 
-            var facilityInfoVm = new FacilityInfoViewModel(facility,  _applicationContext, this.EventAggregator);
-            var facilityDetailVM = new FacilityDetailViewModel(facility, facilityInfoVm, _windowManager, EventAggregator, _applicationContext,  _facilitiesService);
+            var facilityInfoVm = new FacilityInfoViewModel(facility, _applicationContext, this.EventAggregator);
+            var facilityDetailVM = new FacilityDetailViewModel(facility, facilityInfoVm, _windowManager, EventAggregator, _applicationContext, _facilitiesService);
             var manager = IoC.Get<IDockWindowManager>();
             manager.ShowDocumentWindow(facilityDetailVM, null);
         }
@@ -155,6 +156,20 @@ namespace Client.ViewModels
             }
 
             ElectricalSystems = items;
+        }
+
+        #endregion
+
+        #region Message Handlers
+
+        public void Handle(FacilityUpdatedMessage message)
+        {
+            if (IsElectricalSystemsSelected)
+            {
+                if ((message.FacilityUpdateType == FacilityUpdateType.Create || message.FacilityUpdateType == FacilityUpdateType.Delete)
+                    && message.Facility.FacilityGroup == "Electrical System")
+                    LoadElectricalSystems();
+            }
         }
 
         #endregion

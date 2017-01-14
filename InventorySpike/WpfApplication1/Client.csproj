@@ -209,6 +209,7 @@
     <Compile Include="ViewModels\FacilityCreateViewModel.cs" />
     <Compile Include="ViewModels\FacilityInfoViewModel.cs" />
     <Compile Include="ViewModels\FacilityDetailViewModel.cs" />
+    <Compile Include="ViewModels\Messages\FacilityUpdatedMessage.cs" />
     <Compile Include="Views\FacilityCreateView.xaml.cs">
       <DependentUpon>FacilityCreateView.xaml</DependentUpon>
     </Compile>
