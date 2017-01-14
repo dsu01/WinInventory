@@ -18,7 +18,7 @@
                 <Setter Property="VerticalContentAlignment" Value="top" />
                 <Setter Property="Margin" Value="0 3 15 3" />
             </Style>
-            
+
             <Style TargetType="Button">
                 <Setter Property="Height" Value="25" />
                 <Setter Property="Margin"  Value="5 5" />
@@ -139,7 +139,7 @@
 
         <StackPanel Grid.Row="3"  Grid.Column="0"  Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0 0" >
             <TextBlock Text="Building"  Style="{StaticResource LeftLabelStyle}"/>
-            <ComboBox Text="{Binding Model.Building}" Style="{StaticResource SmallComboboxStyle}"/>
+            <ComboBox SelectedValue="{Binding Model.Building}" SelectedValuePath="Building" DisplayMemberPath="Building" ItemsSource="{Binding ApplicationContext.Buildings}" Style="{StaticResource SmallComboboxStyle}"/>
             <TextBlock Text="Floor"  Style="{StaticResource LeftLabelStyle}"/>
             <TextBox Text="{Binding Model.Floor}" IsReadOnly="False" Style="{StaticResource SmallTextBoxStyle}"/>
             <TextBlock Text="Location"  Style="{StaticResource LeftLabelStyle}"/>

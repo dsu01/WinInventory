@@ -13,9 +13,9 @@ using Inventory.Business.Services;
 
 namespace Client.ActionItems
 {
-    public class CreateActionItem:  ActionItem
+    public class CreateActionItem : ActionItem
     {
-        public CreateActionItem(): base("Create Facility")
+        public CreateActionItem() : base("Create Facility")
         {
             InitItems();
         }
@@ -36,8 +36,8 @@ namespace Client.ActionItems
                 var facilityService = IoC.Get<IFacilitiesService>();
                 var applicationContext = IoC.Get<IApplicationContext>();
                 var facilityInfoVm = new FacilityInfoViewModel(facility, applicationContext, eventAggreggor);
-                var facilityVM = new FacilityDetailViewModel(facility, facilityInfoVm, windowManager, eventAggreggor, applicationContext,facilityService);
-                var vm = new FacilityCreateViewModel(facilityVM,  eventAggreggor, windowManager);
+                var facilityVM = new FacilityDetailViewModel(facility, facilityInfoVm, windowManager, eventAggreggor, applicationContext, facilityService);
+                var vm = new FacilityCreateViewModel(facilityVM, eventAggreggor, windowManager);
                 windowManager.ShowDialog(vm, null, settings);
             }));
 
@@ -49,11 +49,11 @@ namespace Client.ActionItems
         private InvFacility CreateNewElectricalSystem()
         {
             return new InvFacility()
-                {
-                    FacilityName = String.Empty,
-                    Facility_ = "T00000-0",
-                    FacilityGroup = "Electrical System",
-                }
+            {
+                FacilityName = String.Empty,
+                Facility_ = "T00000-0",
+                FacilityGroup = "Electrical System",
+            }
                 ;
         }
     }

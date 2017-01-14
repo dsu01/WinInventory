@@ -74,9 +74,32 @@ namespace Client.ViewModels
 
         public FacilityInfoViewModel FacilityInfoViewModel { get; set; }
 
+        public bool CanSave { get { return true; } }
+
+        public bool CanCancel { get { return true; } }
+
         #endregion
 
         #region Public Methods
+
+        public void Save()
+        {
+            // validation
+
+            var saved = _facilitiesService.AddOrUpdateInvFacility(this.Model);
+            if (saved != null)
+            {
+                this.Model = saved;
+                this.FacilityInfoViewModel.Model = saved;
+
+                _windowManager.Inform("Save Facility","Facility saved successfully");
+            }
+
+        }
+
+        public void Cancel()
+        {
+        }
 
         public async Task SaveFacility(Action<InvFacility> successAction, System.Action failedAction)
         {
@@ -85,8 +108,8 @@ namespace Client.ViewModels
 
         #endregion
 
-            #region Private Methods
+        #region Private Methods
 
-            #endregion
-        }
+        #endregion
+    }
 }

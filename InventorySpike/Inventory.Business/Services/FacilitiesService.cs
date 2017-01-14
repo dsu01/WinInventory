@@ -10,6 +10,8 @@ namespace Inventory.Business.Services
     {
         List<InvFacility> GetFacilities();
 
+        InvFacility AddOrUpdateInvFacility(InvFacility facility);
+
         List<InvBuilding> GetBuildings();
     }
 
@@ -36,6 +38,48 @@ namespace Inventory.Business.Services
             }
 
             return null;
+        }
+
+        public InvFacility AddOrUpdateInvFacility(InvFacility facility)
+        {
+            var success = true;
+            InvFacility saved = null;
+
+            try
+            {
+                using (var dbContext = new msDATAEntities())
+                {
+                    if (facility.ID > 0)    // update
+                    {
+                        var existing = dbContext.InvFacilities
+                            .Where(x => x.ID == facility.ID)
+                            .SingleOrDefault();
+                        if (existing == null)
+                            throw new ArgumentException(String.Format("Facility does not exist:{0}", facility.ID));
+
+                        existing.FacilitySystem = facility.FacilitySystem;
+                        existing.FacilityID = facility.FacilityID;
+                        existing.FacilityFunction = facility.FacilityFunction;
+                        existing.AAALAC = facility.AAALAC;
+                        existing.BSL = facility.BSL;
+                        existing.TJC = facility.TJC;
+                        existing.Building = facility.Building;
+                        existing.Floor = facility.Floor;
+                        existing.Location = facility.Location;
+                        existing.WorkRequest_ = facility.WorkRequest_;
+
+                        dbContext.SaveChanges();
+                        saved = dbContext.InvFacilities
+                            .Where(x => x.ID == facility.ID)
+                            .SingleOrDefault();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+            }
+
+            return saved;
         }
 
         public List<InvBuilding> GetBuildings()

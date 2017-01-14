@@ -135,7 +135,7 @@ namespace Client
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="StartupEventArgs"/> instance containing the event data.</param>
-        protected override void OnStartup(object sender, StartupEventArgs e)
+        protected async override void OnStartup(object sender, StartupEventArgs e)
         {
             base.OnStartup(sender, e);
 
@@ -150,6 +150,8 @@ namespace Client
             {
                 ShutdownApp("App cannot start due to an internal error.");
             }
+
+            await LoadLookupData();
 
             var facilitiesVM = IoC.Get<FacilitiesViewModel>();
             if (facilitiesVM != null)
@@ -178,6 +180,17 @@ namespace Client
             //    _updateTimer.Start();
             //    splash.Close(TimeSpan.FromSeconds(2));
             //}, TaskScheduler.FromCurrentSynchronizationContext());
+        }
+
+        private async Task LoadLookupData()
+        {
+            var applicationContext = IoC.Get<IApplicationContext>();
+
+            var facilityService = GetInstance(typeof(IFacilitiesService), null);
+            if (facilityService == null)
+                return;
+
+            applicationContext.Buildings = (facilityService as IFacilitiesService).GetBuildings();
         }
 
         #endregion

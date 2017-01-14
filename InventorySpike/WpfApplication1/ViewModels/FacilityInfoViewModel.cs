@@ -92,7 +92,7 @@ namespace Client.ViewModels
 
         #region Public Methods
 
-        
+
         #endregion
 
         #region Private Methods
