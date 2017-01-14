@@ -48,6 +48,9 @@ namespace Client.ViewModels
                         )
             : base(eventAggregator)
         {
+            Facility = facility;
+            _windowManager = windowManager;
+
             this.SubscribeToEvents();
 
             Init();
@@ -108,11 +111,13 @@ namespace Client.ViewModels
             await this.Facility.SaveFacility(
             delegate (InvFacility facility)
             {
-                this.DialogResult = true;
                 this.Facility.Model = facility;
+                _windowManager.Inform("Create Facility", "Facility saved successfully");
+                this.DialogResult = true;
             },
             delegate
             {
+                _windowManager.ShowError("Create Facility", "Facility save failed");
             });
         }
 

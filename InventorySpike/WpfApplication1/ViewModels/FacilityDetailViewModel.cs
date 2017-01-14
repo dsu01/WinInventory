@@ -82,19 +82,22 @@ namespace Client.ViewModels
 
         #region Public Methods
 
-        public void Save()
+        public async void Save()
         {
             // validation
 
-            var saved = _facilitiesService.AddOrUpdateInvFacility(this.Model);
-            if (saved != null)
+            await SaveFacility(
+            delegate (InvFacility facility)
             {
-                this.Model = saved;
-                this.FacilityInfoViewModel.Model = saved;
+                this.Model = facility;
+                this.FacilityInfoViewModel.Model = facility;
 
-                _windowManager.Inform("Save Facility","Facility saved successfully");
-            }
-
+                _windowManager.Inform("Save Facility", "Facility saved successfully");
+            },
+            delegate
+            {
+                _windowManager.ShowError("Save Facility", "Facility save failed");
+            });
         }
 
         public void Cancel()
@@ -103,7 +106,15 @@ namespace Client.ViewModels
 
         public async Task SaveFacility(Action<InvFacility> successAction, System.Action failedAction)
         {
-
+            var saved = _facilitiesService.AddOrUpdateInvFacility(this.Model);
+            if (saved != null && successAction != null)
+            {
+                successAction(saved);
+            }
+            else if (saved == null && failedAction != null)
+            {
+                failedAction();
+            }
         }
 
         #endregion

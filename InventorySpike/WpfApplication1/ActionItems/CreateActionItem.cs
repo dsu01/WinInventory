@@ -48,13 +48,18 @@ namespace Client.ActionItems
 
         private InvFacility CreateNewElectricalSystem()
         {
+            var applicationContext = IoC.Get<IApplicationContext>();
+
             return new InvFacility()
             {
                 FacilityName = String.Empty,
                 Facility_ = "T00000-0",
                 FacilityGroup = "Electrical System",
+                Status = "Active",
+                InputBy = applicationContext.ActiveUser,
+                InputDate = DateTime.Now,
             }
-                ;
+            ;
         }
     }
 }

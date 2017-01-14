@@ -28,7 +28,7 @@
         </controls:CommandBar>
 
         <Grid Margin="5 5" Grid.Row="1">
-            <views:FacilityInfoView DataContext="{Binding FacilityInfoViewModel}"/>
+            <views:FacilityInfoView DataContext="{Binding Facility.FacilityInfoViewModel}"/>
         </Grid>
 
     </Grid>

@@ -49,7 +49,16 @@ namespace Inventory.Business.Services
             {
                 using (var dbContext = new msDATAEntities())
                 {
-                    if (facility.ID > 0)    // update
+                    if (facility.ID <= 0) // update
+                    {
+                        dbContext.InvFacilities.Add(facility);
+                        var val = dbContext.SaveChanges();
+                        // TODO - work on uniqueness
+                        saved = dbContext.InvFacilities
+                            .Where(x => x.Facility_ == facility.Facility_)
+                            .SingleOrDefault();
+                    }
+                    else    // update
                     {
                         var existing = dbContext.InvFacilities
                             .Where(x => x.ID == facility.ID)
