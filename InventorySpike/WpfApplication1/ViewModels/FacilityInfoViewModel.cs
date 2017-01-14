@@ -41,9 +41,11 @@ namespace Client.ViewModels
         /// Initializes a new instance of the MainWindowViewModel class.
         /// </summary>
         public FacilityInfoViewModel(InvFacility facility,
+                        IApplicationContext applicationContext,
                         IEventAggregator eventAggregator)
             : base(facility, eventAggregator)
         {
+            ApplicationContext = applicationContext;
             this.SubscribeToEvents();
 
             Init();
@@ -56,6 +58,35 @@ namespace Client.ViewModels
         #endregion
 
         #region Properties
+
+        public IApplicationContext ApplicationContext { get; private set; }
+
+        public IEnumerable<string> FacilitySystems
+        {
+            get
+            {
+                switch (this.Model.FacilityGroup)
+                {
+                    case "Electrical System":
+                        yield return "Emergency Light";
+                        yield return "Test Elec Sys Sys";
+                        break;
+                    case "Mechanical System":
+                        yield return "Air Handling Unit";
+                        yield return "Test Mechanical Sys Sys";
+                        break;
+                    case "Electrical Equipment":
+                        yield return "Control Panel";
+                        yield return "Test Elec Sys Equip";
+                        break;
+                    case "Mechanical Equipment":
+                        yield return "Air Dryer";
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
 
         #endregion
 

@@ -9,9 +9,11 @@ namespace Inventory.Business.Services
     public interface IFacilitiesService
     {
         List<InvFacility> GetFacilities();
+
+        List<InvBuilding> GetBuildings();
     }
 
-    public class FacilitiesService: IFacilitiesService
+    public class FacilitiesService : IFacilitiesService
     {
         public FacilitiesService() { }
 
@@ -30,10 +32,32 @@ namespace Inventory.Business.Services
             }
             catch (Exception e)
             {
-                
+
             }
 
             return null;
         }
+
+        public List<InvBuilding> GetBuildings()
+        {
+            try
+            {
+                using (var dbContext = new msDATAEntities())
+                {
+                    var list = dbContext.InvBuildings
+                        .OrderBy(x => x.Building)
+                        .ToList();
+
+                    return list;
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+
+            return null;
+        }
+
     }
 }

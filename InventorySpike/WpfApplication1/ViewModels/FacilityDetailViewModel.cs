@@ -30,6 +30,7 @@ namespace Client.ViewModels
         // Fields
         private readonly IInvWindowManager _windowManager;
         private readonly IFacilitiesService _facilitiesService;
+        private readonly IApplicationContext _applicationContext;
 
         #region Constructors
 
@@ -48,12 +49,14 @@ namespace Client.ViewModels
                         FacilityInfoViewModel facilityInfoViewModel,
                         IInvWindowManager windowManager,
                         IEventAggregator eventAggregator,
+                        IApplicationContext applicationContext,
                         IFacilitiesService facilitiesService
             )
             : base(facility, eventAggregator)
         {
             _windowManager = windowManager;
             _facilitiesService = facilitiesService;
+            _applicationContext = applicationContext;
             FacilityInfoViewModel = facilityInfoViewModel;
 
             this.SubscribeToEvents();

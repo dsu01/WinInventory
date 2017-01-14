@@ -33,6 +33,7 @@ namespace Client.ViewModels
         private readonly IInvWindowManager _windowManager;
         private readonly Settings Settings;
         private readonly IFacilitiesService _facilitiesService;
+        private readonly IApplicationContext _applicationContext;
 
         #region Constructors
 
@@ -49,6 +50,7 @@ namespace Client.ViewModels
         /// </summary>
         public FacilitiesViewModel(IInvWindowManager windowManager,
                         IEventAggregator eventAggregator,
+                        IApplicationContext applicationContext,
                         IFacilitiesService facilitiesService,
                         Settings settings)
             : base(eventAggregator)
@@ -56,6 +58,7 @@ namespace Client.ViewModels
             _windowManager = windowManager;
             Settings = settings;
             _facilitiesService = facilitiesService;
+            _applicationContext = applicationContext;
 
             this.SubscribeToEvents();
 
@@ -87,8 +90,8 @@ namespace Client.ViewModels
             var facility = treeNode.Value as InvFacility;
             if (facility == null) return;
 
-            var facilityInfoVm = new FacilityInfoViewModel(facility, this.EventAggregator);
-            var facilityDetailVM = new FacilityDetailViewModel(facility, facilityInfoVm, _windowManager, EventAggregator, _facilitiesService);
+            var facilityInfoVm = new FacilityInfoViewModel(facility,  _applicationContext, this.EventAggregator);
+            var facilityDetailVM = new FacilityDetailViewModel(facility, facilityInfoVm, _windowManager, EventAggregator, _applicationContext,  _facilitiesService);
             var manager = IoC.Get<IDockWindowManager>();
             manager.ShowDocumentWindow(facilityDetailVM, null);
         }

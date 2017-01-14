@@ -34,8 +34,9 @@ namespace Client.ActionItems
                 var eventAggreggor = IoC.Get<IEventAggregator>();
                 var windowManager = IoC.Get<IInvWindowManager>();
                 var facilityService = IoC.Get<IFacilitiesService>();
-                var facilityInfoVm = new FacilityInfoViewModel(facility, eventAggreggor);
-                var facilityVM = new FacilityDetailViewModel(facility, facilityInfoVm, windowManager, eventAggreggor, facilityService);
+                var applicationContext = IoC.Get<IApplicationContext>();
+                var facilityInfoVm = new FacilityInfoViewModel(facility, applicationContext, eventAggreggor);
+                var facilityVM = new FacilityDetailViewModel(facility, facilityInfoVm, windowManager, eventAggreggor, applicationContext,facilityService);
                 var vm = new FacilityCreateViewModel(facilityVM,  eventAggreggor, windowManager);
                 windowManager.ShowDialog(vm, null, settings);
             }));

@@ -16,7 +16,7 @@
             <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}" >
                 <Setter Property="VerticalAlignment" Value="Center" />
                 <Setter Property="VerticalContentAlignment" Value="top" />
-                <Setter Property="Margin" Value="5 0" />
+                <Setter Property="Margin" Value="0 3 15 3" />
             </Style>
             
             <Style TargetType="Button">
@@ -61,6 +61,7 @@
                 <Setter Property="Width" Value="130" />
                 <Setter Property="Height" Value="23" />
                 <Setter Property="Margin" Value="2 5 5 5" />
+                <Setter Property="TextWrapping" Value="NoWrap" />
             </Style>
 
             <Style TargetType="TextBox" BasedOn="{StaticResource BigTextBoxStyle}" x:Key="ReadOnlyTextBoxStyle">
@@ -76,6 +77,7 @@
                 <Setter Property="VerticalAlignment" Value="Center" />
                 <Setter Property="Height" Value="23" />
                 <Setter Property="Margin" Value="2 5 5 5" />
+                <Setter Property="TextWrapping" Value="NoWrap" />
             </Style>
 
             <Style TargetType="TextBox" BasedOn="{StaticResource BaseTextBox}" x:Key="SmallTextBoxStyle">
@@ -84,9 +86,18 @@
                 <Setter Property="Width" Value="80" />
                 <Setter Property="Height" Value="23" />
                 <Setter Property="Margin" Value="2 5 5 5" />
+                <Setter Property="TextWrapping" Value="NoWrap" />
             </Style>
 
             <Style TargetType="ComboBox" BasedOn="{StaticResource BaseComboBox}" >
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Width" Value="130" />
+                <Setter Property="Height" Value="23" />
+                <Setter Property="Margin" Value="2 5 5 5" />
+            </Style>
+
+            <Style TargetType="ComboBox" BasedOn="{StaticResource BaseComboBox}" x:Key="SmallComboboxStyle">
                 <Setter Property="HorizontalAlignment" Value="Left" />
                 <Setter Property="VerticalAlignment" Value="Center" />
                 <Setter Property="Width" Value="130" />
@@ -110,31 +121,32 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="2" Text="Facility Inventory Card" Style="{StaticResource LeftLabelStyle}"/>
-        <TextBlock Grid.Row="0"  Grid.Column="2" Text="Facility #" Style="{StaticResource LeftLabelStyle}"/>
+        <TextBlock Grid.Row="0"  Grid.Column="2" Text="Facility #" Style="{StaticResource RightLabelStyle}"/>
+        <TextBox Grid.Row="0" Grid.Column="3" Text="{Binding Model.Facility_}" Style="{StaticResource BigTextBoxStyle}" />
 
         <TextBlock Grid.Row="1"  Grid.Column="0" Text="System"  Style="{StaticResource LeftLabelStyle}"/>
+        <ComboBox Grid.Row="1" Grid.Column="1" SelectedItem="{Binding Model.FacilitySystem}" ItemsSource="{Binding FacilitySystems}"/>
         <TextBlock Grid.Row="1"  Grid.Column="2" Text="Facility ID"  Style="{StaticResource RightLabelStyle}"/>
+        <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding Model.FacilityID}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}" />
 
         <TextBlock Grid.Row="2"  Grid.Column="0" Text="Function"  Style="{StaticResource LeftLabelStyle}"/>
-        <!--<TextBlock Grid.Row="2"  Grid.Column="2" Text="AAALAC"  Style="{StaticResource RightLabelStyle}"/>-->
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Model.FacilityFunction}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}" />
+        <StackPanel Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="15 5 5 5" >
+            <CheckBox Content="AAALAC" IsChecked="{Binding Model.AAALAC}"/>
+            <CheckBox Content="BSL" IsChecked="{Binding Model.BSL}"/>
+            <CheckBox Content="TJC" IsChecked="{Binding Model.TJC}"/>
+        </StackPanel>
 
-        <TextBlock Grid.Row="3"  Grid.Column="0" Text="Building"  Style="{StaticResource LeftLabelStyle}"/>
-        <TextBlock Grid.Row="3"  Grid.Column="2" Text="Floor"  Style="{StaticResource RightLabelStyle}"/>
+        <StackPanel Grid.Row="3"  Grid.Column="0"  Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0 0" >
+            <TextBlock Text="Building"  Style="{StaticResource LeftLabelStyle}"/>
+            <ComboBox Text="{Binding Model.Building}" Style="{StaticResource SmallComboboxStyle}"/>
+            <TextBlock Text="Floor"  Style="{StaticResource LeftLabelStyle}"/>
+            <TextBox Text="{Binding Model.Floor}" IsReadOnly="False" Style="{StaticResource SmallTextBoxStyle}"/>
+            <TextBlock Text="Location"  Style="{StaticResource LeftLabelStyle}"/>
+            <TextBox Text="{Binding Model.Location}" IsReadOnly="False" Style="{StaticResource SmallTextBoxStyle}"/>
+        </StackPanel>
 
-        <TextBlock Grid.Row="4"  Grid.Column="0" Text="Work Request#"  Style="{StaticResource LeftLabelStyle}"/>
-
-        <TextBox Grid.Row="0" Grid.Column="3" Text="{Binding Model.Facility_}" Style="{StaticResource ReadOnlyTextBoxStyle}" IsReadOnly="True" TextWrapping="NoWrap"/>
-
-        <ComboBox Grid.Row="1" Grid.Column="1" Text="{Binding Model.FacilitySystem}" IsReadOnly="False"/>
-        <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding Model.FacilityID}" IsReadOnly="False" TextWrapping="NoWrap"/>
-
-        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Model.FacilityFunction}" IsReadOnly="False" TextWrapping="NoWrap"/>
-        <CheckBox Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Content="AAALAC" IsChecked="True"/>
-
-        <ComboBox Grid.Row="3" Grid.Column="1" Text="{Binding Model.Building}" IsReadOnly="False"/>
-        <TextBox Grid.Row="3" Grid.Column="3" Text="{Binding Model.Floor}" IsReadOnly="False" TextWrapping="NoWrap"/>
-
-        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Model.WorkRequest_}" IsReadOnly="False" TextWrapping="NoWrap"/>
-        
+        <TextBlock Grid.Row="3"  Grid.Column="2" Text="Work Request#"  Style="{StaticResource RightLabelStyle}"/>
+        <TextBox Grid.Row="3" Grid.Column="3" Text="{Binding Model.WorkRequest_}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}"/>
     </Grid>
 </UserControl>

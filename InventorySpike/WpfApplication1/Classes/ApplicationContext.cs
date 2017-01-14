@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using Inventory.Business;
 using PropertyChanged;
 
 namespace Client.Classes
@@ -14,6 +15,8 @@ namespace Client.Classes
     public interface IApplicationContext : INotifyPropertyChangedEx, INotifyPropertyChanged
     {
         string ActiveUser { get; set; }
+
+        List<InvBuilding> Buildings { get; set; }
     }
 
     [ImplementPropertyChanged]
@@ -25,5 +28,7 @@ namespace Client.Classes
         }
 
         public string ActiveUser { get; set; }
+
+        public List<InvBuilding> Buildings { get; set; }
     }
 }
