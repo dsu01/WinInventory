@@ -12,13 +12,12 @@ namespace Inventory.Business
     using System;
     using System.Collections.Generic;
     
-    public partial class DESSurveySentLog
+    public partial class TeammStatu
     {
-        public int seq { get; set; }
-        public Nullable<int> WRnumber { get; set; }
-        public string Email { get; set; }
-        public Nullable<System.DateTime> DateTimeSent { get; set; }
-        public string body { get; set; }
-        public string subject { get; set; }
+        public string WO { get; set; }
+        public string Status { get; set; }
+        public Nullable<bool> SendFlag { get; set; }
+    
+        public virtual tblWO tblWO { get; set; }
     }
 }

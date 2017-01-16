@@ -51,15 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DESMEOAlertSentLog.cs">
-      <DependentUpon>InventoryModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DESSurveySentLog.cs">
-      <DependentUpon>InventoryModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DESWorkRequestCreateLog.cs">
-      <DependentUpon>InventoryModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="InvBuilding.cs">
       <DependentUpon>InventoryModel.tt</DependentUpon>
     </Compile>
@@ -398,6 +389,21 @@
     <Compile Include="tblZReportRole.cs">
       <DependentUpon>InventoryModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TEAMMAssetReference.cs">
+      <DependentUpon>InventoryModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TEAMMEventLog.cs">
+      <DependentUpon>InventoryModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TEAMMPriorityReference.cs">
+      <DependentUpon>InventoryModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TEAMMResponse.cs">
+      <DependentUpon>InventoryModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TeammStatu.cs">
+      <DependentUpon>InventoryModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -411,6 +417,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="InventoryModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>InventoryModel.edmx</DependentUpon>
@@ -421,9 +430,6 @@
       <DependentUpon>InventoryModel.edmx</DependentUpon>
       <LastGenOutput>InventoryModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

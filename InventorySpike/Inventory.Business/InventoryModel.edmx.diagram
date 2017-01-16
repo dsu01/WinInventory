@@ -4,180 +4,184 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ec5c07ac2d3c4817bb8b8827637b08e3" Name="Diagram1">
-        <EntityTypeShape EntityType="InventoryDataModel.DESMEOAlertSentLog" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.DESSurveySentLog" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.DESWorkRequestCreateLog" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.InvBuilding" Width="1.5" PointX="2.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.InvEquipment" Width="1.5" PointX="10.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.InvFacility" Width="1.5" PointX="5.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.InvFacilitySystem" Width="1.5" PointX="7.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.InvStatu" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.NEDIC" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.NEDName" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.Photo" Width="1.5" PointX="2.75" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblAccount" Width="1.5" PointX="9.75" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblActivity" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblAdministrativeHour" Width="1.5" PointX="15.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblAsset" Width="1.5" PointX="3" PointY="55" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblAssetActivity" Width="1.5" PointX="5.25" PointY="36.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblAssetContact" Width="1.5" PointX="5.25" PointY="41.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblAssetDocument" Width="1.5" PointX="5.25" PointY="61.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblAssetEquipment" Width="1.5" PointX="8.25" PointY="56" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblAssetEquipmentContact" Width="1.5" PointX="10.5" PointY="58.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblAssetEquipmentDocument" Width="1.5" PointX="13.5" PointY="61.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblAssetEquipmentPart" Width="1.5" PointX="13.5" PointY="57.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblAssetEquipmentSpec" Width="1.5" PointX="10.5" PointY="82.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblAssetMove" Width="1.5" PointX="4.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblAssetPart" Width="1.5" PointX="5.25" PointY="57.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblAssetSpec" Width="1.5" PointX="5.25" PointY="67.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblAssetSystem" Width="1.5" PointX="6.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblBillingHistory" Width="1.5" PointX="11.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblConstruction" Width="1.5" PointX="13.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblConstructionEvent" Width="1.5" PointX="15.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblCustomerSurvey" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblDateRange" Width="1.5" PointX="17.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblDay" Width="1.5" PointX="17.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblDocument" Width="1.5" PointX="3" PointY="72" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblEvent" Width="1.5" PointX="8.75" PointY="17.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblEventLogin" Width="1.5" PointX="17.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblEventSystem" Width="1.5" PointX="17.75" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblFailure" Width="1.5" PointX="18.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblForm" Width="1.5" PointX="0.75" PointY="18.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblHoliday" Width="1.5" PointX="19.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblLabor" Width="1.5" PointX="8.25" PointY="40.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblLaborLogin" Width="1.5" PointX="19.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblLaborProperty" Width="1.5" PointX="11" PointY="62.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblLaborTraining" Width="1.5" PointX="10.5" PointY="46.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblLaborWorkDay" Width="1.5" PointX="19.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblMaintenanceCategory" Width="1.5" PointX="19.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblMEOClassification" Width="1.5" PointX="19.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblMiscCost" Width="1.5" PointX="5.25" PointY="89" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblOrder" Width="1.5" PointX="12.75" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblOrderDetail" Width="1.5" PointX="15" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblPart" Width="1.5" PointX="3" PointY="44.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblPartDocument" Width="1.5" PointX="11.25" PointY="54.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblPartLocation" Width="1.5" PointX="5.25" PointY="47" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblPartSpec" Width="1.5" PointX="5.25" PointY="50.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblPartSupplier" Width="1.5" PointX="5.25" PointY="31.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblProject" Width="1.5" PointX="2.75" PointY="20.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblProperty" Width="1.5" PointX="0.75" PointY="60.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblPropertySpec" Width="1.5" PointX="3" PointY="93.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblService" Width="1.5" PointX="4.75" PointY="20.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblShop" Width="1.5" PointX="10.75" PointY="20.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblSite" Width="1.5" PointX="17.75" PointY="20.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblSpec" Width="1.5" PointX="20.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblStandard" Width="1.5" PointX="19.75" PointY="20.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblSubService" Width="1.5" PointX="21.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblSubstatu" Width="1.5" PointX="21.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblTask" Width="1.5" PointX="5.25" PointY="71.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblTaskActivity" Width="1.5" PointX="7.5" PointY="74.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblTaskAsset" Width="1.5" PointX="10.5" PointY="69.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblTaskAssetActivity" Width="1.5" PointX="7.5" PointY="71" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblTaskAssetInspection" Width="1.5" PointX="10.5" PointY="66" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblTaskDocument" Width="1.5" PointX="7.5" PointY="78.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblTaskFrequency" Width="1.5" PointX="21.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblTaskInspection" Width="1.5" PointX="7.5" PointY="91.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblTaskLabor" Width="1.5" PointX="10.5" PointY="78.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblTaskMiscCost" Width="1.5" PointX="7.5" PointY="82.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblTaskPart" Width="1.5" PointX="7.5" PointY="102.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblTaskSchedule" Width="1.5" PointX="21.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblTaskScheduleDateMax" Width="1.5" PointX="21.75" PointY="19.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblTaskScheduleGroup" Width="1.5" PointX="22.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblTaskScheduleLock" Width="1.5" PointX="21.75" PointY="22.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblTaskScheduleWO" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblTaskScheduleWOactivity" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblTaskScheduleWOInspectionPoint" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblTaskTool" Width="1.5" PointX="10.5" PointY="74.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblTEAMMAccessToken" Width="1.5" PointX="23.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblTool" Width="1.5" PointX="8.25" PointY="86.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblTraining" Width="1.5" PointX="23.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblWO" Width="1.5" PointX="5.25" PointY="106.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblWOactivity" Width="1.5" PointX="7.5" PointY="109.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblWOAssetComponent" Width="1.5" PointX="7.5" PointY="112.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblWOdocument" Width="1.5" PointX="7.5" PointY="116.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblWOhour" Width="1.5" PointX="6.75" PointY="23.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblWOhoursLost" Width="1.5" PointX="10.5" PointY="116.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblWOinspection" Width="1.5" PointX="7.5" PointY="123.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblWOlabor" Width="1.5" PointX="13.5" PointY="114.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblWOmiscCost" Width="1.5" PointX="10.5" PointY="110.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblWOpart" Width="1.5" PointX="7.5" PointY="140.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblWOtool" Width="1.5" PointX="10.5" PointY="120.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblWOtype" Width="1.5" PointX="23.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblWR" Width="1.5" PointX="23.75" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblZapp" Width="1.5" PointX="23.75" PointY="21.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblZappuser" Width="1.5" PointX="25.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblZReport" Width="1.5" PointX="25.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblZReportRole" Width="1.5" PointX="25.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.InvEquipmentAttachment" Width="1.5" PointX="13" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.InvFacilityAttachment" Width="1.5" PointX="8" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblMEOPriority" Width="1.5" PointX="25.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblMessage" Width="1.5" PointX="25.75" PointY="19.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblPartClass" Width="1.5" PointX="19.75" PointY="25.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDataModel.tblPartLocationList" Width="1.5" PointX="25.75" PointY="23.75" IsExpanded="true" />
-        <AssociationConnector Association="InventoryDataModel.FK_InvEquipmentAttachment_InvEquipment" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_InvFacilityAttachment_InvFacility" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblAsset_tblProperty" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblAssetActivity_tblAsset" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblAssetContact_tblAsset" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblAssetDocument_tblAsset" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblAssetEquipment_tblAsset" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblAssetPart_tblAsset" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblAssetSpec_tblAsset" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblTask_tblAsset" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblTaskAsset_tblAsset" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblTaskAssetActivity_tblAsset" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblTaskAssetInspection_tblAsset" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblWO_tblAsset" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblAssetDocument_tblDocument" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblAssetEquipment_tblProperty" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblAssetEquipmentContact_tblAssetEquipment" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblAssetEquipmentDocument_tblAssetEquipment" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblAssetEquipmentPart_tblAssetEquipment" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblAssetEquipmentSpec_tblAssetEquipment" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblAssetEquipmentDocument_tblDocument" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblAssetEquipmentPart_tblPart" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblAssetPart_tblPart" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblPartDocument_tblDocument" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblTaskDocument_tblDocument" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblWOdocument_tblDocument" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblLaborProperty_tblLabor" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblLaborTraining_tblLabor" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblTaskLabor_tblLabor" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblWOhoursLost_tblLabor" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblWOlabor_tblLabor" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblLaborProperty_tblProperty" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblTaskMiscCost_tblMiscCost" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblWOmiscCost_tblMiscCost" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblOrderDetail_tblOrder" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblPartDocument_tblPart" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblPartLocation_tblPart" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblPartSpec_tblPart" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblPartSupplier_tblPart" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblPropertySpec_tblProperty" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblTaskActivity_tblTask" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblTaskAsset_tblTask" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblTaskAssetActivity_tblTask" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblTaskAssetInspection_tblTask" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblTaskDocument_tblTask" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblTaskInspection_tblTask" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblTaskLabor_tblTask" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblTaskMiscCost_tblTask" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblTaskPart_tblTask" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblTaskTool_tblTask" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblTaskScheduleWOactivity_tblTaskScheduleWO" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblTaskScheduleWOInspectionPoint_tblTaskScheduleWO" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblTaskTool_tblTool" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblWOtool_tblTool" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblWOactivity_tblWO" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblWOAssetComponent_tblWO" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblWOdocument_tblWO" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblWOhoursLost_tblWO" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblWOinspection_tblWO" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblWOlabor_tblWO" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblWOmiscCost_tblWO" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblWOpart_tblWO" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryDataModel.FK_tblWOtool_tblWO" ManuallyRouted="false" />
+      <Diagram DiagramId="4b52e64d2b344132aaa2853163b84c6a" Name="Diagram1">
+        <EntityTypeShape EntityType="InventoryModel.InvBuilding" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.InvEquipment" Width="1.5" PointX="8" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.InvEquipmentAttachment" Width="1.5" PointX="10.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.InvFacility" Width="1.5" PointX="5.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.InvFacilityAttachment" Width="1.5" PointX="8" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.InvFacilitySystem" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.InvStatu" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.NEDIC" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.NEDName" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.Photo" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblAccount" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblActivity" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblAdministrativeHour" Width="1.5" PointX="14.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblAsset" Width="1.5" PointX="3" PointY="56.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblAssetActivity" Width="1.5" PointX="5.25" PointY="37.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblAssetContact" Width="1.5" PointX="5.25" PointY="42.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblAssetDocument" Width="1.5" PointX="5.25" PointY="63.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblAssetEquipment" Width="1.5" PointX="8.25" PointY="57.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblAssetEquipmentContact" Width="1.5" PointX="10.5" PointY="58.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblAssetEquipmentDocument" Width="1.5" PointX="13.5" PointY="63.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblAssetEquipmentPart" Width="1.5" PointX="13.5" PointY="59.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblAssetEquipmentSpec" Width="1.5" PointX="10.5" PointY="87" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblAssetMove" Width="1.5" PointX="0.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblAssetPart" Width="1.5" PointX="5.25" PointY="59.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblAssetSpec" Width="1.5" PointX="5.25" PointY="68.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblAssetSystem" Width="1.5" PointX="2.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblBillingHistory" Width="1.5" PointX="15.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblConstruction" Width="1.5" PointX="10.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblConstructionEvent" Width="1.5" PointX="12.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblCustomerSurvey" Width="1.5" PointX="15.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblDateRange" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblDay" Width="1.5" PointX="16.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblDocument" Width="1.5" PointX="3" PointY="73.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblEvent" Width="1.5" PointX="4.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblEventLogin" Width="1.5" PointX="17.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblEventSystem" Width="1.5" PointX="17.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblFailure" Width="1.5" PointX="17.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblForm" Width="1.5" PointX="18.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblHoliday" Width="1.5" PointX="18.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblLabor" Width="1.5" PointX="8.75" PointY="41.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblLaborLogin" Width="1.5" PointX="6.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblLaborProperty" Width="1.5" PointX="11" PointY="63.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblLaborTraining" Width="1.5" PointX="11" PointY="47.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblLaborWorkDay" Width="1.5" PointX="14.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblMaintenanceCategory" Width="1.5" PointX="19.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblMEOClassification" Width="1.5" PointX="19.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblMiscCost" Width="1.5" PointX="5.25" PointY="90.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblOrder" Width="1.5" PointX="10.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblOrderDetail" Width="1.5" PointX="13" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblPart" Width="1.5" PointX="3" PointY="45.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblPartDocument" Width="1.5" PointX="11.25" PointY="55.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblPartLocation" Width="1.5" PointX="5.25" PointY="48.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblPartSpec" Width="1.5" PointX="5.25" PointY="52.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblPartSupplier" Width="1.5" PointX="5.25" PointY="33.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblProject" Width="1.5" PointX="19.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblProperty" Width="1.5" PointX="0.75" PointY="61.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblPropertySpec" Width="1.5" PointX="3" PointY="95.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblService" Width="1.5" PointX="16.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblShop" Width="1.5" PointX="20.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblSite" Width="1.5" PointX="0.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblSpec" Width="1.5" PointX="21.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblStandard" Width="1.5" PointX="6.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblSubService" Width="1.5" PointX="21.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblSubstatu" Width="1.5" PointX="12.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblTask" Width="1.5" PointX="5.25" PointY="72.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblTaskActivity" Width="1.5" PointX="7.5" PointY="75.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblTaskAsset" Width="1.5" PointX="10.5" PointY="71.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblTaskAssetActivity" Width="1.5" PointX="10.5" PointY="67.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblTaskAssetInspection" Width="1.5" PointX="10.5" PointY="75.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblTaskDocument" Width="1.5" PointX="7.5" PointY="79.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblTaskFrequency" Width="1.5" PointX="21.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblTaskInspection" Width="1.5" PointX="7.5" PointY="92.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblTaskLabor" Width="1.5" PointX="10.5" PointY="79.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblTaskMiscCost" Width="1.5" PointX="7.5" PointY="83.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblTaskPart" Width="1.5" PointX="7.5" PointY="103.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblTaskSchedule" Width="1.5" PointX="21.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblTaskScheduleDateMax" Width="1.5" PointX="22.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblTaskScheduleGroup" Width="1.5" PointX="2.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblTaskScheduleLock" Width="1.5" PointX="22.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblTaskScheduleWO" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblTaskScheduleWOactivity" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblTaskScheduleWOInspectionPoint" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblTaskTool" Width="1.5" PointX="10.5" PointY="83.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblTEAMMAccessToken" Width="1.5" PointX="18.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblTool" Width="1.5" PointX="8.25" PointY="87.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblTraining" Width="1.5" PointX="20.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblWO" Width="1.5" PointX="5.25" PointY="107.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblWOactivity" Width="1.5" PointX="7.5" PointY="109.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblWOAssetComponent" Width="1.5" PointX="7.5" PointY="112.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblWOdocument" Width="1.5" PointX="7.5" PointY="118.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblWOhour" Width="1.5" PointX="22.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblWOhoursLost" Width="1.5" PointX="10.5" PointY="118.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblWOinspection" Width="1.5" PointX="7.5" PointY="123.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblWOlabor" Width="1.5" PointX="13.5" PointY="116.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblWOmiscCost" Width="1.5" PointX="10.5" PointY="112.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblWOpart" Width="1.5" PointX="7.5" PointY="140.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblWOtool" Width="1.5" PointX="10.5" PointY="122.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblWOtype" Width="1.5" PointX="23.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblWR" Width="1.5" PointX="23.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblZapp" Width="1.5" PointX="24.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblZappuser" Width="1.5" PointX="4.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblZReport" Width="1.5" PointX="6.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblZReportRole" Width="1.5" PointX="23.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.TEAMMAssetReference" Width="1.5" PointX="12.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.TEAMMEventLog" Width="1.5" PointX="14.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.TEAMMPriorityReference" Width="1.5" PointX="24.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.TEAMMResponse" Width="1.5" PointX="24.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblMEOPriority" Width="1.5" PointX="25.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblMessage" Width="1.5" PointX="25.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblPartClass" Width="1.5" PointX="25.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.tblPartLocationList" Width="1.5" PointX="25.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.TeammStatu" Width="1.5" PointX="7.5" PointY="150" IsExpanded="true" />
+        <AssociationConnector Association="InventoryModel.FK_InvEquipment_InvFacility" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_InvEquipmentAttachment_InvEquipment" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_InvFacilityAttachment_InvFacility" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblAsset_tblProperty" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblAssetActivity_tblAsset" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblAssetContact_tblAsset" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblAssetDocument_tblAsset" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblAssetEquipment_tblAsset" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblAssetPart_tblAsset" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblAssetSpec_tblAsset" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblTask_tblAsset" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblTaskAsset_tblAsset" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblTaskAssetActivity_tblAsset" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblTaskAssetInspection_tblAsset" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblWO_tblAsset" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblAssetDocument_tblDocument" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblAssetEquipment_tblProperty" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblAssetEquipmentContact_tblAssetEquipment" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblAssetEquipmentDocument_tblAssetEquipment" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblAssetEquipmentPart_tblAssetEquipment" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblAssetEquipmentSpec_tblAssetEquipment" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblAssetEquipmentDocument_tblDocument" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblAssetEquipmentPart_tblPart" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblAssetPart_tblPart" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblPartDocument_tblDocument" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblTaskDocument_tblDocument" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblWOdocument_tblDocument" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblLaborProperty_tblLabor" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblLaborTraining_tblLabor" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblTaskLabor_tblLabor" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblWOhoursLost_tblLabor" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblWOlabor_tblLabor" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblLaborProperty_tblProperty" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblTaskMiscCost_tblMiscCost" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblWOmiscCost_tblMiscCost" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblOrderDetail_tblOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblPartDocument_tblPart" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblPartLocation_tblPart" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblPartSpec_tblPart" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblPartSupplier_tblPart" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblPropertySpec_tblProperty" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblTaskActivity_tblTask" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblTaskAsset_tblTask" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblTaskAssetActivity_tblTask" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblTaskAssetInspection_tblTask" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblTaskDocument_tblTask" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblTaskInspection_tblTask" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblTaskLabor_tblTask" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblTaskMiscCost_tblTask" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblTaskPart_tblTask" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblTaskTool_tblTask" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblTaskScheduleWOactivity_tblTaskScheduleWO" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblTaskScheduleWOInspectionPoint_tblTaskScheduleWO" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblTaskTool_tblTool" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblWOtool_tblTool" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblWOactivity_tblWO" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblWOAssetComponent_tblWO" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblWOdocument_tblWO" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblWOhoursLost_tblWO" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblWOinspection_tblWO" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblWOlabor_tblWO" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblWOmiscCost_tblWO" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblWOpart_tblWO" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_tblWOtool_tblWO" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_TeammStatus_tblWO" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

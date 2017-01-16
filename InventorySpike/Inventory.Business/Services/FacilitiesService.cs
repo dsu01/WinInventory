@@ -23,7 +23,7 @@ namespace Inventory.Business.Services
         {
             try
             {
-                using (var dbContext = new msDATAEntities())
+                using (var dbContext = new InventoryEntities())
                 {
                     var list = dbContext.InvFacilities.Where(x => x.FacilityGroup == "Electrical System")
                         .OrderBy(x => x.Facility_)
@@ -47,7 +47,7 @@ namespace Inventory.Business.Services
 
             try
             {
-                using (var dbContext = new msDATAEntities())
+                using (var dbContext = new InventoryEntities())
                 {
                     if (facility.ID <= 0) // update
                     {
@@ -95,7 +95,7 @@ namespace Inventory.Business.Services
         {
             try
             {
-                using (var dbContext = new msDATAEntities())
+                using (var dbContext = new InventoryEntities())
                 {
                     var list = dbContext.InvBuildings
                         .OrderBy(x => x.Building)

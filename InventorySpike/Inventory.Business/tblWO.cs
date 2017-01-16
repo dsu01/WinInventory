@@ -154,5 +154,6 @@ namespace Inventory.Business
         public virtual ICollection<tblWOpart> tblWOparts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblWOtool> tblWOtools { get; set; }
+        public virtual TeammStatu TeammStatu { get; set; }
     }
 }

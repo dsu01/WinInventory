@@ -17,10 +17,10 @@ namespace Inventory.Business
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public InvFacility()
         {
+            this.InvEquipments = new HashSet<InvEquipment>();
             this.InvFacilityAttachments = new HashSet<InvFacilityAttachment>();
         }
     
-        public int ID { get; set; }
         public string FacilityName { get; set; }
         public string FacilityNameTemp { get; set; }
         public string WorkRequest_ { get; set; }
@@ -80,7 +80,11 @@ namespace Inventory.Business
         public string NOofCKTS { get; set; }
         public string CKTSUsed { get; set; }
         public string ElectricalOther { get; set; }
+        public Nullable<int> ID { get; set; }
+        public System.Guid SYNC_ID { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InvEquipment> InvEquipments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InvFacilityAttachment> InvFacilityAttachments { get; set; }
     }

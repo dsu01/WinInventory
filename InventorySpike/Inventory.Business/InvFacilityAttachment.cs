@@ -14,8 +14,6 @@ namespace Inventory.Business
     
     public partial class InvFacilityAttachment
     {
-        public int ID { get; set; }
-        public int InvFacilityID { get; set; }
         public string FileName { get; set; }
         public string ContentType { get; set; }
         public byte[] Data { get; set; }
@@ -23,6 +21,9 @@ namespace Inventory.Business
         public string CreatedBy { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public string Title { get; set; }
+        public Nullable<int> C__ID { get; set; }
+        public System.Guid ID { get; set; }
+        public System.Guid InvFacilityID { get; set; }
     
         public virtual InvFacility InvFacility { get; set; }
     }

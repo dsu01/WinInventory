@@ -12,13 +12,11 @@ namespace Inventory.Business
     using System;
     using System.Collections.Generic;
     
-    public partial class DESWorkRequestCreateLog
+    public partial class TEAMMPriorityReference
     {
-        public int seq { get; set; }
-        public Nullable<int> WRnumber { get; set; }
-        public string Email { get; set; }
-        public Nullable<System.DateTime> DateTimeSent { get; set; }
-        public string Subject { get; set; }
-        public string Body { get; set; }
+        public int ID { get; set; }
+        public Nullable<int> TEAMMPriority { get; set; }
+        public Nullable<int> CMMSPriority { get; set; }
+        public string Description { get; set; }
     }
 }

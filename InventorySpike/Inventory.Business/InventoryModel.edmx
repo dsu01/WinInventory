@@ -4,43 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="InventoryDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="DESMEOAlertSentLog">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="WONumber" Type="int" Nullable="false" />
-          <Property Name="Asset" Type="nvarchar" MaxLength="50" />
-          <Property Name="MEOClassification" Type="varchar" MaxLength="255" />
-          <Property Name="MEODue" Type="datetime" />
-          <Property Name="Shop" Type="nvarchar" MaxLength="50" />
-          <Property Name="AlertTo" Type="varchar" MaxLength="255" />
-          <Property Name="AlertCC" Type="varchar" MaxLength="255" />
-          <Property Name="Alerted" Type="datetime" />
-        </EntityType>
-        <EntityType Name="DESSurveySentLog">
-          <Key>
-            <PropertyRef Name="seq" />
-          </Key>
-          <Property Name="seq" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="WRnumber" Type="int" />
-          <Property Name="Email" Type="varchar" MaxLength="50" />
-          <Property Name="DateTimeSent" Type="datetime" />
-          <Property Name="body" Type="varchar(max)" />
-          <Property Name="subject" Type="varchar(max)" />
-        </EntityType>
-        <EntityType Name="DESWorkRequestCreateLog">
-          <Key>
-            <PropertyRef Name="seq" />
-          </Key>
-          <Property Name="seq" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="WRnumber" Type="int" />
-          <Property Name="Email" Type="varchar" MaxLength="50" />
-          <Property Name="DateTimeSent" Type="datetime" />
-          <Property Name="Subject" Type="varchar" MaxLength="255" />
-          <Property Name="Body" Type="varchar" MaxLength="4096" />
-        </EntityType>
+      <Schema Namespace="InventoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="InvBuilding">
           <Key>
             <PropertyRef Name="ID" />
@@ -56,9 +20,8 @@
         </EntityType>
         <EntityType Name="InvEquipment">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="SYNC_ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EquipmentName" Type="varchar" MaxLength="50" />
           <Property Name="EquipmentNameTemp" Type="varchar" MaxLength="50" />
           <Property Name="ParentFacility#" Type="varchar" MaxLength="50" />
@@ -109,17 +72,14 @@
           <Property Name="InputBy" Type="varchar" MaxLength="50" />
           <Property Name="InputDate" Type="datetime" />
           <Property Name="EquipmentNo" Type="varchar" MaxLength="50" />
+          <Property Name="SYNC_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ID" Type="int" />
+          <Property Name="InvFacilityId" Type="uniqueidentifier" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'msDATA.dbo.InvEquipmentAttachment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="InvEquipmentAttachment">
           <Key>
             <PropertyRef Name="ID" />
-            <PropertyRef Name="InvEquipmentID" />
-            <PropertyRef Name="FileName" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="InvEquipmentID" Type="int" Nullable="false" />
           <Property Name="FileName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="ContentType" Type="nvarchar" MaxLength="200" />
           <Property Name="Data" Type="varbinary(max)" />
@@ -127,12 +87,13 @@ warning 6002: The table/view 'msDATA.dbo.InvEquipmentAttachment' does not have a
           <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="Title" Type="nvarchar" MaxLength="200" />
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="InvEquipmentID" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="InvFacility">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="SYNC_ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FacilityName" Type="varchar" MaxLength="50" />
           <Property Name="FacilityNameTemp" Type="varchar" MaxLength="50" />
           <Property Name="WorkRequest#" Type="varchar" MaxLength="50" />
@@ -192,17 +153,13 @@ warning 6002: The table/view 'msDATA.dbo.InvEquipmentAttachment' does not have a
           <Property Name="NOofCKTS" Type="varchar" MaxLength="6" />
           <Property Name="CKTSUsed" Type="varchar" MaxLength="6" />
           <Property Name="ElectricalOther" Type="varchar" MaxLength="50" />
+          <Property Name="ID" Type="int" />
+          <Property Name="SYNC_ID" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'msDATA.dbo.InvFacilityAttachment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="InvFacilityAttachment">
           <Key>
             <PropertyRef Name="ID" />
-            <PropertyRef Name="InvFacilityID" />
-            <PropertyRef Name="FileName" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="InvFacilityID" Type="int" Nullable="false" />
           <Property Name="FileName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="ContentType" Type="nvarchar" MaxLength="200" />
           <Property Name="Data" Type="varbinary(max)" />
@@ -210,6 +167,9 @@ warning 6002: The table/view 'msDATA.dbo.InvFacilityAttachment' does not have a 
           <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="Title" Type="varchar" MaxLength="200" />
+          <Property Name="__ID" Type="int" />
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="InvFacilityID" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="InvFacilitySystem">
           <Key>
@@ -1045,7 +1005,7 @@ warning 6002: The table/view 'msDATA.dbo.InvFacilityAttachment' does not have a 
           <Property Name="Active" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'msDATA.dbo.tblMEOPriority' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'INV_0.dbo.tblMEOPriority' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="tblMEOPriority">
           <Key>
             <PropertyRef Name="ID" />
@@ -1064,7 +1024,7 @@ warning 6002: The table/view 'msDATA.dbo.tblMEOPriority' does not have a primary
           <Property Name="PCTProjectCompleteHours" Type="real" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'msDATA.dbo.tblMessage' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'INV_0.dbo.tblMessage' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="tblMessage">
           <Key>
             <PropertyRef Name="ID" />
@@ -1182,7 +1142,7 @@ warning 6002: The table/view 'msDATA.dbo.tblMessage' does not have a primary key
           <Property Name="Photo" Type="image" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'msDATA.dbo.tblPartClass' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'INV_0.dbo.tblPartClass' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="tblPartClass">
           <Key>
             <PropertyRef Name="Class" />
@@ -1220,7 +1180,7 @@ warning 6002: The table/view 'msDATA.dbo.tblPartClass' does not have a primary k
           <Property Name="TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'msDATA.dbo.tblPartLocationList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'INV_0.dbo.tblPartLocationList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="tblPartLocationList">
           <Key>
             <PropertyRef Name="Location" />
@@ -2206,12 +2166,109 @@ warning 6002: The table/view 'msDATA.dbo.tblPartLocationList' does not have a pr
           <Property Name="NIHRole" Type="varchar" MaxLength="50" />
           <Property Name="Active" Type="int" />
         </EntityType>
+        <EntityType Name="TEAMMAssetReference">
+          <Key>
+            <PropertyRef Name="ReferenceID" />
+          </Key>
+          <Property Name="ReferenceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EIN" Type="varchar" MaxLength="50" />
+          <Property Name="AssetSystem" Type="nvarchar" MaxLength="50" />
+          <Property Name="AssetSystemControlNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Property" Type="nvarchar" MaxLength="50" />
+          <Property Name="AssetEquipment" Type="nvarchar" MaxLength="50" />
+          <Property Name="AssetEquipmentControlNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Active" Type="int" />
+          <Property Name="Building" Type="nvarchar" MaxLength="50" />
+          <Property Name="Shop" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="AssetID" Type="int" />
+          <Property Name="Location" Type="nvarchar" MaxLength="255" />
+          <Property Name="Supervisor" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TEAMMEventLog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Event" Type="nvarchar" MaxLength="250" />
+          <Property Name="EventTime" Type="datetime" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="WOnumber" Type="int" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="EIN" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="Asset" Type="nvarchar" MaxLength="50" />
+          <Property Name="Property" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExceptionID" Type="int" />
+        </EntityType>
+        <EntityType Name="TEAMMPriorityReference">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TEAMMPriority" Type="int" />
+          <Property Name="CMMSPriority" Type="int" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TEAMMResponse">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WOnumber" Type="int" />
+          <Property Name="Created" Type="datetime" />
+          <Property Name="Requested" Type="datetime" />
+          <Property Name="Issued" Type="datetime" />
+          <Property Name="Finished" Type="datetime" />
+          <Property Name="Completed" Type="datetime" />
+          <Property Name="OnHold" Type="datetime" />
+          <Property Name="Status" Type="nvarchar" MaxLength="15" />
+          <Property Name="Substatus" Type="nvarchar" MaxLength="25" />
+          <Property Name="ActualTime" Type="real" />
+          <Property Name="Personnel" Type="nvarchar" MaxLength="50" />
+          <Property Name="Asset" Type="nvarchar" MaxLength="50" />
+          <Property Name="Property" Type="nvarchar" MaxLength="50" />
+          <Property Name="Priority" Type="smallint" />
+          <Property Name="Due" Type="datetime" />
+          <Property Name="CostLaborActual" Type="money" />
+          <Property Name="CostPartActual" Type="money" />
+          <Property Name="Description" Type="varchar" MaxLength="1000" />
+          <Property Name="SpecialInstruction" Type="varchar" MaxLength="3000" />
+          <Property Name="Shop" Type="nvarchar" MaxLength="50" />
+          <Property Name="Failure" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsSendToTeamm" Type="int" />
+          <Property Name="ExceptionID" Type="int" />
+          <Property Name="Previous_Status" Type="varchar" MaxLength="50" />
+          <Property Name="Canceled" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'INV_0.dbo.TeammStatus' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TeammStatus">
+          <Key>
+            <PropertyRef Name="WO" />
+          </Key>
+          <Property Name="WO" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="15" />
+          <Property Name="SendFlag" Type="bit" />
+        </EntityType>
+        <Association Name="FK_InvEquipment_InvFacility">
+          <End Role="InvFacility" Type="Self.InvFacility" Multiplicity="0..1" />
+          <End Role="InvEquipment" Type="Self.InvEquipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InvFacility">
+              <PropertyRef Name="SYNC_ID" />
+            </Principal>
+            <Dependent Role="InvEquipment">
+              <PropertyRef Name="InvFacilityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_InvEquipmentAttachment_InvEquipment">
           <End Role="InvEquipment" Type="Self.InvEquipment" Multiplicity="1" />
           <End Role="InvEquipmentAttachment" Type="Self.InvEquipmentAttachment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="InvEquipment">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="SYNC_ID" />
             </Principal>
             <Dependent Role="InvEquipmentAttachment">
               <PropertyRef Name="InvEquipmentID" />
@@ -2223,7 +2280,7 @@ warning 6002: The table/view 'msDATA.dbo.tblPartLocationList' does not have a pr
           <End Role="InvFacilityAttachment" Type="Self.InvFacilityAttachment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="InvFacility">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="SYNC_ID" />
             </Principal>
             <Dependent Role="InvFacilityAttachment">
               <PropertyRef Name="InvFacilityID" />
@@ -3001,13 +3058,24 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="InventoryDataModelStoreContainer">
-          <EntitySet Name="DESMEOAlertSentLog" EntityType="Self.DESMEOAlertSentLog" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DESSurveySentLog" EntityType="Self.DESSurveySentLog" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DESWorkRequestCreateLog" EntityType="Self.DESWorkRequestCreateLog" Schema="dbo" store:Type="Tables" />
+        <Association Name="FK_TeammStatus_tblWO">
+          <End Role="tblWO" Type="Self.tblWO" Multiplicity="1" />
+          <End Role="TeammStatus" Type="Self.TeammStatus" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblWO">
+              <PropertyRef Name="WO" />
+            </Principal>
+            <Dependent Role="TeammStatus">
+              <PropertyRef Name="WO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="InventoryModelStoreContainer">
           <EntitySet Name="InvBuilding" EntityType="Self.InvBuilding" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InvEquipment" EntityType="Self.InvEquipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InvEquipmentAttachment" EntityType="Self.InvEquipmentAttachment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InvFacility" EntityType="Self.InvFacility" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InvFacilityAttachment" EntityType="Self.InvFacilityAttachment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InvFacilitySystem" EntityType="Self.InvFacilitySystem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InvStatus" EntityType="Self.InvStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NEDIC" EntityType="Self.NEDIC" Schema="dbo" store:Type="Tables" />
@@ -3106,32 +3174,10 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
           <EntitySet Name="tblZappuser" EntityType="Self.tblZappuser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblZReport" EntityType="Self.tblZReport" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblZReportRole" EntityType="Self.tblZReportRole" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="InvEquipmentAttachment" EntityType="Self.InvEquipmentAttachment" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [InvEquipmentAttachment].[ID] AS [ID], 
-    [InvEquipmentAttachment].[InvEquipmentID] AS [InvEquipmentID], 
-    [InvEquipmentAttachment].[FileName] AS [FileName], 
-    [InvEquipmentAttachment].[ContentType] AS [ContentType], 
-    [InvEquipmentAttachment].[Data] AS [Data], 
-    [InvEquipmentAttachment].[CreatedOn] AS [CreatedOn], 
-    [InvEquipmentAttachment].[CreatedBy] AS [CreatedBy], 
-    [InvEquipmentAttachment].[IsActive] AS [IsActive], 
-    [InvEquipmentAttachment].[Title] AS [Title]
-    FROM [dbo].[InvEquipmentAttachment] AS [InvEquipmentAttachment]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="InvFacilityAttachment" EntityType="Self.InvFacilityAttachment" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [InvFacilityAttachment].[ID] AS [ID], 
-    [InvFacilityAttachment].[InvFacilityID] AS [InvFacilityID], 
-    [InvFacilityAttachment].[FileName] AS [FileName], 
-    [InvFacilityAttachment].[ContentType] AS [ContentType], 
-    [InvFacilityAttachment].[Data] AS [Data], 
-    [InvFacilityAttachment].[CreatedOn] AS [CreatedOn], 
-    [InvFacilityAttachment].[CreatedBy] AS [CreatedBy], 
-    [InvFacilityAttachment].[IsActive] AS [IsActive], 
-    [InvFacilityAttachment].[Title] AS [Title]
-    FROM [dbo].[InvFacilityAttachment] AS [InvFacilityAttachment]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="TEAMMAssetReference" EntityType="Self.TEAMMAssetReference" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TEAMMEventLog" EntityType="Self.TEAMMEventLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TEAMMPriorityReference" EntityType="Self.TEAMMPriorityReference" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TEAMMResponse" EntityType="Self.TEAMMResponse" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblMEOPriority" EntityType="Self.tblMEOPriority" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [tblMEOPriority].[ID] AS [ID], 
@@ -3174,6 +3220,17 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
     [tblPartLocationList].[Description] AS [Description]
     FROM [dbo].[tblPartLocationList] AS [tblPartLocationList]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="TeammStatus" EntityType="Self.TeammStatus" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TeammStatus].[WO] AS [WO], 
+    [TeammStatus].[Status] AS [Status], 
+    [TeammStatus].[SendFlag] AS [SendFlag]
+    FROM [dbo].[TeammStatus] AS [TeammStatus]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_InvEquipment_InvFacility" Association="Self.FK_InvEquipment_InvFacility">
+            <End Role="InvFacility" EntitySet="InvFacility" />
+            <End Role="InvEquipment" EntitySet="InvEquipment" />
+          </AssociationSet>
           <AssociationSet Name="FK_InvEquipmentAttachment_InvEquipment" Association="Self.FK_InvEquipmentAttachment_InvEquipment">
             <End Role="InvEquipment" EntitySet="InvEquipment" />
             <End Role="InvEquipmentAttachment" EntitySet="InvEquipmentAttachment" />
@@ -3426,48 +3483,16 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             <End Role="tblWO" EntitySet="tblWO" />
             <End Role="tblWOtool" EntitySet="tblWOtool" />
           </AssociationSet>
+          <AssociationSet Name="FK_TeammStatus_tblWO" Association="Self.FK_TeammStatus_tblWO">
+            <End Role="tblWO" EntitySet="tblWO" />
+            <End Role="TeammStatus" EntitySet="TeammStatus" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="InventoryDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="DESMEOAlertSentLog">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="WONumber" Type="Int32" Nullable="false" />
-          <Property Name="Asset" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MEOClassification" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="MEODue" Type="DateTime" Precision="3" />
-          <Property Name="Shop" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AlertTo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="AlertCC" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Alerted" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="DESSurveySentLog">
-          <Key>
-            <PropertyRef Name="seq" />
-          </Key>
-          <Property Name="seq" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="WRnumber" Type="Int32" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DateTimeSent" Type="DateTime" Precision="3" />
-          <Property Name="body" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="DESWorkRequestCreateLog">
-          <Key>
-            <PropertyRef Name="seq" />
-          </Key>
-          <Property Name="seq" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="WRnumber" Type="Int32" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DateTimeSent" Type="DateTime" Precision="3" />
-          <Property Name="Subject" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Body" Type="String" MaxLength="4096" FixedLength="false" Unicode="false" />
-        </EntityType>
+      <Schema Namespace="InventoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="InvBuilding">
           <Key>
             <PropertyRef Name="ID" />
@@ -3483,9 +3508,8 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
         </EntityType>
         <EntityType Name="InvEquipment">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="SYNC_ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EquipmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EquipmentNameTemp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ParentFacility_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -3536,13 +3560,31 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
           <Property Name="InputBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="InputDate" Type="DateTime" Precision="3" />
           <Property Name="EquipmentNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SYNC_ID" Type="Guid" Nullable="false" />
+          <Property Name="ID" Type="Int32" />
+          <Property Name="InvFacilityId" Type="Guid" />
+          <NavigationProperty Name="InvFacility" Relationship="Self.FK_InvEquipment_InvFacility" FromRole="InvEquipment" ToRole="InvFacility" />
           <NavigationProperty Name="InvEquipmentAttachments" Relationship="Self.FK_InvEquipmentAttachment_InvEquipment" FromRole="InvEquipment" ToRole="InvEquipmentAttachment" />
         </EntityType>
-        <EntityType Name="InvFacility">
+        <EntityType Name="InvEquipmentAttachment">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ContentType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Data" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="InvEquipmentID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="InvEquipment" Relationship="Self.FK_InvEquipmentAttachment_InvEquipment" FromRole="InvEquipmentAttachment" ToRole="InvEquipment" />
+        </EntityType>
+        <EntityType Name="InvFacility">
+          <Key>
+            <PropertyRef Name="SYNC_ID" />
+          </Key>
           <Property Name="FacilityName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="FacilityNameTemp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="WorkRequest_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -3602,7 +3644,26 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
           <Property Name="NOofCKTS" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Name="CKTSUsed" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Name="ElectricalOther" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" />
+          <Property Name="SYNC_ID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="InvEquipments" Relationship="Self.FK_InvEquipment_InvFacility" FromRole="InvFacility" ToRole="InvEquipment" />
           <NavigationProperty Name="InvFacilityAttachments" Relationship="Self.FK_InvFacilityAttachment_InvFacility" FromRole="InvFacility" ToRole="InvFacilityAttachment" />
+        </EntityType>
+        <EntityType Name="InvFacilityAttachment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="FileName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ContentType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Data" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="C__ID" Type="Int32" />
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="InvFacilityID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="InvFacility" Relationship="Self.FK_InvFacilityAttachment_InvFacility" FromRole="InvFacilityAttachment" ToRole="InvFacility" />
         </EntityType>
         <EntityType Name="InvFacilitySystem">
           <Key>
@@ -5335,6 +5396,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
           <NavigationProperty Name="tblWOmiscCosts" Relationship="Self.FK_tblWOmiscCost_tblWO" FromRole="tblWO" ToRole="tblWOmiscCost" />
           <NavigationProperty Name="tblWOparts" Relationship="Self.FK_tblWOpart_tblWO" FromRole="tblWO" ToRole="tblWOpart" />
           <NavigationProperty Name="tblWOtools" Relationship="Self.FK_tblWOtool_tblWO" FromRole="tblWO" ToRole="tblWOtool" />
+          <NavigationProperty Name="TeammStatu" Relationship="Self.FK_TeammStatus_tblWO" FromRole="tblWO" ToRole="TeammStatus" />
         </EntityType>
         <EntityType Name="tblWOactivity">
           <Key>
@@ -5662,39 +5724,80 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
           <Property Name="NIHRole" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Active" Type="Int32" />
         </EntityType>
-        <EntityType Name="InvEquipmentAttachment">
+        <EntityType Name="TEAMMAssetReference">
           <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="InvEquipmentID" />
-            <PropertyRef Name="FileName" />
+            <PropertyRef Name="ReferenceID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InvEquipmentID" Type="Int32" Nullable="false" />
-          <Property Name="FileName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ContentType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Data" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="InvEquipment" Relationship="Self.FK_InvEquipmentAttachment_InvEquipment" FromRole="InvEquipmentAttachment" ToRole="InvEquipment" />
+          <Property Name="ReferenceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AssetSystem" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AssetSystemControlNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Property" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AssetEquipment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AssetEquipmentControlNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Int32" />
+          <Property Name="Building" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Shop" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="AssetID" Type="Int32" />
+          <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Supervisor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="InvFacilityAttachment">
+        <EntityType Name="TEAMMEventLog">
           <Key>
             <PropertyRef Name="ID" />
-            <PropertyRef Name="InvFacilityID" />
-            <PropertyRef Name="FileName" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InvFacilityID" Type="Int32" Nullable="false" />
-          <Property Name="FileName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ContentType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Data" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="InvFacility" Relationship="Self.FK_InvFacilityAttachment_InvFacility" FromRole="InvFacilityAttachment" ToRole="InvFacility" />
+          <Property Name="Event" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="EventTime" Type="DateTime" Precision="3" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WOnumber" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Asset" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Property" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExceptionID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TEAMMPriorityReference">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TEAMMPriority" Type="Int32" />
+          <Property Name="CMMSPriority" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TEAMMResponse">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WOnumber" Type="Int32" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <Property Name="Requested" Type="DateTime" Precision="3" />
+          <Property Name="Issued" Type="DateTime" Precision="3" />
+          <Property Name="Finished" Type="DateTime" Precision="3" />
+          <Property Name="Completed" Type="DateTime" Precision="3" />
+          <Property Name="OnHold" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Substatus" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="ActualTime" Type="Single" />
+          <Property Name="Personnel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Asset" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Property" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Priority" Type="Int16" />
+          <Property Name="Due" Type="DateTime" Precision="3" />
+          <Property Name="CostLaborActual" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CostPartActual" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="SpecialInstruction" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="Shop" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Failure" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsSendToTeamm" Type="Int32" />
+          <Property Name="ExceptionID" Type="Int32" />
+          <Property Name="Previous_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Canceled" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="tblMEOPriority">
           <Key>
@@ -5747,12 +5850,33 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
           <Property Name="Active" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="TeammStatu">
+          <Key>
+            <PropertyRef Name="WO" />
+          </Key>
+          <Property Name="WO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="SendFlag" Type="Boolean" />
+          <NavigationProperty Name="tblWO" Relationship="Self.FK_TeammStatus_tblWO" FromRole="TeammStatus" ToRole="tblWO" />
+        </EntityType>
+        <Association Name="FK_InvEquipment_InvFacility">
+          <End Role="InvFacility" Type="Self.InvFacility" Multiplicity="0..1" />
+          <End Role="InvEquipment" Type="Self.InvEquipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InvFacility">
+              <PropertyRef Name="SYNC_ID" />
+            </Principal>
+            <Dependent Role="InvEquipment">
+              <PropertyRef Name="InvFacilityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_InvEquipmentAttachment_InvEquipment">
           <End Role="InvEquipment" Type="Self.InvEquipment" Multiplicity="1" />
           <End Role="InvEquipmentAttachment" Type="Self.InvEquipmentAttachment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="InvEquipment">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="SYNC_ID" />
             </Principal>
             <Dependent Role="InvEquipmentAttachment">
               <PropertyRef Name="InvEquipmentID" />
@@ -5764,7 +5888,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
           <End Role="InvFacilityAttachment" Type="Self.InvFacilityAttachment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="InvFacility">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="SYNC_ID" />
             </Principal>
             <Dependent Role="InvFacilityAttachment">
               <PropertyRef Name="InvFacilityID" />
@@ -6533,13 +6657,24 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="msDATAEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="DESMEOAlertSentLogs" EntityType="Self.DESMEOAlertSentLog" />
-          <EntitySet Name="DESSurveySentLogs" EntityType="Self.DESSurveySentLog" />
-          <EntitySet Name="DESWorkRequestCreateLogs" EntityType="Self.DESWorkRequestCreateLog" />
+        <Association Name="FK_TeammStatus_tblWO">
+          <End Role="tblWO" Type="Self.tblWO" Multiplicity="1" />
+          <End Role="TeammStatus" Type="Self.TeammStatu" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblWO">
+              <PropertyRef Name="WO" />
+            </Principal>
+            <Dependent Role="TeammStatus">
+              <PropertyRef Name="WO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="InventoryEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="InvBuildings" EntityType="Self.InvBuilding" />
           <EntitySet Name="InvEquipments" EntityType="Self.InvEquipment" />
+          <EntitySet Name="InvEquipmentAttachments" EntityType="Self.InvEquipmentAttachment" />
           <EntitySet Name="InvFacilities" EntityType="Self.InvFacility" />
+          <EntitySet Name="InvFacilityAttachments" EntityType="Self.InvFacilityAttachment" />
           <EntitySet Name="InvFacilitySystems" EntityType="Self.InvFacilitySystem" />
           <EntitySet Name="InvStatus" EntityType="Self.InvStatu" />
           <EntitySet Name="NEDICs" EntityType="Self.NEDIC" />
@@ -6638,12 +6773,19 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
           <EntitySet Name="tblZappusers" EntityType="Self.tblZappuser" />
           <EntitySet Name="tblZReports" EntityType="Self.tblZReport" />
           <EntitySet Name="tblZReportRoles" EntityType="Self.tblZReportRole" />
-          <EntitySet Name="InvEquipmentAttachments" EntityType="Self.InvEquipmentAttachment" />
-          <EntitySet Name="InvFacilityAttachments" EntityType="Self.InvFacilityAttachment" />
+          <EntitySet Name="TEAMMAssetReferences" EntityType="Self.TEAMMAssetReference" />
+          <EntitySet Name="TEAMMEventLogs" EntityType="Self.TEAMMEventLog" />
+          <EntitySet Name="TEAMMPriorityReferences" EntityType="Self.TEAMMPriorityReference" />
+          <EntitySet Name="TEAMMResponses" EntityType="Self.TEAMMResponse" />
           <EntitySet Name="tblMEOPriorities" EntityType="Self.tblMEOPriority" />
           <EntitySet Name="tblMessages" EntityType="Self.tblMessage" />
           <EntitySet Name="tblPartClasses" EntityType="Self.tblPartClass" />
           <EntitySet Name="tblPartLocationLists" EntityType="Self.tblPartLocationList" />
+          <EntitySet Name="TeammStatus" EntityType="Self.TeammStatu" />
+          <AssociationSet Name="FK_InvEquipment_InvFacility" Association="Self.FK_InvEquipment_InvFacility">
+            <End Role="InvFacility" EntitySet="InvFacilities" />
+            <End Role="InvEquipment" EntitySet="InvEquipments" />
+          </AssociationSet>
           <AssociationSet Name="FK_InvEquipmentAttachment_InvEquipment" Association="Self.FK_InvEquipmentAttachment_InvEquipment">
             <End Role="InvEquipment" EntitySet="InvEquipments" />
             <End Role="InvEquipmentAttachment" EntitySet="InvEquipmentAttachments" />
@@ -6896,54 +7038,19 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             <End Role="tblWO" EntitySet="tblWOes" />
             <End Role="tblWOtool" EntitySet="tblWOtools" />
           </AssociationSet>
+          <AssociationSet Name="FK_TeammStatus_tblWO" Association="Self.FK_TeammStatus_tblWO">
+            <End Role="tblWO" EntitySet="tblWOes" />
+            <End Role="TeammStatus" EntitySet="TeammStatus" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="InventoryDataModelStoreContainer" CdmEntityContainer="msDATAEntities">
-          <EntitySetMapping Name="DESMEOAlertSentLogs">
-            <EntityTypeMapping TypeName="InventoryDataModel.DESMEOAlertSentLog">
-              <MappingFragment StoreEntitySet="DESMEOAlertSentLog">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="WONumber" ColumnName="WONumber" />
-                <ScalarProperty Name="Asset" ColumnName="Asset" />
-                <ScalarProperty Name="MEOClassification" ColumnName="MEOClassification" />
-                <ScalarProperty Name="MEODue" ColumnName="MEODue" />
-                <ScalarProperty Name="Shop" ColumnName="Shop" />
-                <ScalarProperty Name="AlertTo" ColumnName="AlertTo" />
-                <ScalarProperty Name="AlertCC" ColumnName="AlertCC" />
-                <ScalarProperty Name="Alerted" ColumnName="Alerted" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DESSurveySentLogs">
-            <EntityTypeMapping TypeName="InventoryDataModel.DESSurveySentLog">
-              <MappingFragment StoreEntitySet="DESSurveySentLog">
-                <ScalarProperty Name="seq" ColumnName="seq" />
-                <ScalarProperty Name="WRnumber" ColumnName="WRnumber" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="DateTimeSent" ColumnName="DateTimeSent" />
-                <ScalarProperty Name="body" ColumnName="body" />
-                <ScalarProperty Name="subject" ColumnName="subject" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DESWorkRequestCreateLogs">
-            <EntityTypeMapping TypeName="InventoryDataModel.DESWorkRequestCreateLog">
-              <MappingFragment StoreEntitySet="DESWorkRequestCreateLog">
-                <ScalarProperty Name="seq" ColumnName="seq" />
-                <ScalarProperty Name="WRnumber" ColumnName="WRnumber" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="DateTimeSent" ColumnName="DateTimeSent" />
-                <ScalarProperty Name="Subject" ColumnName="Subject" />
-                <ScalarProperty Name="Body" ColumnName="Body" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+        <EntityContainerMapping StorageEntityContainer="InventoryModelStoreContainer" CdmEntityContainer="InventoryEntities">
           <EntitySetMapping Name="InvBuildings">
-            <EntityTypeMapping TypeName="InventoryDataModel.InvBuilding">
+            <EntityTypeMapping TypeName="InventoryModel.InvBuilding">
               <MappingFragment StoreEntitySet="InvBuilding">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Building" ColumnName="Building" />
@@ -6957,9 +7064,8 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="InvEquipments">
-            <EntityTypeMapping TypeName="InventoryDataModel.InvEquipment">
+            <EntityTypeMapping TypeName="InventoryModel.InvEquipment">
               <MappingFragment StoreEntitySet="InvEquipment">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="EquipmentName" ColumnName="EquipmentName" />
                 <ScalarProperty Name="EquipmentNameTemp" ColumnName="EquipmentNameTemp" />
                 <ScalarProperty Name="ParentFacility_" ColumnName="ParentFacility#" />
@@ -7010,13 +7116,30 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
                 <ScalarProperty Name="InputBy" ColumnName="InputBy" />
                 <ScalarProperty Name="InputDate" ColumnName="InputDate" />
                 <ScalarProperty Name="EquipmentNo" ColumnName="EquipmentNo" />
+                <ScalarProperty Name="SYNC_ID" ColumnName="SYNC_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="InvFacilityId" ColumnName="InvFacilityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InvEquipmentAttachments">
+            <EntityTypeMapping TypeName="InventoryModel.InvEquipmentAttachment">
+              <MappingFragment StoreEntitySet="InvEquipmentAttachment">
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="InvEquipmentID" ColumnName="InvEquipmentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="InvFacilities">
-            <EntityTypeMapping TypeName="InventoryDataModel.InvFacility">
+            <EntityTypeMapping TypeName="InventoryModel.InvFacility">
               <MappingFragment StoreEntitySet="InvFacility">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FacilityName" ColumnName="FacilityName" />
                 <ScalarProperty Name="FacilityNameTemp" ColumnName="FacilityNameTemp" />
                 <ScalarProperty Name="WorkRequest_" ColumnName="WorkRequest#" />
@@ -7076,11 +7199,29 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
                 <ScalarProperty Name="NOofCKTS" ColumnName="NOofCKTS" />
                 <ScalarProperty Name="CKTSUsed" ColumnName="CKTSUsed" />
                 <ScalarProperty Name="ElectricalOther" ColumnName="ElectricalOther" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SYNC_ID" ColumnName="SYNC_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InvFacilityAttachments">
+            <EntityTypeMapping TypeName="InventoryModel.InvFacilityAttachment">
+              <MappingFragment StoreEntitySet="InvFacilityAttachment">
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="C__ID" ColumnName="__ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="InvFacilityID" ColumnName="InvFacilityID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="InvFacilitySystems">
-            <EntityTypeMapping TypeName="InventoryDataModel.InvFacilitySystem">
+            <EntityTypeMapping TypeName="InventoryModel.InvFacilitySystem">
               <MappingFragment StoreEntitySet="InvFacilitySystem">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="SystemTitle" ColumnName="SystemTitle" />
@@ -7094,7 +7235,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="InvStatus">
-            <EntityTypeMapping TypeName="InventoryDataModel.InvStatu">
+            <EntityTypeMapping TypeName="InventoryModel.InvStatu">
               <MappingFragment StoreEntitySet="InvStatus">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
@@ -7104,7 +7245,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NEDICs">
-            <EntityTypeMapping TypeName="InventoryDataModel.NEDIC">
+            <EntityTypeMapping TypeName="InventoryModel.NEDIC">
               <MappingFragment StoreEntitySet="NEDIC">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="IC_Name" ColumnName="IC_Name" />
@@ -7116,7 +7257,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NEDNames">
-            <EntityTypeMapping TypeName="InventoryDataModel.NEDName">
+            <EntityTypeMapping TypeName="InventoryModel.NEDName">
               <MappingFragment StoreEntitySet="NEDNames">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ned_nih_id" ColumnName="ned_nih_id" />
@@ -7138,7 +7279,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Photos">
-            <EntityTypeMapping TypeName="InventoryDataModel.Photo">
+            <EntityTypeMapping TypeName="InventoryModel.Photo">
               <MappingFragment StoreEntitySet="Photo">
                 <ScalarProperty Name="PictureID" ColumnName="PictureID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -7149,7 +7290,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblAccounts">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblAccount">
+            <EntityTypeMapping TypeName="InventoryModel.tblAccount">
               <MappingFragment StoreEntitySet="tblAccount">
                 <ScalarProperty Name="Account" ColumnName="Account" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -7162,7 +7303,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblActivities">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblActivity">
+            <EntityTypeMapping TypeName="InventoryModel.tblActivity">
               <MappingFragment StoreEntitySet="tblActivity">
                 <ScalarProperty Name="Activity" ColumnName="Activity" />
                 <ScalarProperty Name="CostEstimated" ColumnName="CostEstimated" />
@@ -7176,7 +7317,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblAdministrativeHours">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblAdministrativeHour">
+            <EntityTypeMapping TypeName="InventoryModel.tblAdministrativeHour">
               <MappingFragment StoreEntitySet="tblAdministrativeHours">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Labor" ColumnName="Labor" />
@@ -7196,7 +7337,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblAssets">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblAsset">
+            <EntityTypeMapping TypeName="InventoryModel.tblAsset">
               <MappingFragment StoreEntitySet="tblAsset">
                 <ScalarProperty Name="Asset" ColumnName="Asset" />
                 <ScalarProperty Name="Property" ColumnName="Property" />
@@ -7269,7 +7410,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblAssetActivities">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblAssetActivity">
+            <EntityTypeMapping TypeName="InventoryModel.tblAssetActivity">
               <MappingFragment StoreEntitySet="tblAssetActivity">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Activity" ColumnName="Activity" />
@@ -7289,7 +7430,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblAssetContacts">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblAssetContact">
+            <EntityTypeMapping TypeName="InventoryModel.tblAssetContact">
               <MappingFragment StoreEntitySet="tblAssetContact">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Contact" ColumnName="Contact" />
@@ -7307,7 +7448,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblAssetDocuments">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblAssetDocument">
+            <EntityTypeMapping TypeName="InventoryModel.tblAssetDocument">
               <MappingFragment StoreEntitySet="tblAssetDocument">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Document" ColumnName="Document" />
@@ -7320,7 +7461,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblAssetEquipments">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblAssetEquipment">
+            <EntityTypeMapping TypeName="InventoryModel.tblAssetEquipment">
               <MappingFragment StoreEntitySet="tblAssetEquipment">
                 <ScalarProperty Name="Asset" ColumnName="Asset" />
                 <ScalarProperty Name="Property" ColumnName="Property" />
@@ -7389,7 +7530,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblAssetEquipmentContacts">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblAssetEquipmentContact">
+            <EntityTypeMapping TypeName="InventoryModel.tblAssetEquipmentContact">
               <MappingFragment StoreEntitySet="tblAssetEquipmentContact">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Contact" ColumnName="Contact" />
@@ -7407,7 +7548,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblAssetEquipmentDocuments">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblAssetEquipmentDocument">
+            <EntityTypeMapping TypeName="InventoryModel.tblAssetEquipmentDocument">
               <MappingFragment StoreEntitySet="tblAssetEquipmentDocument">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Document" ColumnName="Document" />
@@ -7420,7 +7561,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblAssetEquipmentParts">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblAssetEquipmentPart">
+            <EntityTypeMapping TypeName="InventoryModel.tblAssetEquipmentPart">
               <MappingFragment StoreEntitySet="tblAssetEquipmentPart">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Part" ColumnName="Part" />
@@ -7433,7 +7574,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblAssetEquipmentSpecs">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblAssetEquipmentSpec">
+            <EntityTypeMapping TypeName="InventoryModel.tblAssetEquipmentSpec">
               <MappingFragment StoreEntitySet="tblAssetEquipmentSpec">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Spec" ColumnName="Spec" />
@@ -7450,7 +7591,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblAssetMoves">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblAssetMove">
+            <EntityTypeMapping TypeName="InventoryModel.tblAssetMove">
               <MappingFragment StoreEntitySet="tblAssetMove">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="AssetID" ColumnName="AssetID" />
@@ -7472,7 +7613,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblAssetParts">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblAssetPart">
+            <EntityTypeMapping TypeName="InventoryModel.tblAssetPart">
               <MappingFragment StoreEntitySet="tblAssetPart">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Part" ColumnName="Part" />
@@ -7485,7 +7626,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblAssetSpecs">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblAssetSpec">
+            <EntityTypeMapping TypeName="InventoryModel.tblAssetSpec">
               <MappingFragment StoreEntitySet="tblAssetSpec">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Spec" ColumnName="Spec" />
@@ -7502,7 +7643,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblAssetSystems">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblAssetSystem">
+            <EntityTypeMapping TypeName="InventoryModel.tblAssetSystem">
               <MappingFragment StoreEntitySet="tblAssetSystem">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="SystemTitle" ColumnName="SystemTitle" />
@@ -7516,7 +7657,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblBillingHistories">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblBillingHistory">
+            <EntityTypeMapping TypeName="InventoryModel.tblBillingHistory">
               <MappingFragment StoreEntitySet="tblBillingHistory">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="BilledTo" ColumnName="BilledTo" />
@@ -7535,7 +7676,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblConstructions">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblConstruction">
+            <EntityTypeMapping TypeName="InventoryModel.tblConstruction">
               <MappingFragment StoreEntitySet="tblConstruction">
                 <ScalarProperty Name="WO" ColumnName="WO" />
                 <ScalarProperty Name="WOnumber" ColumnName="WOnumber" />
@@ -7627,7 +7768,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblConstructionEvents">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblConstructionEvent">
+            <EntityTypeMapping TypeName="InventoryModel.tblConstructionEvent">
               <MappingFragment StoreEntitySet="tblConstructionEvent">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Event" ColumnName="Event" />
@@ -7652,7 +7793,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblCustomerSurveys">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblCustomerSurvey">
+            <EntityTypeMapping TypeName="InventoryModel.tblCustomerSurvey">
               <MappingFragment StoreEntitySet="tblCustomerSurvey">
                 <ScalarProperty Name="WO" ColumnName="WO" />
                 <ScalarProperty Name="WOnumber" ColumnName="WOnumber" />
@@ -7669,7 +7810,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblDateRanges">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblDateRange">
+            <EntityTypeMapping TypeName="InventoryModel.tblDateRange">
               <MappingFragment StoreEntitySet="tblDateRange">
                 <ScalarProperty Name="DateRange" ColumnName="DateRange" />
                 <ScalarProperty Name="ThisYear" ColumnName="ThisYear" />
@@ -7681,7 +7822,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblDays">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblDay">
+            <EntityTypeMapping TypeName="InventoryModel.tblDay">
               <MappingFragment StoreEntitySet="tblDay">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Date_Title" ColumnName="Date_Title" />
@@ -7702,7 +7843,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblDocuments">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblDocument">
+            <EntityTypeMapping TypeName="InventoryModel.tblDocument">
               <MappingFragment StoreEntitySet="tblDocument">
                 <ScalarProperty Name="Document" ColumnName="Document" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -7719,7 +7860,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblEvents">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblEvent">
+            <EntityTypeMapping TypeName="InventoryModel.tblEvent">
               <MappingFragment StoreEntitySet="tblEvent">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Event" ColumnName="Event" />
@@ -7744,7 +7885,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblEventLogins">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblEventLogin">
+            <EntityTypeMapping TypeName="InventoryModel.tblEventLogin">
               <MappingFragment StoreEntitySet="tblEventLogin">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="LoginName" ColumnName="LoginName" />
@@ -7757,7 +7898,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblEventSystems">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblEventSystem">
+            <EntityTypeMapping TypeName="InventoryModel.tblEventSystem">
               <MappingFragment StoreEntitySet="tblEventSystem">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="SystemOwnerName" ColumnName="SystemOwnerName" />
@@ -7773,7 +7914,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblFailures">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblFailure">
+            <EntityTypeMapping TypeName="InventoryModel.tblFailure">
               <MappingFragment StoreEntitySet="tblFailure">
                 <ScalarProperty Name="Failure" ColumnName="Failure" />
                 <ScalarProperty Name="Comments" ColumnName="Comments" />
@@ -7782,7 +7923,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblForms">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblForm">
+            <EntityTypeMapping TypeName="InventoryModel.tblForm">
               <MappingFragment StoreEntitySet="tblForm">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FormTitle" ColumnName="FormTitle" />
@@ -7795,7 +7936,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblHolidays">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblHoliday">
+            <EntityTypeMapping TypeName="InventoryModel.tblHoliday">
               <MappingFragment StoreEntitySet="tblHoliday">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Holiday" ColumnName="Holiday" />
@@ -7805,7 +7946,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblLabors">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblLabor">
+            <EntityTypeMapping TypeName="InventoryModel.tblLabor">
               <MappingFragment StoreEntitySet="tblLabor">
                 <ScalarProperty Name="Labor" ColumnName="Labor" />
                 <ScalarProperty Name="LaborID" ColumnName="LaborID" />
@@ -7877,7 +8018,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblLaborLogins">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblLaborLogin">
+            <EntityTypeMapping TypeName="InventoryModel.tblLaborLogin">
               <MappingFragment StoreEntitySet="tblLaborLogin">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Labor" ColumnName="Labor" />
@@ -7888,7 +8029,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblLaborProperties">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblLaborProperty">
+            <EntityTypeMapping TypeName="InventoryModel.tblLaborProperty">
               <MappingFragment StoreEntitySet="tblLaborProperty">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Property" ColumnName="Property" />
@@ -7899,7 +8040,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblLaborTrainings">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblLaborTraining">
+            <EntityTypeMapping TypeName="InventoryModel.tblLaborTraining">
               <MappingFragment StoreEntitySet="tblLaborTraining">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Training" ColumnName="Training" />
@@ -7912,7 +8053,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblLaborWorkDays">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblLaborWorkDay">
+            <EntityTypeMapping TypeName="InventoryModel.tblLaborWorkDay">
               <MappingFragment StoreEntitySet="tblLaborWorkDay">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Work" ColumnName="Work" />
@@ -7922,7 +8063,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblMaintenanceCategories">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblMaintenanceCategory">
+            <EntityTypeMapping TypeName="InventoryModel.tblMaintenanceCategory">
               <MappingFragment StoreEntitySet="tblMaintenanceCategory">
                 <ScalarProperty Name="MaintenanceCategory" ColumnName="MaintenanceCategory" />
                 <ScalarProperty Name="Budget" ColumnName="Budget" />
@@ -7933,7 +8074,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblMEOClassifications">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblMEOClassification">
+            <EntityTypeMapping TypeName="InventoryModel.tblMEOClassification">
               <MappingFragment StoreEntitySet="tblMEOClassification">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="MEOClassification" ColumnName="MEOClassification" />
@@ -7952,7 +8093,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblMiscCosts">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblMiscCost">
+            <EntityTypeMapping TypeName="InventoryModel.tblMiscCost">
               <MappingFragment StoreEntitySet="tblMiscCost">
                 <ScalarProperty Name="MiscCost" ColumnName="MiscCost" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -7967,7 +8108,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblOrders">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblOrder">
+            <EntityTypeMapping TypeName="InventoryModel.tblOrder">
               <MappingFragment StoreEntitySet="tblOrder">
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="Supplier" ColumnName="Supplier" />
@@ -7988,7 +8129,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblOrderDetails">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblOrderDetail">
+            <EntityTypeMapping TypeName="InventoryModel.tblOrderDetail">
               <MappingFragment StoreEntitySet="tblOrderDetail">
                 <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
@@ -8011,7 +8152,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblParts">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblPart">
+            <EntityTypeMapping TypeName="InventoryModel.tblPart">
               <MappingFragment StoreEntitySet="tblPart">
                 <ScalarProperty Name="Part" ColumnName="Part" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -8057,7 +8198,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblPartDocuments">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblPartDocument">
+            <EntityTypeMapping TypeName="InventoryModel.tblPartDocument">
               <MappingFragment StoreEntitySet="tblPartDocument">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Document" ColumnName="Document" />
@@ -8069,7 +8210,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblPartLocations">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblPartLocation">
+            <EntityTypeMapping TypeName="InventoryModel.tblPartLocation">
               <MappingFragment StoreEntitySet="tblPartLocation">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Part" ColumnName="Part" />
@@ -8085,7 +8226,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblPartSpecs">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblPartSpec">
+            <EntityTypeMapping TypeName="InventoryModel.tblPartSpec">
               <MappingFragment StoreEntitySet="tblPartSpec">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Spec" ColumnName="Spec" />
@@ -8101,7 +8242,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblPartSuppliers">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblPartSupplier">
+            <EntityTypeMapping TypeName="InventoryModel.tblPartSupplier">
               <MappingFragment StoreEntitySet="tblPartSupplier">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Supplier" ColumnName="Supplier" />
@@ -8116,7 +8257,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblProjects">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblProject">
+            <EntityTypeMapping TypeName="InventoryModel.tblProject">
               <MappingFragment StoreEntitySet="tblProject">
                 <ScalarProperty Name="Project" ColumnName="Project" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -8145,7 +8286,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblProperties">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblProperty">
+            <EntityTypeMapping TypeName="InventoryModel.tblProperty">
               <MappingFragment StoreEntitySet="tblProperty">
                 <ScalarProperty Name="Property" ColumnName="Property" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -8192,7 +8333,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblPropertySpecs">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblPropertySpec">
+            <EntityTypeMapping TypeName="InventoryModel.tblPropertySpec">
               <MappingFragment StoreEntitySet="tblPropertySpec">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Spec" ColumnName="Spec" />
@@ -8208,7 +8349,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblServices">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblService">
+            <EntityTypeMapping TypeName="InventoryModel.tblService">
               <MappingFragment StoreEntitySet="tblService">
                 <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
                 <ScalarProperty Name="Service" ColumnName="Service" />
@@ -8227,7 +8368,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblShops">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblShop">
+            <EntityTypeMapping TypeName="InventoryModel.tblShop">
               <MappingFragment StoreEntitySet="tblShop">
                 <ScalarProperty Name="Shop" ColumnName="Shop" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -8250,7 +8391,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblSites">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblSite">
+            <EntityTypeMapping TypeName="InventoryModel.tblSite">
               <MappingFragment StoreEntitySet="tblSite">
                 <ScalarProperty Name="Site" ColumnName="Site" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -8288,7 +8429,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblSpecs">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblSpec">
+            <EntityTypeMapping TypeName="InventoryModel.tblSpec">
               <MappingFragment StoreEntitySet="tblSpec">
                 <ScalarProperty Name="Spec" ColumnName="Spec" />
                 <ScalarProperty Name="Comments" ColumnName="Comments" />
@@ -8297,7 +8438,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblStandards">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblStandard">
+            <EntityTypeMapping TypeName="InventoryModel.tblStandard">
               <MappingFragment StoreEntitySet="tblStandard">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Standard" ColumnName="Standard" />
@@ -8308,7 +8449,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblSubServices">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblSubService">
+            <EntityTypeMapping TypeName="InventoryModel.tblSubService">
               <MappingFragment StoreEntitySet="tblSubService">
                 <ScalarProperty Name="SubServiceID" ColumnName="SubServiceID" />
                 <ScalarProperty Name="SubService" ColumnName="SubService" />
@@ -8327,7 +8468,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblSubstatus">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblSubstatu">
+            <EntityTypeMapping TypeName="InventoryModel.tblSubstatu">
               <MappingFragment StoreEntitySet="tblSubstatus">
                 <ScalarProperty Name="Substatus" ColumnName="Substatus" />
                 <ScalarProperty Name="Requested" ColumnName="Requested" />
@@ -8338,7 +8479,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblTasks">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblTask">
+            <EntityTypeMapping TypeName="InventoryModel.tblTask">
               <MappingFragment StoreEntitySet="tblTask">
                 <ScalarProperty Name="Task" ColumnName="Task" />
                 <ScalarProperty Name="WO" ColumnName="WO" />
@@ -8412,7 +8553,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblTaskActivities">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblTaskActivity">
+            <EntityTypeMapping TypeName="InventoryModel.tblTaskActivity">
               <MappingFragment StoreEntitySet="tblTaskActivity">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Task" ColumnName="Task" />
@@ -8424,7 +8565,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblTaskAssets">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblTaskAsset">
+            <EntityTypeMapping TypeName="InventoryModel.tblTaskAsset">
               <MappingFragment StoreEntitySet="tblTaskAsset">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Task" ColumnName="Task" />
@@ -8438,7 +8579,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblTaskAssetActivities">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblTaskAssetActivity">
+            <EntityTypeMapping TypeName="InventoryModel.tblTaskAssetActivity">
               <MappingFragment StoreEntitySet="tblTaskAssetActivity">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Task" ColumnName="Task" />
@@ -8451,7 +8592,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblTaskAssetInspections">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblTaskAssetInspection">
+            <EntityTypeMapping TypeName="InventoryModel.tblTaskAssetInspection">
               <MappingFragment StoreEntitySet="tblTaskAssetInspection">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Task" ColumnName="Task" />
@@ -8464,7 +8605,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblTaskDocuments">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblTaskDocument">
+            <EntityTypeMapping TypeName="InventoryModel.tblTaskDocument">
               <MappingFragment StoreEntitySet="tblTaskDocument">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Task" ColumnName="Task" />
@@ -8475,7 +8616,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblTaskFrequencies">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblTaskFrequency">
+            <EntityTypeMapping TypeName="InventoryModel.tblTaskFrequency">
               <MappingFragment StoreEntitySet="tblTaskFrequency">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Period" ColumnName="Period" />
@@ -8486,7 +8627,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblTaskInspections">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblTaskInspection">
+            <EntityTypeMapping TypeName="InventoryModel.tblTaskInspection">
               <MappingFragment StoreEntitySet="tblTaskInspection">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Task" ColumnName="Task" />
@@ -8501,7 +8642,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblTaskLabors">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblTaskLabor">
+            <EntityTypeMapping TypeName="InventoryModel.tblTaskLabor">
               <MappingFragment StoreEntitySet="tblTaskLabor">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Task" ColumnName="Task" />
@@ -8514,7 +8655,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblTaskMiscCosts">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblTaskMiscCost">
+            <EntityTypeMapping TypeName="InventoryModel.tblTaskMiscCost">
               <MappingFragment StoreEntitySet="tblTaskMiscCost">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Task" ColumnName="Task" />
@@ -8527,7 +8668,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblTaskParts">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblTaskPart">
+            <EntityTypeMapping TypeName="InventoryModel.tblTaskPart">
               <MappingFragment StoreEntitySet="tblTaskPart">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Task" ColumnName="Task" />
@@ -8544,7 +8685,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblTaskSchedules">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblTaskSchedule">
+            <EntityTypeMapping TypeName="InventoryModel.tblTaskSchedule">
               <MappingFragment StoreEntitySet="tblTaskSchedule">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Task" ColumnName="Task" />
@@ -8563,7 +8704,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblTaskScheduleDateMaxes">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblTaskScheduleDateMax">
+            <EntityTypeMapping TypeName="InventoryModel.tblTaskScheduleDateMax">
               <MappingFragment StoreEntitySet="tblTaskScheduleDateMax">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Task" ColumnName="Task" />
@@ -8574,7 +8715,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblTaskScheduleGroups">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblTaskScheduleGroup">
+            <EntityTypeMapping TypeName="InventoryModel.tblTaskScheduleGroup">
               <MappingFragment StoreEntitySet="tblTaskScheduleGroup">
                 <ScalarProperty Name="ScheduleGroup" ColumnName="ScheduleGroup" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -8582,7 +8723,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblTaskScheduleLocks">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblTaskScheduleLock">
+            <EntityTypeMapping TypeName="InventoryModel.tblTaskScheduleLock">
               <MappingFragment StoreEntitySet="tblTaskScheduleLock">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Success" ColumnName="Success" />
@@ -8590,7 +8731,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblTaskScheduleWOes">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblTaskScheduleWO">
+            <EntityTypeMapping TypeName="InventoryModel.tblTaskScheduleWO">
               <MappingFragment StoreEntitySet="tblTaskScheduleWO">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Task" ColumnName="Task" />
@@ -8609,7 +8750,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblTaskScheduleWOactivities">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblTaskScheduleWOactivity">
+            <EntityTypeMapping TypeName="InventoryModel.tblTaskScheduleWOactivity">
               <MappingFragment StoreEntitySet="tblTaskScheduleWOactivity">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TaskScheduleID" ColumnName="TaskScheduleID" />
@@ -8619,7 +8760,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblTaskScheduleWOInspectionPoints">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblTaskScheduleWOInspectionPoint">
+            <EntityTypeMapping TypeName="InventoryModel.tblTaskScheduleWOInspectionPoint">
               <MappingFragment StoreEntitySet="tblTaskScheduleWOInspectionPoint">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TaskScheduleID" ColumnName="TaskScheduleID" />
@@ -8629,7 +8770,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblTaskTools">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblTaskTool">
+            <EntityTypeMapping TypeName="InventoryModel.tblTaskTool">
               <MappingFragment StoreEntitySet="tblTaskTool">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Task" ColumnName="Task" />
@@ -8641,7 +8782,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblTEAMMAccessTokens">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblTEAMMAccessToken">
+            <EntityTypeMapping TypeName="InventoryModel.tblTEAMMAccessToken">
               <MappingFragment StoreEntitySet="tblTEAMMAccessToken">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="AccessToken" ColumnName="AccessToken" />
@@ -8649,7 +8790,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblTools">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblTool">
+            <EntityTypeMapping TypeName="InventoryModel.tblTool">
               <MappingFragment StoreEntitySet="tblTool">
                 <ScalarProperty Name="Tool" ColumnName="Tool" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -8662,7 +8803,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblTrainings">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblTraining">
+            <EntityTypeMapping TypeName="InventoryModel.tblTraining">
               <MappingFragment StoreEntitySet="tblTraining">
                 <ScalarProperty Name="Training" ColumnName="Training" />
                 <ScalarProperty Name="RequiredBy" ColumnName="RequiredBy" />
@@ -8672,7 +8813,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblWOes">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblWO">
+            <EntityTypeMapping TypeName="InventoryModel.tblWO">
               <MappingFragment StoreEntitySet="tblWO">
                 <ScalarProperty Name="WO" ColumnName="WO" />
                 <ScalarProperty Name="WOnumber" ColumnName="WOnumber" />
@@ -8784,7 +8925,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblWOactivities">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblWOactivity">
+            <EntityTypeMapping TypeName="InventoryModel.tblWOactivity">
               <MappingFragment StoreEntitySet="tblWOactivity">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="WO" ColumnName="WO" />
@@ -8793,7 +8934,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblWOAssetComponents">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblWOAssetComponent">
+            <EntityTypeMapping TypeName="InventoryModel.tblWOAssetComponent">
               <MappingFragment StoreEntitySet="tblWOAssetComponent">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="WO" ColumnName="WO" />
@@ -8810,7 +8951,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblWOdocuments">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblWOdocument">
+            <EntityTypeMapping TypeName="InventoryModel.tblWOdocument">
               <MappingFragment StoreEntitySet="tblWOdocument">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="WO" ColumnName="WO" />
@@ -8823,7 +8964,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblWOhours">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblWOhour">
+            <EntityTypeMapping TypeName="InventoryModel.tblWOhour">
               <MappingFragment StoreEntitySet="tblWOhours">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Labor" ColumnName="Labor" />
@@ -8848,7 +8989,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblWOhoursLosts">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblWOhoursLost">
+            <EntityTypeMapping TypeName="InventoryModel.tblWOhoursLost">
               <MappingFragment StoreEntitySet="tblWOhoursLost">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="WO" ColumnName="WO" />
@@ -8860,7 +9001,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblWOinspections">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblWOinspection">
+            <EntityTypeMapping TypeName="InventoryModel.tblWOinspection">
               <MappingFragment StoreEntitySet="tblWOinspection">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="WO" ColumnName="WO" />
@@ -8882,7 +9023,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblWOlabors">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblWOlabor">
+            <EntityTypeMapping TypeName="InventoryModel.tblWOlabor">
               <MappingFragment StoreEntitySet="tblWOlabor">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="WO" ColumnName="WO" />
@@ -8915,7 +9056,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblWOmiscCosts">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblWOmiscCost">
+            <EntityTypeMapping TypeName="InventoryModel.tblWOmiscCost">
               <MappingFragment StoreEntitySet="tblWOmiscCost">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="WO" ColumnName="WO" />
@@ -8937,7 +9078,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblWOparts">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblWOpart">
+            <EntityTypeMapping TypeName="InventoryModel.tblWOpart">
               <MappingFragment StoreEntitySet="tblWOpart">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="WO" ColumnName="WO" />
@@ -8963,7 +9104,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblWOtools">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblWOtool">
+            <EntityTypeMapping TypeName="InventoryModel.tblWOtool">
               <MappingFragment StoreEntitySet="tblWOtool">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="WO" ColumnName="WO" />
@@ -8975,7 +9116,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblWOtypes">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblWOtype">
+            <EntityTypeMapping TypeName="InventoryModel.tblWOtype">
               <MappingFragment StoreEntitySet="tblWOtype">
                 <ScalarProperty Name="WOtype" ColumnName="WOtype" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -8991,7 +9132,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblWRs">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblWR">
+            <EntityTypeMapping TypeName="InventoryModel.tblWR">
               <MappingFragment StoreEntitySet="tblWR">
                 <ScalarProperty Name="WRnumber" ColumnName="WRnumber" />
                 <ScalarProperty Name="WOnumber" ColumnName="WOnumber" />
@@ -9027,7 +9168,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblZapps">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblZapp">
+            <EntityTypeMapping TypeName="InventoryModel.tblZapp">
               <MappingFragment StoreEntitySet="tblZapp">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ApplicationTitle" ColumnName="ApplicationTitle" />
@@ -9046,7 +9187,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblZappusers">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblZappuser">
+            <EntityTypeMapping TypeName="InventoryModel.tblZappuser">
               <MappingFragment StoreEntitySet="tblZappuser">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -9067,7 +9208,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblZReports">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblZReport">
+            <EntityTypeMapping TypeName="InventoryModel.tblZReport">
               <MappingFragment StoreEntitySet="tblZReport">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ReportTitle" ColumnName="ReportTitle" />
@@ -9100,7 +9241,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblZReportRoles">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblZReportRole">
+            <EntityTypeMapping TypeName="InventoryModel.tblZReportRole">
               <MappingFragment StoreEntitySet="tblZReportRole">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ReportTitle" ColumnName="ReportTitle" />
@@ -9111,38 +9252,87 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="InvEquipmentAttachments">
-            <EntityTypeMapping TypeName="InventoryDataModel.InvEquipmentAttachment">
-              <MappingFragment StoreEntitySet="InvEquipmentAttachment">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="InvEquipmentID" ColumnName="InvEquipmentID" />
-                <ScalarProperty Name="FileName" ColumnName="FileName" />
-                <ScalarProperty Name="ContentType" ColumnName="ContentType" />
-                <ScalarProperty Name="Data" ColumnName="Data" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
+          <EntitySetMapping Name="TEAMMAssetReferences">
+            <EntityTypeMapping TypeName="InventoryModel.TEAMMAssetReference">
+              <MappingFragment StoreEntitySet="TEAMMAssetReference">
+                <ScalarProperty Name="ReferenceID" ColumnName="ReferenceID" />
+                <ScalarProperty Name="EIN" ColumnName="EIN" />
+                <ScalarProperty Name="AssetSystem" ColumnName="AssetSystem" />
+                <ScalarProperty Name="AssetSystemControlNumber" ColumnName="AssetSystemControlNumber" />
+                <ScalarProperty Name="Property" ColumnName="Property" />
+                <ScalarProperty Name="AssetEquipment" ColumnName="AssetEquipment" />
+                <ScalarProperty Name="AssetEquipmentControlNumber" ColumnName="AssetEquipmentControlNumber" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Building" ColumnName="Building" />
+                <ScalarProperty Name="Shop" ColumnName="Shop" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="AssetID" ColumnName="AssetID" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Supervisor" ColumnName="Supervisor" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="InvFacilityAttachments">
-            <EntityTypeMapping TypeName="InventoryDataModel.InvFacilityAttachment">
-              <MappingFragment StoreEntitySet="InvFacilityAttachment">
+          <EntitySetMapping Name="TEAMMEventLogs">
+            <EntityTypeMapping TypeName="InventoryModel.TEAMMEventLog">
+              <MappingFragment StoreEntitySet="TEAMMEventLog">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="InvFacilityID" ColumnName="InvFacilityID" />
-                <ScalarProperty Name="FileName" ColumnName="FileName" />
-                <ScalarProperty Name="ContentType" ColumnName="ContentType" />
-                <ScalarProperty Name="Data" ColumnName="Data" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Event" ColumnName="Event" />
+                <ScalarProperty Name="EventTime" ColumnName="EventTime" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="WOnumber" ColumnName="WOnumber" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="EIN" ColumnName="EIN" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Asset" ColumnName="Asset" />
+                <ScalarProperty Name="Property" ColumnName="Property" />
+                <ScalarProperty Name="ExceptionID" ColumnName="ExceptionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TEAMMPriorityReferences">
+            <EntityTypeMapping TypeName="InventoryModel.TEAMMPriorityReference">
+              <MappingFragment StoreEntitySet="TEAMMPriorityReference">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TEAMMPriority" ColumnName="TEAMMPriority" />
+                <ScalarProperty Name="CMMSPriority" ColumnName="CMMSPriority" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TEAMMResponses">
+            <EntityTypeMapping TypeName="InventoryModel.TEAMMResponse">
+              <MappingFragment StoreEntitySet="TEAMMResponse">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="WOnumber" ColumnName="WOnumber" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Requested" ColumnName="Requested" />
+                <ScalarProperty Name="Issued" ColumnName="Issued" />
+                <ScalarProperty Name="Finished" ColumnName="Finished" />
+                <ScalarProperty Name="Completed" ColumnName="Completed" />
+                <ScalarProperty Name="OnHold" ColumnName="OnHold" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Substatus" ColumnName="Substatus" />
+                <ScalarProperty Name="ActualTime" ColumnName="ActualTime" />
+                <ScalarProperty Name="Personnel" ColumnName="Personnel" />
+                <ScalarProperty Name="Asset" ColumnName="Asset" />
+                <ScalarProperty Name="Property" ColumnName="Property" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="Due" ColumnName="Due" />
+                <ScalarProperty Name="CostLaborActual" ColumnName="CostLaborActual" />
+                <ScalarProperty Name="CostPartActual" ColumnName="CostPartActual" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SpecialInstruction" ColumnName="SpecialInstruction" />
+                <ScalarProperty Name="Shop" ColumnName="Shop" />
+                <ScalarProperty Name="Failure" ColumnName="Failure" />
+                <ScalarProperty Name="IsSendToTeamm" ColumnName="IsSendToTeamm" />
+                <ScalarProperty Name="ExceptionID" ColumnName="ExceptionID" />
+                <ScalarProperty Name="Previous_Status" ColumnName="Previous_Status" />
+                <ScalarProperty Name="Canceled" ColumnName="Canceled" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblMEOPriorities">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblMEOPriority">
+            <EntityTypeMapping TypeName="InventoryModel.tblMEOPriority">
               <MappingFragment StoreEntitySet="tblMEOPriority">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="MEOPriority" ColumnName="MEOPriority" />
@@ -9159,7 +9349,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblMessages">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblMessage">
+            <EntityTypeMapping TypeName="InventoryModel.tblMessage">
               <MappingFragment StoreEntitySet="tblMessage">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="MessageType" ColumnName="MessageType" />
@@ -9173,7 +9363,7 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblPartClasses">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblPartClass">
+            <EntityTypeMapping TypeName="InventoryModel.tblPartClass">
               <MappingFragment StoreEntitySet="tblPartClass">
                 <ScalarProperty Name="Class" ColumnName="Class" />
                 <ScalarProperty Name="Category" ColumnName="Category" />
@@ -9183,11 +9373,20 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblPartLocationLists">
-            <EntityTypeMapping TypeName="InventoryDataModel.tblPartLocationList">
+            <EntityTypeMapping TypeName="InventoryModel.tblPartLocationList">
               <MappingFragment StoreEntitySet="tblPartLocationList">
                 <ScalarProperty Name="Location" ColumnName="Location" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeammStatus">
+            <EntityTypeMapping TypeName="InventoryModel.TeammStatu">
+              <MappingFragment StoreEntitySet="TeammStatus">
+                <ScalarProperty Name="WO" ColumnName="WO" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="SendFlag" ColumnName="SendFlag" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

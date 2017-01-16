@@ -12,16 +12,18 @@ namespace Inventory.Business
     using System;
     using System.Collections.Generic;
     
-    public partial class DESMEOAlertSentLog
+    public partial class TEAMMEventLog
     {
         public int ID { get; set; }
-        public int WONumber { get; set; }
+        public string Event { get; set; }
+        public Nullable<System.DateTime> EventTime { get; set; }
+        public string UserName { get; set; }
+        public Nullable<int> WOnumber { get; set; }
+        public string Status { get; set; }
+        public string EIN { get; set; }
+        public string Description { get; set; }
         public string Asset { get; set; }
-        public string MEOClassification { get; set; }
-        public Nullable<System.DateTime> MEODue { get; set; }
-        public string Shop { get; set; }
-        public string AlertTo { get; set; }
-        public string AlertCC { get; set; }
-        public Nullable<System.DateTime> Alerted { get; set; }
+        public string Property { get; set; }
+        public Nullable<int> ExceptionID { get; set; }
     }
 }

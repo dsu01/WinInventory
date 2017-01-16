@@ -20,7 +20,6 @@ namespace Inventory.Business
             this.InvEquipmentAttachments = new HashSet<InvEquipmentAttachment>();
         }
     
-        public int ID { get; set; }
         public string EquipmentName { get; set; }
         public string EquipmentNameTemp { get; set; }
         public string ParentFacility_ { get; set; }
@@ -71,7 +70,11 @@ namespace Inventory.Business
         public string InputBy { get; set; }
         public Nullable<System.DateTime> InputDate { get; set; }
         public string EquipmentNo { get; set; }
+        public System.Guid SYNC_ID { get; set; }
+        public Nullable<int> ID { get; set; }
+        public Nullable<System.Guid> InvFacilityId { get; set; }
     
+        public virtual InvFacility InvFacility { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InvEquipmentAttachment> InvEquipmentAttachments { get; set; }
     }

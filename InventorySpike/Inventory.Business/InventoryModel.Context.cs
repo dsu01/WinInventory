@@ -13,10 +13,10 @@ namespace Inventory.Business
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class msDATAEntities : DbContext
+    public partial class InventoryEntities : DbContext
     {
-        public msDATAEntities()
-            : base("name=msDATAEntities")
+        public InventoryEntities()
+            : base("name=InventoryEntities")
         {
         }
     
@@ -25,12 +25,11 @@ namespace Inventory.Business
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<DESMEOAlertSentLog> DESMEOAlertSentLogs { get; set; }
-        public virtual DbSet<DESSurveySentLog> DESSurveySentLogs { get; set; }
-        public virtual DbSet<DESWorkRequestCreateLog> DESWorkRequestCreateLogs { get; set; }
         public virtual DbSet<InvBuilding> InvBuildings { get; set; }
         public virtual DbSet<InvEquipment> InvEquipments { get; set; }
+        public virtual DbSet<InvEquipmentAttachment> InvEquipmentAttachments { get; set; }
         public virtual DbSet<InvFacility> InvFacilities { get; set; }
+        public virtual DbSet<InvFacilityAttachment> InvFacilityAttachments { get; set; }
         public virtual DbSet<InvFacilitySystem> InvFacilitySystems { get; set; }
         public virtual DbSet<InvStatu> InvStatus { get; set; }
         public virtual DbSet<NEDIC> NEDICs { get; set; }
@@ -129,11 +128,14 @@ namespace Inventory.Business
         public virtual DbSet<tblZappuser> tblZappusers { get; set; }
         public virtual DbSet<tblZReport> tblZReports { get; set; }
         public virtual DbSet<tblZReportRole> tblZReportRoles { get; set; }
-        public virtual DbSet<InvEquipmentAttachment> InvEquipmentAttachments { get; set; }
-        public virtual DbSet<InvFacilityAttachment> InvFacilityAttachments { get; set; }
+        public virtual DbSet<TEAMMAssetReference> TEAMMAssetReferences { get; set; }
+        public virtual DbSet<TEAMMEventLog> TEAMMEventLogs { get; set; }
+        public virtual DbSet<TEAMMPriorityReference> TEAMMPriorityReferences { get; set; }
+        public virtual DbSet<TEAMMResponse> TEAMMResponses { get; set; }
         public virtual DbSet<tblMEOPriority> tblMEOPriorities { get; set; }
         public virtual DbSet<tblMessage> tblMessages { get; set; }
         public virtual DbSet<tblPartClass> tblPartClasses { get; set; }
         public virtual DbSet<tblPartLocationList> tblPartLocationLists { get; set; }
+        public virtual DbSet<TeammStatu> TeammStatus { get; set; }
     }
 }
