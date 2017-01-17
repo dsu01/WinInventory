@@ -49,20 +49,20 @@ namespace Inventory.Business.Services
             {
                 using (var dbContext = new InventoryEntities())
                 {
-                    if (facility.ID <= 0) // update
+                    if ((facility.ID ?? 0) <= 0) // update
                     {
                         dbContext.InvFacilities.Add(facility);
                         var val = dbContext.SaveChanges();
                         // TODO - work on uniqueness
                         saved = dbContext.InvFacilities
                             .Where(x => x.Facility_ == facility.Facility_)
-                            .SingleOrDefault();
+                            .FirstOrDefault();
                     }
                     else    // update
                     {
                         var existing = dbContext.InvFacilities
                             .Where(x => x.ID == facility.ID)
-                            .SingleOrDefault();
+                            .FirstOrDefault();
                         if (existing == null)
                             throw new ArgumentException(String.Format("Facility does not exist:{0}", facility.ID));
 
@@ -80,7 +80,7 @@ namespace Inventory.Business.Services
                         dbContext.SaveChanges();
                         saved = dbContext.InvFacilities
                             .Where(x => x.ID == facility.ID)
-                            .SingleOrDefault();
+                            .FirstOrDefault();
                     }
                 }
             }

@@ -93,7 +93,7 @@ namespace Client.Framework
                         _closedHandler();
                     };
 
-                var savedEntry = windows.SingleOrDefault(d => d.Value.IsAlive && d.Value.Target.Equals(view));
+                var savedEntry = windows.FirstOrDefault(d => d.Value.IsAlive && d.Value.Target.Equals(view));
                 windows.Remove(savedEntry);
             }
         }

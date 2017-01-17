@@ -58,6 +58,7 @@ namespace Client.ActionItems
                 Status = "Active",
                 InputBy = applicationContext.ActiveUser,
                 InputDate = DateTime.Now,
+                SYNC_ID = Guid.NewGuid(),
             }
             ;
         }

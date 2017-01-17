@@ -106,6 +106,8 @@ namespace Client.ViewModels
 
         public async Task SaveFacility(Action<InvFacility> successAction, System.Action failedAction)
         {
+            // TODO - masage 
+
             var saved = _facilitiesService.AddOrUpdateInvFacility(this.Model);
             if (saved != null && successAction != null)
             {
