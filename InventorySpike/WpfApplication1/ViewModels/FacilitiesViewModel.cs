@@ -83,7 +83,7 @@ namespace Client.ViewModels
 
         #region Public Methods
 
-        public void OpenFacility(object context)
+        public void OpenFacility(object context, EventArgs eventArgs)
         {
             var treeNode = context as TreeNode<object>;
             if (treeNode == null) return;
@@ -95,6 +95,9 @@ namespace Client.ViewModels
             var facilityDetailVM = new FacilityDetailViewModel(facility, facilityInfoVm, _windowManager, EventAggregator, _applicationContext, _facilitiesService);
             var manager = IoC.Get<IDockWindowManager>();
             manager.ShowDocumentWindow(facilityDetailVM, null);
+
+            if (eventArgs is RoutedEventArgs)
+                ((RoutedEventArgs)eventArgs).Handled = false;
         }
 
         public void SelectFacility(TreeNode<object> treeNode, EventArgs eventArgs)

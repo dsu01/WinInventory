@@ -294,6 +294,7 @@ namespace Client
 
             // Services
             this.Container.RegisterType<IFacilitiesService, FacilitiesService>();
+            this.Container.RegisterType<ISyncService, SyncService>();
 
             // UI services
             this.Container.RegisterType<IApplicationContext, ApplicationContext>(new ContainerControlledLifetimeManager());

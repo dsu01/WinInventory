@@ -105,6 +105,7 @@
       <DependentUpon>InventoryModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\SyncService.cs" />
     <Compile Include="Services\FacilitiesService.cs" />
     <Compile Include="tblAccount.cs">
       <DependentUpon>InventoryModel.tt</DependentUpon>
@@ -414,7 +415,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="InventoryModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>InventoryModel.Designer.cs</LastGenOutput>
@@ -438,6 +441,16 @@
       <DependentUpon>InventoryModel.edmx</DependentUpon>
       <LastGenOutput>InventoryModel.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonUtils\CommonUtils.csproj">
+      <Project>{20ed40e9-7af3-46d9-9599-893550c136e8}</Project>
+      <Name>CommonUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebSyncContract\WebSyncContract.csproj">
+      <Project>{ef86d538-ac52-4ceb-ac88-98e23e36e081}</Project>
+      <Name>WebSyncContract</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

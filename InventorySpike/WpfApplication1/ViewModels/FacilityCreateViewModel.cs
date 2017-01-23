@@ -109,7 +109,7 @@ namespace Client.ViewModels
             //    return;
             //}
 
-            await this.Facility.SaveFacility(
+            await this.Facility.SaveFacility(true,
             delegate (InvFacility facility)
             {
                 this.Facility.Model = facility;

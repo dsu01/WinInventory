@@ -96,7 +96,7 @@
                     <Style TargetType="{x:Type TreeViewItem}">
                         <Setter Property="IsExpanded" Value="True" />
                         <Setter Property="ItemsSource" Value="{Binding Children}" />
-                        <Setter Property="cal:Message.Attach" Value="[Event Selected] = [Action SelectInstitution($dataContext,$eventArgs)]; [Event MouseDoubleClick] = [Action OpenFacility($dataContext)]" />
+                        <Setter Property="cal:Message.Attach" Value="[Event Selected] = [Action SelectInstitution($dataContext,$eventArgs)]; [Event MouseDoubleClick] = [Action OpenFacility($dataContext,$eventArgs)]" />
                         <Setter Property="Tag" Value="{Binding DataContext,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}" />
                         <Setter Property="ContextMenu">
                             <Setter.Value>

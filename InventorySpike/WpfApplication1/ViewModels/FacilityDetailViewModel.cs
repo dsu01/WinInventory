@@ -86,7 +86,7 @@ namespace Client.ViewModels
         {
             // validation
 
-            await SaveFacility(
+            await SaveFacility(false,
             delegate (InvFacility facility)
             {
                 this.Model = facility;
@@ -104,11 +104,11 @@ namespace Client.ViewModels
         {
         }
 
-        public async Task SaveFacility(Action<InvFacility> successAction, System.Action failedAction)
+        public async Task SaveFacility(bool addOrUpdate, Action<InvFacility> successAction, System.Action failedAction)
         {
             // TODO - masage 
 
-            var saved = _facilitiesService.AddOrUpdateInvFacility(this.Model);
+            var saved = _facilitiesService.AddOrUpdateInvFacility(this.Model, addOrUpdate);
             if (saved != null && successAction != null)
             {
                 successAction(saved);

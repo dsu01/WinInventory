@@ -66,6 +66,7 @@ namespace Client.ViewModels
             {
                 new CreateActionItem(),
                 new AdminActionItem(),
+                new SyncActionItem(),
             };
         }
     }

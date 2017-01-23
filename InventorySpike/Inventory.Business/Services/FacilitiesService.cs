@@ -10,7 +10,7 @@ namespace Inventory.Business.Services
     {
         List<InvFacility> GetFacilities();
 
-        InvFacility AddOrUpdateInvFacility(InvFacility facility);
+        InvFacility AddOrUpdateInvFacility(InvFacility facility, bool addOrUpdate);
 
         List<InvBuilding> GetBuildings();
     }
@@ -40,7 +40,7 @@ namespace Inventory.Business.Services
             return null;
         }
 
-        public InvFacility AddOrUpdateInvFacility(InvFacility facility)
+        public InvFacility AddOrUpdateInvFacility(InvFacility facility, bool addOrUpdate)
         {
             var success = true;
             InvFacility saved = null;
@@ -49,7 +49,7 @@ namespace Inventory.Business.Services
             {
                 using (var dbContext = new InventoryEntities())
                 {
-                    if ((facility.ID ?? 0) <= 0) // update
+                    if (addOrUpdate) // add
                     {
                         dbContext.InvFacilities.Add(facility);
                         var val = dbContext.SaveChanges();
@@ -61,10 +61,10 @@ namespace Inventory.Business.Services
                     else    // update
                     {
                         var existing = dbContext.InvFacilities
-                            .Where(x => x.ID == facility.ID)
+                            .Where(x => x.SYNC_ID == facility.SYNC_ID)
                             .FirstOrDefault();
                         if (existing == null)
-                            throw new ArgumentException(String.Format("Facility does not exist:{0}", facility.ID));
+                            throw new ArgumentException(String.Format("Facility does not exist:{0}", facility.SYNC_ID));
 
                         existing.FacilitySystem = facility.FacilitySystem;
                         existing.FacilityID = facility.FacilityID;
@@ -79,7 +79,7 @@ namespace Inventory.Business.Services
 
                         dbContext.SaveChanges();
                         saved = dbContext.InvFacilities
-                            .Where(x => x.ID == facility.ID)
+                            .Where(x => x.SYNC_ID == facility.SYNC_ID)
                             .FirstOrDefault();
                     }
                 }
