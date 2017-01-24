@@ -24,14 +24,36 @@
         </controls1:CommandBar>
 
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.Row="1">
-            <wpfEditors:SuperTabControl ControlBoxTabMenuVisibility="Visible" TabStripPlacement="Top" Margin="5 5">
+            <wpfEditors:SuperTabControl ControlBoxTabMenuVisibility="Visible" TabStripPlacement="Top" Margin="5 5" SelectedIndex="{Binding SelectedTabIndex}">
                 <wpfEditors:SuperTabItem Header="Inventory Card" IsSelected="true" ToolTip="Info Card" AutomationProperties.Name="">
                     <Grid>
                         <local:FacilityInfoView DataContext="{Binding FacilityInfoViewModel}"/>
                     </Grid>
                 </wpfEditors:SuperTabItem>
+
                 <wpfEditors:SuperTabItem Header="Components" IsSelected="false" ToolTip="Components" AutomationProperties.Name="">
+                    <StackPanel Orientation="Vertical" Margin="5 0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="2 5 10 5" >
+                            <Button x:Name="AddComponent" Content="Add Component" />
+                            <Button x:Name="DeleteComponent" Content="Delete Component" />
+                        </StackPanel>
+
+                        <DataGrid ItemsSource="{Binding Equipments}" Margin="2 5" IsReadOnly = "False" AutoGenerateColumns="False"
+                                                SelectedItem="{Binding SelectedEquipment, Mode=TwoWay}"
+                                                  >
+                            <DataGrid.Columns>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <GroupBox DataContext="{Binding SelectedEquipment}" Header="Component Details" Margin="2 5" >
+
+                            <TextBlock Text="SelectedEquipment" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                        </GroupBox>
+                    </StackPanel>
                 </wpfEditors:SuperTabItem>
+
                 <wpfEditors:SuperTabItem Header="Attachments" IsSelected="false" ToolTip="Attachments" AutomationProperties.Name="">
                 </wpfEditors:SuperTabItem>
             </wpfEditors:SuperTabControl>

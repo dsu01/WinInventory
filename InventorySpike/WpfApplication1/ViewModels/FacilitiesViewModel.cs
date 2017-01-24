@@ -113,7 +113,8 @@ namespace Client.ViewModels
                 CursorHelper.ExecuteWithWaitCursor(() =>
                 {
                     //reload
-                    var facility = (treeNode.Value as InvEquipment).InvFacility;
+                    var equipment = treeNode.Value as InvEquipment;
+                    var facility = equipment.InvFacility;
                     facility = _facilitiesService.GetFacility(facility.SYNC_ID);
                     if (facility == null)
                     {
@@ -126,6 +127,9 @@ namespace Client.ViewModels
                         EventAggregator, _applicationContext, _facilitiesService);
                     var manager = IoC.Get<IDockWindowManager>();
                     manager.ShowDocumentWindow(facilityDetailVM, null);
+
+                    // select proper component
+                    EventAggregator.PublishOnUIThread(new EquipmentSelectedMessage() { Equipment = equipment });
                 });
             }
 

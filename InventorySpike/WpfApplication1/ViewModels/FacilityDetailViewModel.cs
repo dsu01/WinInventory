@@ -12,6 +12,7 @@ using Caliburn.Micro;
 using Client.Classes;
 using Client.Framework;
 using Client.Properties;
+using Client.ViewModels.Messages;
 using Inventory.Business;
 using Inventory.Business.Services;
 using Microsoft.Practices.ServiceLocation;
@@ -23,7 +24,7 @@ using LogManager = log4net.LogManager;
 namespace Client.ViewModels
 {
     [ImplementPropertyChanged]
-    public class FacilityDetailViewModel : EntityViewModel<InvFacility>
+    public class FacilityDetailViewModel : EntityViewModel<InvFacility>, IHandle<EquipmentSelectedMessage>
     {
         private static ILog logger = LogManager.GetLogger(typeof(FacilityDetailViewModel));
 
@@ -60,6 +61,10 @@ namespace Client.ViewModels
             FacilityInfoViewModel = facilityInfoViewModel;
             DisplayName = facility.Facility_;
 
+            this.Equipments = new ObservableCollection<EquipmentDetailViewModel>(facility.InvEquipments.Select(x => new EquipmentDetailViewModel(x, _windowManager, EventAggregator, _applicationContext, _facilitiesService)));
+
+            SelectedTabIndex = 0;
+
             this.SubscribeToEvents();
 
             Init();
@@ -73,7 +78,13 @@ namespace Client.ViewModels
 
         #region Properties
 
+        public int SelectedTabIndex { get; set; }
+
         public FacilityInfoViewModel FacilityInfoViewModel { get; set; }
+
+        public ObservableCollection<EquipmentDetailViewModel> Equipments { get; private set; }
+
+        public EquipmentDetailViewModel SelectedEquipment { get; set; }
 
         public bool CanSave { get { return true; } }
 
@@ -123,6 +134,19 @@ namespace Client.ViewModels
         #endregion
 
         #region Private Methods
+
+        #endregion
+
+        #region Event Hanlding
+
+        public void Handle(EquipmentSelectedMessage message)
+        {
+            if (Model.SYNC_ID == message.Equipment.InvFacilityId)
+            {
+                SelectedEquipment = Equipments.FirstOrDefault(x => x.Model.SYNC_ID == message.Equipment.SYNC_ID);
+                SelectedTabIndex = 1;
+            }
+        }
 
         #endregion
     }

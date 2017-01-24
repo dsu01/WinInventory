@@ -209,8 +209,11 @@
     <Compile Include="Interfaces\IInvWindowManager.cs" />
     <Compile Include="ViewModels\DockViewModel.cs" />
     <Compile Include="ViewModels\FacilityCreateViewModel.cs" />
+    <Compile Include="ViewModels\EquipmentDetailViewModel.cs" />
     <Compile Include="ViewModels\FacilityInfoViewModel.cs" />
     <Compile Include="ViewModels\FacilityDetailViewModel.cs" />
+    <Compile Include="ViewModels\Messages\EquipmentSelectedMessage.cs" />
+    <Compile Include="ViewModels\Messages\EquipmentUpdatedMessage.cs" />
     <Compile Include="ViewModels\Messages\FacilityUpdatedMessage.cs" />
     <Compile Include="Views\FacilityCreateView.xaml.cs">
       <DependentUpon>FacilityCreateView.xaml</DependentUpon>
