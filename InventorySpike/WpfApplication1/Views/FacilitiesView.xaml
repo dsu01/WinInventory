@@ -9,6 +9,7 @@
              xmlns:wpfEditors="clr-namespace:DevComponents.WpfEditors;assembly=DevComponents.WpfEditors"
              xmlns:framework="clr-namespace:Client.Framework"
              xmlns:converters="clr-namespace:Client.Converters"
+             xmlns:controls="clr-namespace:Client.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              cal:Bind.Model="{Binding}">
@@ -136,10 +137,19 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <DockPanel Grid.Row="1" Visibility="{Binding IsCompletedSelected, Converter={StaticResource BoolToVisibilityConverter}}" x:Name="SearchPanel">
-            <TextBlock DockPanel.Dock="Left" Text="Search:" VerticalAlignment="Center" x:Name="SearchStringTitle" />
-            <TextBox DockPanel.Dock="Right" Text="" VerticalAlignment="Center" x:Name="SearchString" TextWrapping="Wrap" />
-        </DockPanel>
+        <Grid Grid.Row="1" >
+            <controls:CommandBar Margin="5 0" >
+                <TextBlock Text="Search:" VerticalAlignment="Center" x:Name="SearchStringTitle" />
+                <TextBox Text="" VerticalAlignment="Center" x:Name="SearchString" TextWrapping="Wrap" Width="200"/>
+                <Separator Style="{StaticResource CmdBarSeparatorStyle}" />
+                <Button x:Name="Refresh" Width="80" MinWidth="45" Style="{StaticResource CommandBarButtonStyle}" ToolTip="Refresh Facilities" >
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Refresh" />
+                        <Image Source="/Resources/Images/ButtonImages/arrow_refresh.png" Height="16" Width="25" />
+                    </StackPanel>
+                </Button>
+            </controls:CommandBar>
+        </Grid>
 
         <wpfEditors:SuperTabControl ControlBoxTabMenuVisibility="Visible" TabStripPlacement="Bottom" Margin="4" Grid.Row="2">
             <wpfEditors:SuperTabItem Header="E Systems" IsSelected="{Binding IsElectricalSystemsSelected, Mode=TwoWay}" ToolTip="Electrical Systems" AutomationProperties.Name="">

@@ -16,8 +16,12 @@ namespace Client.ActionItems
 {
     public class SyncActionItem : ActionItem
     {
-        public SyncActionItem() : base("Sync Actions")
+        private readonly IInvWindowManager _windowManager;
+
+        public SyncActionItem(IInvWindowManager windowManager) : base("Sync Actions")
         {
+            _windowManager = windowManager;
+
             InitItems();
         }
 
@@ -35,6 +39,10 @@ namespace Client.ActionItems
                 CursorHelper.ExecuteWithWaitCursor(() =>
                 {
                     success = syncService.Synchronize(scopeName, localConnectionString, remoteConnectionString);
+                    if (success)
+                        _windowManager.Inform("Sync", "synced successfully");
+                    else
+                        _windowManager.ShowError("Sync", "sync failed");
                 });
             }));
 

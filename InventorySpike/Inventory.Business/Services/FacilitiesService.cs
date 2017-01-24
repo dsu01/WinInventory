@@ -10,9 +10,12 @@ namespace Inventory.Business.Services
     {
         List<InvFacility> GetFacilities();
 
+        InvFacility GetFacility(Guid id);
+
         InvFacility AddOrUpdateInvFacility(InvFacility facility, bool addOrUpdate);
 
         List<InvBuilding> GetBuildings();
+
     }
 
     public class FacilitiesService : IFacilitiesService
@@ -35,6 +38,22 @@ namespace Inventory.Business.Services
             catch (Exception e)
             {
 
+            }
+
+            return null;
+        }
+
+        public InvFacility GetFacility(Guid id)
+        {
+            try
+            {
+                using (var dbContext = new InventoryEntities())
+                {
+                    return dbContext.InvFacilities.Where(x => x.SYNC_ID == id).FirstOrDefault();
+                }
+            }
+            catch (Exception e)
+            {
             }
 
             return null;

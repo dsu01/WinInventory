@@ -58,6 +58,7 @@ namespace Client.ViewModels
             _facilitiesService = facilitiesService;
             _applicationContext = applicationContext;
             FacilityInfoViewModel = facilityInfoViewModel;
+            DisplayName = facility.Facility_;
 
             this.SubscribeToEvents();
 

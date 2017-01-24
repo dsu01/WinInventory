@@ -11,7 +11,7 @@ using LogManager = log4net.LogManager;
 
 namespace Client.Framework
 {
-    public abstract class ViewModelBase : PropertyChangedBase, INotifyPropertyChangedEx, INotifyPropertyChanged, IDisposable
+    public abstract class ViewModelBase : PropertyChangedBase, INotifyPropertyChangedEx, INotifyPropertyChanged, IHaveDisplayName, IDisposable
     {
         private static ILog logger = LogManager.GetLogger(typeof(ViewModelBase));
 

@@ -355,8 +355,10 @@ namespace Client.Framework.Docking
 
             //set the display name (tab title)
             var haveDisplayName = rootModel as IHaveDisplayName;
+            //if (haveDisplayName != null && !ConventionManager.HasBinding(dockableView, ManagedContent.TitleProperty))
+            //    dockableView.SetBinding(ManagedContent.TitleProperty, "DisplayName");
             if (haveDisplayName != null && !ConventionManager.HasBinding(dockableView, ManagedContent.TitleProperty))
-                dockableView.SetBinding(ManagedContent.TitleProperty, "DisplayName");
+                dockableView.Title = (rootModel as IHaveDisplayName).DisplayName;
 
             new DockableContentConductor(rootModel, dockableView);
             return dockableView;

@@ -91,13 +91,33 @@ namespace Client.ViewModels
             var facility = treeNode.Value as InvFacility;
             if (facility == null) return;
 
-            var facilityInfoVm = new FacilityInfoViewModel(facility, _applicationContext, this.EventAggregator);
-            var facilityDetailVM = new FacilityDetailViewModel(facility, facilityInfoVm, _windowManager, EventAggregator, _applicationContext, _facilitiesService);
-            var manager = IoC.Get<IDockWindowManager>();
-            manager.ShowDocumentWindow(facilityDetailVM, null);
+            CursorHelper.ExecuteWithWaitCursor(() =>
+            {
+                //reload
+                facility = _facilitiesService.GetFacility(facility.SYNC_ID);
+                if (facility == null)
+                {
+                    _windowManager.ShowError("Open Facility", "cannot load facility");
+                    return;
+                }
+
+                var facilityInfoVm = new FacilityInfoViewModel(facility, _applicationContext, this.EventAggregator);
+                var facilityDetailVM = new FacilityDetailViewModel(facility, facilityInfoVm, _windowManager,
+                    EventAggregator, _applicationContext, _facilitiesService);
+                var manager = IoC.Get<IDockWindowManager>();
+                manager.ShowDocumentWindow(facilityDetailVM, null);
+            });
 
             if (eventArgs is RoutedEventArgs)
                 ((RoutedEventArgs)eventArgs).Handled = false;
+        }
+
+        public void Refresh()
+        {
+            if (IsElectricalSystemsSelected)
+            {
+                LoadElectricalSystems();
+            }
         }
 
         public void SelectFacility(TreeNode<object> treeNode, EventArgs eventArgs)

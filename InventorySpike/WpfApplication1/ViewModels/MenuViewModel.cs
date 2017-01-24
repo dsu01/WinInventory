@@ -44,12 +44,12 @@ namespace Client.ViewModels
                         Settings settings)
             : base(eventAggregator)
         {
-            Init();
-
             this._windowManager = windowManager;
             this.Settings = settings;
 
             this.SubscribeToEvents();
+
+            Init();
         }
 
         #endregion
@@ -66,7 +66,7 @@ namespace Client.ViewModels
             {
                 new CreateActionItem(),
                 new AdminActionItem(),
-                new SyncActionItem(),
+                new SyncActionItem(_windowManager),
             };
         }
     }
