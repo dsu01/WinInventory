@@ -88,28 +88,49 @@ namespace Client.ViewModels
             var treeNode = context as TreeNode<object>;
             if (treeNode == null) return;
 
-            var facility = treeNode.Value as InvFacility;
-            if (facility == null) return;
-
-            CursorHelper.ExecuteWithWaitCursor(() =>
+            if (treeNode.TreeNodeType == TreeNodeType.System)
             {
-                //reload
-                facility = _facilitiesService.GetFacility(facility.SYNC_ID);
-                if (facility == null)
+                CursorHelper.ExecuteWithWaitCursor(() =>
                 {
-                    _windowManager.ShowError("Open Facility", "cannot load facility");
-                    return;
-                }
+                    //reload
+                    var facility = treeNode.Value as InvFacility;
+                    facility = _facilitiesService.GetFacility(facility.SYNC_ID);
+                    if (facility == null)
+                    {
+                        _windowManager.ShowError("Open Facility", "cannot load facility");
+                        return;
+                    }
 
-                var facilityInfoVm = new FacilityInfoViewModel(facility, _applicationContext, this.EventAggregator);
-                var facilityDetailVM = new FacilityDetailViewModel(facility, facilityInfoVm, _windowManager,
-                    EventAggregator, _applicationContext, _facilitiesService);
-                var manager = IoC.Get<IDockWindowManager>();
-                manager.ShowDocumentWindow(facilityDetailVM, null);
-            });
+                    var facilityInfoVm = new FacilityInfoViewModel(facility, _applicationContext, this.EventAggregator);
+                    var facilityDetailVM = new FacilityDetailViewModel(facility, facilityInfoVm, _windowManager,
+                        EventAggregator, _applicationContext, _facilitiesService);
+                    var manager = IoC.Get<IDockWindowManager>();
+                    manager.ShowDocumentWindow(facilityDetailVM, null);
+                });
+            }
+            else if (treeNode.TreeNodeType == TreeNodeType.Component)
+            {
+                CursorHelper.ExecuteWithWaitCursor(() =>
+                {
+                    //reload
+                    var facility = (treeNode.Value as InvEquipment).InvFacility;
+                    facility = _facilitiesService.GetFacility(facility.SYNC_ID);
+                    if (facility == null)
+                    {
+                        _windowManager.ShowError("Open Facility", "cannot load facility");
+                        return;
+                    }
+
+                    var facilityInfoVm = new FacilityInfoViewModel(facility, _applicationContext, this.EventAggregator);
+                    var facilityDetailVM = new FacilityDetailViewModel(facility, facilityInfoVm, _windowManager,
+                        EventAggregator, _applicationContext, _facilitiesService);
+                    var manager = IoC.Get<IDockWindowManager>();
+                    manager.ShowDocumentWindow(facilityDetailVM, null);
+                });
+            }
 
             if (eventArgs is RoutedEventArgs)
-                ((RoutedEventArgs)eventArgs).Handled = false;
+                ((RoutedEventArgs)eventArgs).Handled = true;
         }
 
         public void Refresh()
@@ -174,6 +195,18 @@ namespace Client.ViewModels
                     IsOpen = false,
                     Children = new BindableCollection<ITreeNode<object>>(),
                 };
+                foreach (var invEquipment in invFacility.InvEquipments)
+                {
+                    var equipmentNode = new TreeNode<object>
+                    {
+                        HiearchyLevel = 1,
+                        Value = invEquipment,
+                        TreeNodeType = TreeNodeType.Component,
+                        Parent = facilitySystemNode,
+                        IsOpen = true,
+                    };
+                    facilitySystemNode.Children.Add(equipmentNode);
+                }
 
                 items.Add(facilitySystemNode);
             }

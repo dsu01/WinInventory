@@ -13,12 +13,20 @@ namespace Client.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null || !(value is InvFacility))
+            if (value == null)
             {
                 return null;
             }
+            else if (value is InvFacility)
+            {
+                return (value as InvFacility).Facility_;
+            }
+            else if (value is InvEquipment)
+            {
+                return (value as InvEquipment).EquipmentID;
+            }
 
-            return (value as InvFacility).Facility_;
+            return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

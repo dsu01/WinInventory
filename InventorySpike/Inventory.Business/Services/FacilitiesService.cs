@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +30,7 @@ namespace Inventory.Business.Services
                 using (var dbContext = new InventoryEntities())
                 {
                     var list = dbContext.InvFacilities.Where(x => x.FacilityGroup == "Electrical System")
+                        .Include(x => x.InvEquipments)
                         .OrderBy(x => x.Facility_)
                         .ToList();
 
@@ -49,7 +51,10 @@ namespace Inventory.Business.Services
             {
                 using (var dbContext = new InventoryEntities())
                 {
-                    return dbContext.InvFacilities.Where(x => x.SYNC_ID == id).FirstOrDefault();
+                    return dbContext.InvFacilities
+                        .Where(x => x.SYNC_ID == id)
+                        .Include(x => x.InvEquipments)
+                        .FirstOrDefault();
                 }
             }
             catch (Exception e)
