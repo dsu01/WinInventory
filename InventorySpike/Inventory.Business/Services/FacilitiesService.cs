@@ -84,19 +84,30 @@ namespace Inventory.Business.Services
                         {
                             // existing
                             existingEquipment.EquipmentID = equipment.EquipmentID;
-                            existingEquipment.EquipmentID = equipment.EquipmentID;
-                            existingEquipment.EquipmentID = equipment.EquipmentID;
-                            existingEquipment.EquipmentID = equipment.EquipmentID;
-                            existingEquipment.EquipmentID = equipment.EquipmentID;
-                            existingEquipment.EquipmentID = equipment.EquipmentID;
-                            existingEquipment.EquipmentID = equipment.EquipmentID;
-                            existingEquipment.EquipmentID = equipment.EquipmentID;
-                            existingEquipment.EquipmentID = equipment.EquipmentID;
-                            existingEquipment.EquipmentID = equipment.EquipmentID;
-                            existingEquipment.EquipmentID = equipment.EquipmentID;
-                            existingEquipment.EquipmentID = equipment.EquipmentID;
-                            existingEquipment.EquipmentID = equipment.EquipmentID;
-                            existingEquipment.EquipmentID = equipment.EquipmentID;
+                            existingEquipment.TypeorUse = equipment.TypeorUse;
+                            existingEquipment.Manufacturer = equipment.Manufacturer;
+                            existingEquipment.Location = equipment.Location;
+                            existingEquipment.Model = equipment.Model;
+                            existingEquipment.SerialNo = equipment.SerialNo;
+                            existingEquipment.MotorType = equipment.MotorType;
+                            existingEquipment.Size = equipment.Size;
+                            existingEquipment.InstallDate = equipment.InstallDate;
+                            existingEquipment.Capacity = equipment.Capacity;
+                            existingEquipment.CapacityHeadTest = equipment.CapacityHeadTest;
+                            existingEquipment.FuelRefrigeration = equipment.FuelRefrigeration;
+                            existingEquipment.MotorModel = equipment.MotorModel;
+                            existingEquipment.MotorManufacturer = equipment.MotorManufacturer;
+                            existingEquipment.HP = equipment.HP;
+                            existingEquipment.SerialNo = equipment.SerialNo;
+                            existingEquipment.MotorInstallDate = equipment.MotorInstallDate;
+                            existingEquipment.Frame = equipment.Frame;
+                            existingEquipment.TJCValue = equipment.TJCValue;
+                            existingEquipment.RPM = equipment.RPM;
+                            existingEquipment.Voltage = equipment.Voltage;
+                            existingEquipment.Amperes = equipment.Amperes;
+                            existingEquipment.PhaseCycle = equipment.PhaseCycle;
+                            existingEquipment.PMSchedule = equipment.PMSchedule;
+                            existingEquipment.BSLClassification = equipment.BSLClassification;
 
                             listToSave.Add(existingEquipment);
                         }

@@ -44,9 +44,10 @@ namespace Client.ViewModels
         /// Initializes a new instance of the MainWindowViewModel class.
         /// </summary>
         public EquipmentDetailViewModel(InvEquipment equipment,
-                        IApplicationContext applicationContext
+                        IApplicationContext applicationContext,
+                        IEventAggregator eventAggregator
             )
-            : base(equipment)
+            : base(equipment, eventAggregator)
         {
             _applicationContext = applicationContext;
             DisplayName = equipment.EquipmentID;

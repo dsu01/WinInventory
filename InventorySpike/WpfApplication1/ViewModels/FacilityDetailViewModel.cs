@@ -148,7 +148,9 @@ namespace Client.ViewModels
 
         public void AddComponent()
         {
-            Equipments.Add(CreateNewEquipment(Model));
+            var equipment = CreateNewEquipment(Model);
+            Equipments.Add(equipment);
+            SelectedEquipment = equipment;
         }
 
         public void DeleteComponent()
@@ -164,7 +166,7 @@ namespace Client.ViewModels
         {
             FacilityInfoViewModel.Model = savedFacility;
             DisplayName = savedFacility.Facility_;
-            this.Equipments = new ObservableCollection<EquipmentDetailViewModel>(savedFacility.InvEquipments.OrderBy(x => x.EquipmentName).Select(x => new EquipmentDetailViewModel(x, _applicationContext)));
+            this.Equipments = new ObservableCollection<EquipmentDetailViewModel>(savedFacility.InvEquipments.OrderBy(x => x.EquipmentName).Select(x => new EquipmentDetailViewModel(x, _applicationContext, EventAggregator)));
             SelectedTabIndex = 0;
             SelectedEquipment = null;
         }
@@ -188,7 +190,7 @@ namespace Client.ViewModels
             }
                 ;
 
-            return new EquipmentDetailViewModel(equipment, this._applicationContext);
+            return new EquipmentDetailViewModel(equipment, this._applicationContext, EventAggregator);
         }
 
         #endregion

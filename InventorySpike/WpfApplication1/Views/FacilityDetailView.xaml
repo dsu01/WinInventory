@@ -88,6 +88,14 @@
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition />
@@ -104,6 +112,60 @@
                                 <TextBlock Grid.Row="1"  Grid.Column="2" Text="Manufacturer"  Style="{StaticResource RightLabelStyle}"/>
                                 <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding Model.Manufacturer}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}" />
 
+                                <TextBlock Grid.Row="2"  Grid.Column="0" Text="Location"  Style="{StaticResource LeftLabelStyle}"/>
+                                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Model.Location}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}" />
+                                <TextBlock Grid.Row="2"  Grid.Column="2" Text="Model No."  Style="{StaticResource RightLabelStyle}"/>
+                                <TextBox Grid.Row="2" Grid.Column="3" Text="{Binding Model.Model}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}" />
+
+                                <TextBlock Grid.Row="3"  Grid.Column="0" Text="Serial No."  Style="{StaticResource LeftLabelStyle}"/>
+                                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Model.SerialNo}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}" />
+                                <TextBlock Grid.Row="3"  Grid.Column="2" Text="Type"  Style="{StaticResource RightLabelStyle}"/>
+                                <TextBox Grid.Row="3" Grid.Column="3" Text="{Binding Model.MotorType}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}" />
+
+                                <TextBlock Grid.Row="4"  Grid.Column="0" Text="Size"  Style="{StaticResource LeftLabelStyle}"/>
+                                <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Model.Size}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}" />
+                                <TextBlock Grid.Row="4"  Grid.Column="2" Text="Date Installed"  Style="{StaticResource RightLabelStyle}"/>
+                                <TextBox Grid.Row="4" Grid.Column="3" Text="{Binding Model.InstallDate, StringFormat=MM/dd/yyyy}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}" />
+
+                                <TextBlock Grid.Row="5"  Grid.Column="0" Text="Capacity"  Style="{StaticResource LeftLabelStyle}"/>
+                                <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Model.Capacity}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}" />
+                                <TextBlock Grid.Row="5"  Grid.Column="2" Text="Capacity (H/T)"  Style="{StaticResource RightLabelStyle}"/>
+                                <TextBox Grid.Row="5" Grid.Column="3" Text="{Binding Model.CapacityHeadTest}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}" />
+
+                                <TextBlock Grid.Row="6"  Grid.Column="0" Text="Fuel or Refri"  Style="{StaticResource LeftLabelStyle}"/>
+                                <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding Model.FuelRefrigeration}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}" />
+                                <TextBlock Grid.Row="6"  Grid.Column="2" Text="Model"  Style="{StaticResource RightLabelStyle}"/>
+                                <TextBox Grid.Row="6" Grid.Column="3" Text="{Binding Model.MotorModel}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}" />
+
+                                <TextBlock Grid.Row="7"  Grid.Column="0" Text="Motor Mfgr"  Style="{StaticResource LeftLabelStyle}"/>
+                                <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding Model.MotorManufacturer}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}" />
+                                <TextBlock Grid.Row="7"  Grid.Column="2" Text="H.P."  Style="{StaticResource RightLabelStyle}"/>
+                                <TextBox Grid.Row="7" Grid.Column="3" Text="{Binding Model.HP}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}" />
+
+                                <TextBlock Grid.Row="8"  Grid.Column="0" Text="Serial No."  Style="{StaticResource LeftLabelStyle}"/>
+                                <TextBox Grid.Row="8" Grid.Column="1" Text="{Binding Model.SerialNo}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}" />
+                                <TextBlock Grid.Row="8"  Grid.Column="2" Text="Motor Installed Date"  Style="{StaticResource RightLabelStyle}"/>
+                                <TextBox Grid.Row="8" Grid.Column="3" Text="{Binding Model.MotorInstallDate, StringFormat=MM/dd/yyyy}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}" />
+
+                                <TextBlock Grid.Row="9"  Grid.Column="0" Text="Frame"  Style="{StaticResource LeftLabelStyle}"/>
+                                <TextBox Grid.Row="9" Grid.Column="1" Text="{Binding Model.Frame}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}" />
+                                <TextBlock Grid.Row="9"  Grid.Column="2" Text="TJC Value"  Style="{StaticResource RightLabelStyle}"/>
+                                <TextBox Grid.Row="9" Grid.Column="3" Text="{Binding Model.TJCValue}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}" />
+
+                                <TextBlock Grid.Row="10"  Grid.Column="0" Text="R.P.M."  Style="{StaticResource LeftLabelStyle}"/>
+                                <TextBox Grid.Row="10" Grid.Column="1" Text="{Binding Model.RPM}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}" />
+                                <TextBlock Grid.Row="10"  Grid.Column="2" Text="Voltage"  Style="{StaticResource RightLabelStyle}"/>
+                                <TextBox Grid.Row="10" Grid.Column="3" Text="{Binding Model.Voltage}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}" />
+
+                                <TextBlock Grid.Row="11"  Grid.Column="0" Text="Amperes"  Style="{StaticResource LeftLabelStyle}"/>
+                                <TextBox Grid.Row="11" Grid.Column="1" Text="{Binding Model.Amperes}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}" />
+                                <TextBlock Grid.Row="11"  Grid.Column="2" Text="Phase-Cycle"  Style="{StaticResource RightLabelStyle}"/>
+                                <TextBox Grid.Row="11" Grid.Column="3" Text="{Binding Model.PhaseCycle}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}" />
+
+                                <TextBlock Grid.Row="12"  Grid.Column="0" Text="PM Schedule"  Style="{StaticResource LeftLabelStyle}"/>
+                                <TextBox Grid.Row="12" Grid.Column="1" Text="{Binding Model.PMSchedule}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}" />
+                                <TextBlock Grid.Row="12"  Grid.Column="2" Text="BSL Class"  Style="{StaticResource RightLabelStyle}"/>
+                                <TextBox Grid.Row="12" Grid.Column="3" Text="{Binding Model.BSLClassification}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}" />
                             </Grid>
                         </GroupBox>
                     </StackPanel>
