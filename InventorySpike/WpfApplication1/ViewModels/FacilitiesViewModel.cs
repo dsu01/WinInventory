@@ -199,7 +199,7 @@ namespace Client.ViewModels
                     IsOpen = false,
                     Children = new BindableCollection<ITreeNode<object>>(),
                 };
-                foreach (var invEquipment in invFacility.InvEquipments)
+                foreach (var invEquipment in invFacility.InvEquipments.OrderBy(x => x.EquipmentName))
                 {
                     var equipmentNode = new TreeNode<object>
                     {
@@ -226,9 +226,17 @@ namespace Client.ViewModels
         {
             if (IsElectricalSystemsSelected)
             {
-                if ((message.FacilityUpdateType == FacilityUpdateType.Create || message.FacilityUpdateType == FacilityUpdateType.Delete)
-                    && message.Facility.FacilityGroup == "Electrical System")
+                if (message.Facility.FacilityGroup != "Electrical System") return;
+
+                if ((message.FacilityUpdateType == FacilityUpdateType.Create ||
+                     message.FacilityUpdateType == FacilityUpdateType.Delete))
+                {
                     LoadElectricalSystems();
+                }
+                else if (message.FacilityUpdateType == FacilityUpdateType.Updated)
+                {
+                    LoadElectricalSystems();
+                }
             }
         }
 

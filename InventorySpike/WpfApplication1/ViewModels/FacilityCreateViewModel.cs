@@ -94,22 +94,13 @@ namespace Client.ViewModels
             get { return true; }
         }
 
-        public async void Save()
+        public void Save()
         {
-            // add to collection
-            //var validationResults = this.FishCatch.Validate(true);
-            //if (validationResults.Count > 0)
-            //{
-            //    var message = validationResults.First().Message;
-            //    if (!string.IsNullOrEmpty(message))
-            //        _windowManager.Warn(FishCatchViewRes.SaveFishCatch, message);
-            //    else
-            //        _windowManager.Warn(FishCatchViewRes.SaveFishCatch, string.Format(FishCatchViewRes.ValidationError));  // generic message
+            // validation
 
-            //    return;
-            //}
-
-            await this.Facility.SaveFacility(true,
+            CursorHelper.ExecuteWithWaitCursor(() =>
+            {
+                this.Facility.SaveFacility(true,
             delegate (InvFacility facility)
             {
                 this.Facility.Model = facility;
@@ -125,6 +116,7 @@ namespace Client.ViewModels
             delegate
             {
                 _windowManager.ShowError("Create Facility", "Facility save failed");
+            });
             });
         }
 

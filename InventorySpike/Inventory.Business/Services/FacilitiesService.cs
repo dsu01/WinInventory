@@ -73,14 +73,45 @@ namespace Inventory.Business.Services
             {
                 using (var dbContext = new InventoryEntities())
                 {
+                    // components
+                    List<InvEquipment> listToSave = new List<InvEquipment>();
+                    foreach (var equipment in facility.InvEquipments)
+                    {
+                        var existingEquipment = dbContext.InvEquipments
+                            .Where(x => x.SYNC_ID == equipment.SYNC_ID)
+                            .FirstOrDefault();
+                        if (existingEquipment != null)
+                        {
+                            // existing
+                            existingEquipment.EquipmentID = equipment.EquipmentID;
+                            existingEquipment.EquipmentID = equipment.EquipmentID;
+                            existingEquipment.EquipmentID = equipment.EquipmentID;
+                            existingEquipment.EquipmentID = equipment.EquipmentID;
+                            existingEquipment.EquipmentID = equipment.EquipmentID;
+                            existingEquipment.EquipmentID = equipment.EquipmentID;
+                            existingEquipment.EquipmentID = equipment.EquipmentID;
+                            existingEquipment.EquipmentID = equipment.EquipmentID;
+                            existingEquipment.EquipmentID = equipment.EquipmentID;
+                            existingEquipment.EquipmentID = equipment.EquipmentID;
+                            existingEquipment.EquipmentID = equipment.EquipmentID;
+                            existingEquipment.EquipmentID = equipment.EquipmentID;
+                            existingEquipment.EquipmentID = equipment.EquipmentID;
+                            existingEquipment.EquipmentID = equipment.EquipmentID;
+
+                            listToSave.Add(existingEquipment);
+                        }
+                        else
+                        {
+                            // new
+                            dbContext.InvEquipments.Add(equipment);
+                            listToSave.Add(equipment);
+                        }
+                    }
+
                     if (addOrUpdate) // add
                     {
+                        facility.InvEquipments = listToSave;
                         dbContext.InvFacilities.Add(facility);
-                        var val = dbContext.SaveChanges();
-                        // TODO - work on uniqueness
-                        saved = dbContext.InvFacilities
-                            .Where(x => x.Facility_ == facility.Facility_)
-                            .FirstOrDefault();
                     }
                     else    // update
                     {
@@ -101,11 +132,14 @@ namespace Inventory.Business.Services
                         existing.Location = facility.Location;
                         existing.WorkRequest_ = facility.WorkRequest_;
 
-                        dbContext.SaveChanges();
-                        saved = dbContext.InvFacilities
-                            .Where(x => x.SYNC_ID == facility.SYNC_ID)
-                            .FirstOrDefault();
+                        existing.InvEquipments = listToSave;
                     }
+
+                    dbContext.SaveChanges();
+                    saved = dbContext.InvFacilities
+                        .Where(x => x.SYNC_ID == facility.SYNC_ID)
+                        .Include(x => x.InvEquipments)
+                        .FirstOrDefault();
                 }
             }
             catch (Exception e)

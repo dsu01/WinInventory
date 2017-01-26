@@ -59,13 +59,8 @@ namespace Client.ViewModels
             _facilitiesService = facilitiesService;
             _applicationContext = applicationContext;
             FacilityInfoViewModel = facilityInfoViewModel;
-            DisplayName = facility.Facility_;
 
-            this.Equipments = new ObservableCollection<EquipmentDetailViewModel>(facility.InvEquipments.Select(x => new EquipmentDetailViewModel(x, _windowManager, EventAggregator, _applicationContext, _facilitiesService)));
-
-            SelectedTabIndex = 0;
-
-            SelectedEquipment = null;
+            LoadFacility(facility);
 
             this.SubscribeToEvents();
 
@@ -88,7 +83,7 @@ namespace Client.ViewModels
 
         public EquipmentDetailViewModel SelectedEquipment { get; set; }
 
-        public bool IsDetailVisible { get { return SelectedEquipment != null;  } }
+        public bool IsDetailVisible { get { return SelectedEquipment != null; } }
 
         public bool CanSave { get { return true; } }
 
@@ -98,31 +93,47 @@ namespace Client.ViewModels
 
         #region Public Methods
 
-        public async void Save()
+        public void Save()
         {
             // validation
 
-            await SaveFacility(false,
-            delegate (InvFacility facility)
+            CursorHelper.ExecuteWithWaitCursor(() =>
             {
-                this.Model = facility;
-                this.FacilityInfoViewModel.Model = facility;
+                SaveFacility(false,
+                    delegate (InvFacility facility)
+                    {
+                        LoadFacility(facility);
 
-                _windowManager.Inform("Save Facility", "Facility saved successfully");
-            },
-            delegate
-            {
-                _windowManager.ShowError("Save Facility", "Facility save failed");
+                        _windowManager.Inform("Save Facility", "Facility saved successfully");
+
+                        EventAggregator.PublishOnUIThread(new FacilityUpdatedMessage()
+                        {
+                            FacilityUpdateType = FacilityUpdateType.Updated,
+                            Facility = facility,
+                        });
+                    },
+                    delegate
+                    {
+                        _windowManager.ShowError("Save Facility", "Facility save failed");
+                    });
             });
         }
 
         public void Cancel()
         {
+            if (_windowManager.Confirm("Facility Details", "Cancel all unsaved changes for this facility?"))
+            {
+                CursorHelper.ExecuteWithWaitCursor(() =>
+                {
+                    this.ReLoadFacility();
+                });
+            }
         }
 
-        public async Task SaveFacility(bool addOrUpdate, Action<InvFacility> successAction, System.Action failedAction)
+        public void SaveFacility(bool addOrUpdate, Action<InvFacility> successAction, System.Action failedAction)
         {
-            // TODO - masage 
+            // convert components
+            this.Model.InvEquipments = new List<InvEquipment>(this.Equipments.Select(x => x.Model));
 
             var saved = _facilitiesService.AddOrUpdateInvFacility(this.Model, addOrUpdate);
             if (saved != null && successAction != null)
@@ -135,9 +146,50 @@ namespace Client.ViewModels
             }
         }
 
+        public void AddComponent()
+        {
+            Equipments.Add(CreateNewEquipment(Model));
+        }
+
+        public void DeleteComponent()
+        {
+
+        }
+
         #endregion
 
         #region Private Methods
+
+        private void LoadFacility(InvFacility savedFacility)
+        {
+            FacilityInfoViewModel.Model = savedFacility;
+            DisplayName = savedFacility.Facility_;
+            this.Equipments = new ObservableCollection<EquipmentDetailViewModel>(savedFacility.InvEquipments.OrderBy(x => x.EquipmentName).Select(x => new EquipmentDetailViewModel(x, _applicationContext)));
+            SelectedTabIndex = 0;
+            SelectedEquipment = null;
+        }
+
+        private void ReLoadFacility()
+        {
+            var savedFacility = _facilitiesService.GetFacility(Model.SYNC_ID);
+
+            LoadFacility(savedFacility);
+        }
+
+
+        private EquipmentDetailViewModel CreateNewEquipment(InvFacility facility)
+        {
+
+            var equipment = new InvEquipment()
+            {
+                SYNC_ID = Guid.NewGuid(),
+                EquipmentID = "Equipment-0000",
+                InvFacilityId = facility.SYNC_ID,
+            }
+                ;
+
+            return new EquipmentDetailViewModel(equipment, this._applicationContext);
+        }
 
         #endregion
 

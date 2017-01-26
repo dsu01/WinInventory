@@ -28,8 +28,6 @@ namespace Client.ViewModels
         private static ILog logger = LogManager.GetLogger(typeof(EquipmentDetailViewModel));
 
         // Fields
-        private readonly IInvWindowManager _windowManager;
-        private readonly IFacilitiesService _facilitiesService;
         private readonly IApplicationContext _applicationContext;
 
         #region Constructors
@@ -46,15 +44,10 @@ namespace Client.ViewModels
         /// Initializes a new instance of the MainWindowViewModel class.
         /// </summary>
         public EquipmentDetailViewModel(InvEquipment equipment,
-                        IInvWindowManager windowManager,
-                        IEventAggregator eventAggregator,
-                        IApplicationContext applicationContext,
-                        IFacilitiesService facilitiesService
+                        IApplicationContext applicationContext
             )
-            : base(equipment, eventAggregator)
+            : base(equipment)
         {
-            _windowManager = windowManager;
-            _facilitiesService = facilitiesService;
             _applicationContext = applicationContext;
             DisplayName = equipment.EquipmentID;
 
