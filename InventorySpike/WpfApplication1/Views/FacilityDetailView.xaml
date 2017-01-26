@@ -11,7 +11,33 @@
              xmlns:controls1="clr-namespace:Client.Controls"
              mc:Ignorable="d" d:DesignHeight="25" d:DesignWidth="300"
              micro:Bind.Model="{Binding}">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Themes/InputPageEditors.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
     <Grid KeyboardNavigation.TabNavigation="Cycle">
+        <Grid.Resources>
+            <Style TargetType="{x:Type DataGrid}" BasedOn="{StaticResource {x:Type DataGrid}}">
+                <Setter Property="VerticalGridLinesBrush" Value="Transparent" />
+                <Setter Property="SelectionMode" Value="Single" />
+            </Style>
+            <Style TargetType="{x:Type DataGridRow}" x:Key="RowStyle" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                <Setter Property="IsEnabled" Value="True" />
+            </Style>
+            <Style TargetType="TextBlock" x:Key="CellDisplayLabel">
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="2 5 5 5" />
+                <Setter Property="TextWrapping" Value="NoWrap" />
+                <Setter Property="TextTrimming" Value="WordEllipsis" />
+            </Style>
+        </Grid.Resources>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -42,14 +68,43 @@
                                                 SelectedItem="{Binding SelectedEquipment, Mode=TwoWay}"
                                                   >
                             <DataGrid.Columns>
-
+                                <DataGridTextColumn Width="130" Header="Equip ID" Binding="{Binding Model.EquipmentID, Mode=OneWay}" CanUserSort="True" ElementStyle="{StaticResource CellDisplayLabel}" HeaderStyle="{StaticResource DataGridColumnHeader_CenterAlign}"/>
+                                <DataGridTextColumn Width="130" Header="Location" Binding="{Binding Model.Location, Mode=OneWay}" CanUserSort="True" ElementStyle="{StaticResource CellDisplayLabel}" HeaderStyle="{StaticResource DataGridColumnHeader_CenterAlign}"/>
+                                <DataGridTextColumn Width="110" Header="Type/Use" Binding="{Binding Model.TypeorUse, Mode=OneWay}" CanUserSort="True" ElementStyle="{StaticResource CellDisplayLabel}" HeaderStyle="{StaticResource DataGridColumnHeader_CenterAlign}"/>
+                                <DataGridTextColumn Width="130" Header="Manufacturer" Binding="{Binding Model.Manufacturer, Mode=OneWay}" CanUserSort="True" ElementStyle="{StaticResource CellDisplayLabel}" HeaderStyle="{StaticResource DataGridColumnHeader_CenterAlign}"/>
+                                <DataGridTextColumn Width="120" Header="Model" Binding="{Binding Model.Model, Mode=OneWay}" CanUserSort="True" ElementStyle="{StaticResource CellDisplayLabel}" HeaderStyle="{StaticResource DataGridColumnHeader_CenterAlign}"/>
+                                <DataGridTextColumn Width="90" Header="Serial" Binding="{Binding Model.SerialNo, Mode=OneWay}" CanUserSort="True" ElementStyle="{StaticResource CellDisplayLabel}" HeaderStyle="{StaticResource DataGridColumnHeader_CenterAlign}"/>
+                                <DataGridTextColumn Width="80" Header="Capacity" Binding="{Binding Model.Capacity, Mode=OneWay}" CanUserSort="True" ElementStyle="{StaticResource CellDisplayLabel}" HeaderStyle="{StaticResource DataGridColumnHeader_CenterAlign}"/>
+                                <DataGridTextColumn Width="80" Header="Size" Binding="{Binding Model.Size, Mode=OneWay}" CanUserSort="True" ElementStyle="{StaticResource CellDisplayLabel}" HeaderStyle="{StaticResource DataGridColumnHeader_CenterAlign}"/>
                             </DataGrid.Columns>
                         </DataGrid>
 
-                        <GroupBox DataContext="{Binding SelectedEquipment}" Header="Component Details" Margin="2 5" >
+                        <GroupBox DataContext="{Binding SelectedEquipment}" Header="Component Details" Margin="5 10" 
+                                  Visibility="{Binding DataContext.IsDetailVisible, Converter={StaticResource BoolToCollapsedConverter}, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}">
+                            <Grid Margin="5 5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
 
-                            <TextBlock Text="SelectedEquipment" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Row="0"  Grid.Column="0" Text="Equipment ID*"  Style="{StaticResource LeftLabelStyle}"/>
+                                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Model.EquipmentID}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}" />
 
+                                <TextBlock Grid.Row="1"  Grid.Column="0" Text="Type or Use*"  Style="{StaticResource LeftLabelStyle}"/>
+                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Model.TypeorUse}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}" />
+                                <TextBlock Grid.Row="1"  Grid.Column="2" Text="Manufacturer"  Style="{StaticResource RightLabelStyle}"/>
+                                <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding Model.Manufacturer}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}" />
+
+                            </Grid>
                         </GroupBox>
                     </StackPanel>
                 </wpfEditors:SuperTabItem>

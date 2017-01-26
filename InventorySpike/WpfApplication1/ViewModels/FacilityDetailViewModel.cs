@@ -65,6 +65,8 @@ namespace Client.ViewModels
 
             SelectedTabIndex = 0;
 
+            SelectedEquipment = null;
+
             this.SubscribeToEvents();
 
             Init();
@@ -85,6 +87,8 @@ namespace Client.ViewModels
         public ObservableCollection<EquipmentDetailViewModel> Equipments { get; private set; }
 
         public EquipmentDetailViewModel SelectedEquipment { get; set; }
+
+        public bool IsDetailVisible { get { return SelectedEquipment != null;  } }
 
         public bool CanSave { get { return true; } }
 

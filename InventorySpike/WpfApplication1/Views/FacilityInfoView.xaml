@@ -12,98 +12,11 @@
              micro:Bind.Model="{Binding}">
     <Grid Margin="5 5">
         <Grid.Resources>
-
-            <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}" >
-                <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="VerticalContentAlignment" Value="top" />
-                <Setter Property="Margin" Value="0 3 15 3" />
-            </Style>
-
-            <Style TargetType="Button">
-                <Setter Property="Height" Value="25" />
-                <Setter Property="Margin"  Value="5 5" />
-                <Setter Property="Padding"  Value="3 2" />
-                <Setter Property="HorizontalContentAlignment" Value="Center" />
-                <Setter Property="VerticalAlignment"  Value="Center" />
-            </Style>
-
-            <Style TargetType="TextBlock" x:Key="LeftLabelStyle" BasedOn="{StaticResource {x:Type TextBlock}}">
-                <Setter Property="HorizontalAlignment" Value="Left" />
-                <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="Margin" Value="5 5 5 5" />
-            </Style>
-
-            <Style TargetType="TextBlock" x:Key="RightLabelStyle" BasedOn="{StaticResource LeftLabelStyle}">
-                <Setter Property="Margin" Value="15 5 5 5" />
-            </Style>
-
-            <Style TargetType="xctk:DateTimePicker" BasedOn="{StaticResource CommonDateTimePicker}">
-                <Setter Property="HorizontalAlignment" Value="Left" />
-                <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="VerticalContentAlignment" Value="Center" />
-                <Setter Property="Width" Value="135" />
-                <Setter Property="Format" Value="Custom" />
-                <Setter Property="FormatString" Value="MM/dd/yyyy HH:mm" />
-                <Setter Property="Watermark" Value="Select Date" />
-            </Style>
-
-            <Style TargetType="xctk:MaskedTextBox" BasedOn="{StaticResource CommonMaskedTextBox}" >
-                <Setter Property="HorizontalAlignment" Value="Left" />
-                <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="Width" Value="130" />
-                <Setter Property="Height" Value="23" />
-                <Setter Property="Margin" Value="2 5 5 5" />
-            </Style>
-
-            <Style TargetType="TextBox" BasedOn="{StaticResource BaseTextBox}" x:Key="BigTextBoxStyle">
-                <Setter Property="HorizontalAlignment" Value="Left" />
-                <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="Width" Value="130" />
-                <Setter Property="Height" Value="23" />
-                <Setter Property="Margin" Value="2 5 5 5" />
-                <Setter Property="TextWrapping" Value="NoWrap" />
-            </Style>
-
-            <Style TargetType="TextBox" BasedOn="{StaticResource BigTextBoxStyle}" x:Key="ReadOnlyTextBoxStyle">
-                <Style.Triggers>
-                    <DataTrigger Binding="{Binding Path=Model.Vehicle.IsLocal}" Value="True">
-                        <Setter Property="FontWeight" Value="DemiBold" />
-                    </DataTrigger>
-                </Style.Triggers>
-            </Style>
-
-            <Style TargetType="TextBox" BasedOn="{StaticResource BaseTextBox}" x:Key="CommentTextBoxStyle">
-                <Setter Property="HorizontalAlignment" Value="Left" />
-                <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="Height" Value="23" />
-                <Setter Property="Margin" Value="2 5 5 5" />
-                <Setter Property="TextWrapping" Value="NoWrap" />
-            </Style>
-
-            <Style TargetType="TextBox" BasedOn="{StaticResource BaseTextBox}" x:Key="SmallTextBoxStyle">
-                <Setter Property="HorizontalAlignment" Value="Left" />
-                <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="Width" Value="80" />
-                <Setter Property="Height" Value="23" />
-                <Setter Property="Margin" Value="2 5 5 5" />
-                <Setter Property="TextWrapping" Value="NoWrap" />
-            </Style>
-
-            <Style TargetType="ComboBox" BasedOn="{StaticResource BaseComboBox}" >
-                <Setter Property="HorizontalAlignment" Value="Left" />
-                <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="Width" Value="130" />
-                <Setter Property="Height" Value="23" />
-                <Setter Property="Margin" Value="2 5 5 5" />
-            </Style>
-
-            <Style TargetType="ComboBox" BasedOn="{StaticResource BaseComboBox}" x:Key="SmallComboboxStyle">
-                <Setter Property="HorizontalAlignment" Value="Left" />
-                <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="Width" Value="130" />
-                <Setter Property="Height" Value="23" />
-                <Setter Property="Margin" Value="2 5 5 5" />
-            </Style>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/Themes/InputPageEditors.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
         </Grid.Resources>
 
         <Grid.RowDefinitions>
