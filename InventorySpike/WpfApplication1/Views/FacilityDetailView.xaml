@@ -79,9 +79,9 @@
                             </DataGrid.Columns>
                         </DataGrid>
 
-                        <GroupBox DataContext="{Binding SelectedEquipment}" Header="Component Details" Margin="5 10" 
+                        <GroupBox DataContext="{Binding SelectedEquipment}" Header="Component Details" Margin="5 10" FontWeight="SemiBold"
                                   Visibility="{Binding DataContext.IsDetailVisible, Converter={StaticResource BoolToCollapsedConverter}, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}">
-                            <Grid Margin="5 5">
+                            <Grid Margin="5 5" Background="#ffffcc" >
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
