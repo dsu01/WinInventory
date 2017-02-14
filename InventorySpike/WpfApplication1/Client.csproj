@@ -208,6 +208,7 @@
     <Compile Include="Framework\TreeNode.cs" />
     <Compile Include="Interfaces\IInvWindowManager.cs" />
     <Compile Include="ViewModels\DockViewModel.cs" />
+    <Compile Include="ViewModels\FacilityAttachmentViewModel.cs" />
     <Compile Include="ViewModels\FacilityCreateViewModel.cs" />
     <Compile Include="ViewModels\EquipmentDetailViewModel.cs" />
     <Compile Include="ViewModels\FacilityInfoViewModel.cs" />

@@ -31,6 +31,7 @@ namespace Inventory.Business.Services
                 {
                     var list = dbContext.InvFacilities.Where(x => x.FacilityGroup == "Electrical System")
                         .Include(x => x.InvEquipments)
+                        .Include(x => x.InvFacilityAttachments)
                         .OrderBy(x => x.Facility_)
                         .ToList();
 
@@ -119,9 +120,38 @@ namespace Inventory.Business.Services
                         }
                     }
 
+                    // attachments
+                    List<InvFacilityAttachment> attachmentsToSave = new List<InvFacilityAttachment>();
+                    foreach (var attachment in facility.InvFacilityAttachments)
+                    {
+                        var existingAttachment = dbContext.InvFacilityAttachments
+                            .Where(x => x.ID == attachment.ID)
+                            .FirstOrDefault();
+                        if (existingAttachment != null)
+                        {
+                            // existing
+                            existingAttachment.FileName = attachment.FileName;
+                            existingAttachment.ContentType = attachment.ContentType;
+                            existingAttachment.Data = attachment.Data;
+                            existingAttachment.IsActive = attachment.IsActive;
+                            existingAttachment.Title = attachment.Title;
+                            existingAttachment.C__ID = attachment.C__ID;
+                            existingAttachment.InvFacilityID = attachment.InvFacilityID;
+                            
+                            attachmentsToSave.Add(existingAttachment);
+                        }
+                        else
+                        {
+                            // new
+                            dbContext.InvFacilityAttachments.Add(attachment);
+                            attachmentsToSave.Add(attachment);
+                        }
+                    }
+
                     if (addOrUpdate) // add
                     {
                         facility.InvEquipments = listToSave;
+                        facility.InvFacilityAttachments = attachmentsToSave;
                         dbContext.InvFacilities.Add(facility);
                     }
                     else    // update

@@ -193,6 +193,21 @@ namespace Client.ViewModels
             return new EquipmentDetailViewModel(equipment, this._applicationContext, EventAggregator);
         }
 
+        private FacilityAttachmentViewModel CreateNewFacilityAttachment(InvFacility facility)
+        {
+            var attahcment = new InvFacilityAttachment()
+            {
+                ID = Guid.NewGuid(),
+                C__ID = 1,
+                IsActive = true,
+                Title = "Attachment",
+            }
+                ;
+
+            return new FacilityAttachmentViewModel(attahcment, this._applicationContext, EventAggregator);
+        }
+
+
         #endregion
 
         #region Event Hanlding
