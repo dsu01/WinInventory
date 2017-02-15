@@ -172,9 +172,14 @@
                 </wpfEditors:SuperTabItem>
 
                 <wpfEditors:SuperTabItem Header="Attachments" IsSelected="false" ToolTip="Attachments" AutomationProperties.Name="">
+                    <StackPanel Orientation="Vertical" Margin="5 0" >
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="2 5 10 5" >
+                            <Button x:Name="AddAttachment" Content="Add Attachment" />
+                            <Button x:Name="DeleteAttachment" Content="Delete Attachment" />
+                        </StackPanel>
+                    </StackPanel>
                 </wpfEditors:SuperTabItem>
             </wpfEditors:SuperTabControl>
         </ScrollViewer>
-
     </Grid>
 </UserControl>

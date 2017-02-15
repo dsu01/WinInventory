@@ -209,13 +209,21 @@
     <Compile Include="Interfaces\IInvWindowManager.cs" />
     <Compile Include="ViewModels\DockViewModel.cs" />
     <Compile Include="ViewModels\FacilityAttachmentViewModel.cs" />
+    <Compile Include="ViewModels\AttachmentCreateViewModel.cs" />
     <Compile Include="ViewModels\FacilityCreateViewModel.cs" />
     <Compile Include="ViewModels\EquipmentDetailViewModel.cs" />
+    <Compile Include="ViewModels\AttachmentInfoViewModel.cs" />
     <Compile Include="ViewModels\FacilityInfoViewModel.cs" />
     <Compile Include="ViewModels\FacilityDetailViewModel.cs" />
     <Compile Include="ViewModels\Messages\EquipmentSelectedMessage.cs" />
     <Compile Include="ViewModels\Messages\EquipmentUpdatedMessage.cs" />
     <Compile Include="ViewModels\Messages\FacilityUpdatedMessage.cs" />
+    <Compile Include="Views\AttachmentCreateView.xaml.cs">
+      <DependentUpon>AttachmentCreateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AttachmentInfoView.xaml.cs">
+      <DependentUpon>AttachmentInfoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\FacilityCreateView.xaml.cs">
       <DependentUpon>FacilityCreateView.xaml</DependentUpon>
     </Compile>
@@ -272,6 +280,14 @@
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AttachmentCreateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AttachmentInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\FacilityCreateView.xaml">
       <SubType>Designer</SubType>
