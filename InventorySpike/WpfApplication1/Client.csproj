@@ -224,6 +224,9 @@
     <Compile Include="Views\AttachmentInfoView.xaml.cs">
       <DependentUpon>AttachmentInfoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\FacilityAttachmentView.xaml.cs">
+      <DependentUpon>FacilityAttachmentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\FacilityCreateView.xaml.cs">
       <DependentUpon>FacilityCreateView.xaml</DependentUpon>
     </Compile>
@@ -286,6 +289,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AttachmentInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FacilityAttachmentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -83,6 +83,10 @@ namespace Client.ViewModels
 
         public EquipmentDetailViewModel SelectedEquipment { get; set; }
 
+        public ObservableCollection<FacilityAttachmentViewModel> Attachments { get; private set; }
+
+        public EquipmentDetailViewModel SelecteAttachment { get; set; }
+
         public bool IsDetailVisible { get { return SelectedEquipment != null; } }
 
         public bool CanSave { get { return true; } }
@@ -160,6 +164,25 @@ namespace Client.ViewModels
 
         #endregion
 
+        #region Attachments
+
+        public void AddAttachment()
+        {
+            var attachment = AddFacilityAttachment(Model);
+            if (attachment != null)
+            {
+                Attachments.Add(attachment);
+                SelecteAttachment = null;
+            }
+        }
+
+        public void DeleteAttachment()
+        {
+
+        }
+
+        #endregion
+
         #region Private Methods
 
         private void LoadFacility(InvFacility savedFacility)
@@ -167,8 +190,11 @@ namespace Client.ViewModels
             FacilityInfoViewModel.Model = savedFacility;
             DisplayName = savedFacility.Facility_;
             this.Equipments = new ObservableCollection<EquipmentDetailViewModel>(savedFacility.InvEquipments.OrderBy(x => x.EquipmentName).Select(x => new EquipmentDetailViewModel(x, _applicationContext, EventAggregator)));
+            this.Attachments = new ObservableCollection<FacilityAttachmentViewModel>(savedFacility.InvFacilityAttachments.OrderBy(x => x.Title).Select(x => new FacilityAttachmentViewModel(x, _applicationContext, EventAggregator)));
             SelectedTabIndex = 0;
+
             SelectedEquipment = null;
+            SelecteAttachment = null;
         }
 
         private void ReLoadFacility()
@@ -193,18 +219,31 @@ namespace Client.ViewModels
             return new EquipmentDetailViewModel(equipment, this._applicationContext, EventAggregator);
         }
 
-        private FacilityAttachmentViewModel CreateNewFacilityAttachment(InvFacility facility)
+        private FacilityAttachmentViewModel AddFacilityAttachment(InvFacility facility)
         {
             var attahcment = new InvFacilityAttachment()
             {
                 ID = Guid.NewGuid(),
-                C__ID = 1,
                 IsActive = true,
-                Title = "Attachment",
+                Title = "Attachment-00",
             }
-                ;
+            ;
 
-            return new FacilityAttachmentViewModel(attahcment, this._applicationContext, EventAggregator);
+            var eventAggreggor = IoC.Get<IEventAggregator>();
+            var windowManager = IoC.Get<IInvWindowManager>();
+            var facilityService = IoC.Get<IFacilitiesService>();
+            var applicationContext = IoC.Get<IApplicationContext>();
+            var attachmentVm = new FacilityAttachmentViewModel(attahcment, applicationContext, eventAggreggor);
+            var vm = new AttachmentCreateViewModel(attachmentVm, eventAggreggor, windowManager);
+            var settings = new Dictionary<string, object>
+                               {
+                                   {"ResizeMode", ResizeMode.NoResize},
+                                   {"WindowStartupLocation", WindowStartupLocation.CenterScreen}
+                               };
+            if (windowManager.ShowDialog(vm, null, settings) ?? false)
+                return attachmentVm;
+            else
+                return null;
         }
 
 

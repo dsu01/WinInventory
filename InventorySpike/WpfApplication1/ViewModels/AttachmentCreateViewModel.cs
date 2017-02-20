@@ -49,7 +49,7 @@ namespace Client.ViewModels
                         )
             : base(eventAggregator)
         {
-            Attachment = attachment;
+            FacilityAttachment = attachment;
             _windowManager = windowManager;
 
             this.SubscribeToEvents();
@@ -65,7 +65,7 @@ namespace Client.ViewModels
 
         #region Properties
 
-        public FacilityAttachmentViewModel Attachment { get; set; }
+        public FacilityAttachmentViewModel FacilityAttachment { get; set; }
 
         #endregion
 

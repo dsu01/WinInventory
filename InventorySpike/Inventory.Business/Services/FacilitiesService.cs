@@ -31,7 +31,7 @@ namespace Inventory.Business.Services
                 {
                     var list = dbContext.InvFacilities.Where(x => x.FacilityGroup == "Electrical System")
                         .Include(x => x.InvEquipments)
-                        .Include(x => x.InvFacilityAttachments)
+                        //.Include(x => x.InvFacilityAttachments)
                         .OrderBy(x => x.Facility_)
                         .ToList();
 
@@ -55,6 +55,7 @@ namespace Inventory.Business.Services
                     return dbContext.InvFacilities
                         .Where(x => x.SYNC_ID == id)
                         .Include(x => x.InvEquipments)
+                        .Include(x => x.InvFacilityAttachments)
                         .FirstOrDefault();
                 }
             }
@@ -135,7 +136,6 @@ namespace Inventory.Business.Services
                             existingAttachment.Data = attachment.Data;
                             existingAttachment.IsActive = attachment.IsActive;
                             existingAttachment.Title = attachment.Title;
-                            existingAttachment.C__ID = attachment.C__ID;
                             existingAttachment.InvFacilityID = attachment.InvFacilityID;
                             
                             attachmentsToSave.Add(existingAttachment);
@@ -210,6 +210,5 @@ namespace Inventory.Business.Services
 
             return null;
         }
-
     }
 }

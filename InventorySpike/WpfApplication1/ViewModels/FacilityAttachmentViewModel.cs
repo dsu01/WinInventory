@@ -47,7 +47,7 @@ namespace Client.ViewModels
             : base(attachment, eventAggregator)
         {
             _applicationContext = applicationContext;
-            DisplayName = attachment.C__ID.ToString();
+            DisplayName = attachment.Title;
 
             this.SubscribeToEvents();
 
