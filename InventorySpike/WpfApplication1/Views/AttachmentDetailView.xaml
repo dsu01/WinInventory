@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Client.Views.AttachmentInfoView"
+﻿<UserControl x:Class="Client.Views.AttachmentDetailView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -22,22 +22,19 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="2" Text="Facility Inventory Card" Style="{StaticResource LeftLabelStyle}"/>
-        <TextBlock Grid.Row="0"  Grid.Column="2" Text="Facility #" Style="{StaticResource RightLabelStyle}"/>
-        <TextBox Grid.Row="0" Grid.Column="3" Text="{Binding Model.Facility_}" Style="{StaticResource BigTextBoxStyle}" />
+        <TextBlock Grid.Row="0"  Grid.Column="0" Text="Title" Style="{StaticResource LeftLabelStyle}"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Model.Title}" Style="{StaticResource BigTextBoxStyle}" />
 
-        <TextBlock Grid.Row="1"  Grid.Column="0" Text="System"  Style="{StaticResource LeftLabelStyle}"/>
-        <ComboBox Grid.Row="1" Grid.Column="1" SelectedItem="{Binding Model.FacilitySystem}" ItemsSource="{Binding FacilitySystems}"/>
-        <TextBlock Grid.Row="1"  Grid.Column="2" Text="Facility ID"  Style="{StaticResource RightLabelStyle}"/>
-        <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding Model.FacilityID}" IsReadOnly="False" Style="{StaticResource BigTextBoxStyle}" />
+        <TextBlock Grid.Row="1"  Grid.Column="0" Text="Title" Style="{StaticResource LeftLabelStyle}"/>
+        <StackPanel Orientation="Horizontal" Margin="5">
+            <TextBox Text="{Binding Model.FileName}" Style="{StaticResource BigTextBoxStyle}" />
+            <Button x:Name="PickFile" />
+        </StackPanel>
     </Grid>
 </UserControl>

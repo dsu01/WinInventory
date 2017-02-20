@@ -167,7 +167,6 @@
           <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="Title" Type="varchar" MaxLength="200" />
-          <Property Name="__ID" Type="int" />
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="InvFacilityID" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
@@ -3660,7 +3659,6 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
           <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="C__ID" Type="Int32" />
           <Property Name="ID" Type="Guid" Nullable="false" />
           <Property Name="InvFacilityID" Type="Guid" Nullable="false" />
           <NavigationProperty Name="InvFacility" Relationship="Self.FK_InvFacilityAttachment_InvFacility" FromRole="InvFacilityAttachment" ToRole="InvFacility" />
@@ -7214,7 +7212,6 @@ warning 6035: The relationship 'FK_tblWOpart_tblPartLocation' has columns that a
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="C__ID" ColumnName="__ID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="InvFacilityID" ColumnName="InvFacilityID" />
               </MappingFragment>

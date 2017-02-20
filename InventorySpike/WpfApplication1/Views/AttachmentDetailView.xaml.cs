@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Client.Views
 {
     /// <summary>
-    /// Interaction logic for AttachmentInfoView.xaml
+    /// Interaction logic for AttachmentDetailView.xaml
     /// </summary>
-    public partial class AttachmentInfoView : UserControl
+    public partial class AttachmentDetailView : UserControl
     {
-        public AttachmentInfoView()
+        public AttachmentDetailView()
         {
             InitializeComponent();
         }

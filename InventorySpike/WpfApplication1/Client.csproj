@@ -212,7 +212,7 @@
     <Compile Include="ViewModels\AttachmentCreateViewModel.cs" />
     <Compile Include="ViewModels\FacilityCreateViewModel.cs" />
     <Compile Include="ViewModels\EquipmentDetailViewModel.cs" />
-    <Compile Include="ViewModels\AttachmentInfoViewModel.cs" />
+    <Compile Include="ViewModels\AttachmentDetailViewModel.cs" />
     <Compile Include="ViewModels\FacilityInfoViewModel.cs" />
     <Compile Include="ViewModels\FacilityDetailViewModel.cs" />
     <Compile Include="ViewModels\Messages\EquipmentSelectedMessage.cs" />
@@ -221,8 +221,8 @@
     <Compile Include="Views\AttachmentCreateView.xaml.cs">
       <DependentUpon>AttachmentCreateView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AttachmentInfoView.xaml.cs">
-      <DependentUpon>AttachmentInfoView.xaml</DependentUpon>
+    <Compile Include="Views\AttachmentDetailView.xaml.cs">
+      <DependentUpon>AttachmentDetailView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FacilityAttachmentView.xaml.cs">
       <DependentUpon>FacilityAttachmentView.xaml</DependentUpon>
@@ -288,7 +288,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AttachmentInfoView.xaml">
+    <Page Include="Views\AttachmentDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

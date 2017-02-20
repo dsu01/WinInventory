@@ -226,6 +226,7 @@ namespace Client.ViewModels
                 ID = Guid.NewGuid(),
                 IsActive = true,
                 Title = "Attachment-00",
+                InvFacilityID = Model.SYNC_ID,
             }
             ;
 

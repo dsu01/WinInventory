@@ -13,7 +13,7 @@
              behaviors:DialogCloser.DialogResult="{Binding DialogResult}"
              Background="White" WindowStartupLocation="CenterScreen"
              WindowStyle="SingleBorderWindow" SizeToContent="WidthAndHeight" ResizeMode="NoResize"
-                Title="Create Facility"
+                Title="Create Attachment"
          >
     <Grid KeyboardNavigation.TabNavigation="Cycle">
         <Grid.RowDefinitions>

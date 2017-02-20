@@ -21,7 +21,6 @@ namespace Inventory.Business
         public string CreatedBy { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public string Title { get; set; }
-        //public Nullable<int> C__ID { get; set; }
         public System.Guid ID { get; set; }
         public System.Guid InvFacilityID { get; set; }
     

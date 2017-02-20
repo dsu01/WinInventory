@@ -23,16 +23,16 @@ using LogManager = log4net.LogManager;
 namespace Client.ViewModels
 {
     [ImplementPropertyChanged]
-    public class AttachmentInfoViewModel : EntityViewModel<InvFacilityAttachment>
+    public class AttachmentDetailViewModel : EntityViewModel<InvFacilityAttachment>
     {
-        private static ILog logger = LogManager.GetLogger(typeof(AttachmentInfoViewModel));
+        private static ILog logger = LogManager.GetLogger(typeof(AttachmentDetailViewModel));
 
         #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainViewModel"/> class.
         /// </summary>
-        protected AttachmentInfoViewModel()
+        protected AttachmentDetailViewModel()
         {
             Init();
         }
@@ -40,7 +40,7 @@ namespace Client.ViewModels
         /// <summary>
         /// Initializes a new instance of the MainWindowViewModel class.
         /// </summary>
-        public AttachmentInfoViewModel(InvFacilityAttachment facilityAttachment,
+        public AttachmentDetailViewModel(InvFacilityAttachment facilityAttachment,
                         IApplicationContext applicationContext,
                         IEventAggregator eventAggregator)
             : base(facilityAttachment, eventAggregator)
@@ -61,37 +61,14 @@ namespace Client.ViewModels
 
         public IApplicationContext ApplicationContext { get; private set; }
 
-        //public IEnumerable<string> FacilitySystems
-        //{
-        //    get
-        //    {
-        //        switch (this.Model.FacilityGroup)
-        //        {
-        //            case "Electrical System":
-        //                yield return "Emergency Light";
-        //                yield return "Test Elec Sys Sys";
-        //                break;
-        //            case "Mechanical System":
-        //                yield return "Air Handling Unit";
-        //                yield return "Test Mechanical Sys Sys";
-        //                break;
-        //            case "Electrical Equipment":
-        //                yield return "Control Panel";
-        //                yield return "Test Elec Sys Equip";
-        //                break;
-        //            case "Mechanical Equipment":
-        //                yield return "Air Dryer";
-        //                break;
-        //            default:
-        //                break;
-        //        }
-        //    }
-        //}
-
         #endregion
 
         #region Public Methods
 
+        public void PickFile()
+        {
+            
+        }
 
         #endregion
 
