@@ -208,7 +208,6 @@
     <Compile Include="Framework\TreeNode.cs" />
     <Compile Include="Interfaces\IInvWindowManager.cs" />
     <Compile Include="ViewModels\DockViewModel.cs" />
-    <Compile Include="ViewModels\FacilityAttachmentViewModel.cs" />
     <Compile Include="ViewModels\AttachmentCreateViewModel.cs" />
     <Compile Include="ViewModels\FacilityCreateViewModel.cs" />
     <Compile Include="ViewModels\EquipmentDetailViewModel.cs" />
@@ -223,9 +222,6 @@
     </Compile>
     <Compile Include="Views\AttachmentDetailView.xaml.cs">
       <DependentUpon>AttachmentDetailView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\FacilityAttachmentView.xaml.cs">
-      <DependentUpon>FacilityAttachmentView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FacilityCreateView.xaml.cs">
       <DependentUpon>FacilityCreateView.xaml</DependentUpon>
@@ -289,10 +285,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AttachmentDetailView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\FacilityAttachmentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

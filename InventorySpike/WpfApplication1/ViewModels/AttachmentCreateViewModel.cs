@@ -43,7 +43,7 @@ namespace Client.ViewModels
         /// <summary>
         /// Initializes a new instance of the MainWindowViewModel class.
         /// </summary>
-        public AttachmentCreateViewModel(FacilityAttachmentViewModel attachment,
+        public AttachmentCreateViewModel(AttachmentDetailViewModel attachment,
                         IEventAggregator eventAggregator,
                         IInvWindowManager windowManager
                         )
@@ -65,7 +65,7 @@ namespace Client.ViewModels
 
         #region Properties
 
-        public FacilityAttachmentViewModel FacilityAttachment { get; set; }
+        public AttachmentDetailViewModel FacilityAttachment { get; set; }
 
         #endregion
 
@@ -82,41 +82,12 @@ namespace Client.ViewModels
 
         public bool CanSave
         {
-            get
-            {
-                // return !IsProcessing && this.FishCatch != null && this.FishCatch.HasChanges;
-                return true;
-            }
+            get { return true; }
         }
 
         public bool CanCancel
         {
             get { return true; }
-        }
-
-        public void Save()
-        {
-            // validation
-
-            //CursorHelper.ExecuteWithWaitCursor(() =>
-            //{
-            //    this.Facility.SaveFacility(true,
-            //delegate (InvFacility facility)
-            //{
-            //    this.Facility.Model = facility;
-            //    _windowManager.Inform("Create Facility", "Facility saved successfully");
-            //    this.DialogResult = true;
-
-            //    EventAggregator.PublishOnUIThread(new FacilityUpdatedMessage()
-            //    {
-            //        FacilityUpdateType = FacilityUpdateType.Create,
-            //        Facility = facility,
-            //    });
-            //},
-            //delegate
-            //{
-            //    _windowManager.ShowError("Create Attachment", "Facility save failed");
-            //});
         }
 
         public void Cancel()
@@ -125,6 +96,32 @@ namespace Client.ViewModels
         }
 
         public bool? DialogResult { get; private set; }
+
+        public void Save()
+        {
+            // validation
+
+            CursorHelper.ExecuteWithWaitCursor(() =>
+            {
+                this.FacilityAttachment.SaveAttachment(true,
+                    delegate (InvFacilityAttachment facilityAttachment)
+                    {
+                        this.FacilityAttachment.Model = facilityAttachment;
+                        _windowManager.Inform("Create Attachment", "Attachment saved successfully");
+                        this.DialogResult = true;
+
+                        //EventAggregator.PublishOnUIThread(new FacilityUpdatedMessage()
+                        //{
+                        //    FacilityUpdateType = FacilityUpdateType.Create,
+                        //    Facility = facilityAttachment,
+                        //});
+                    },
+                    delegate
+                    {
+                        _windowManager.ShowError("Create Attachment", "Attachment save failed");
+                    });
+            });
+        }
 
         #endregion
     }

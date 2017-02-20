@@ -83,7 +83,7 @@ namespace Client.ViewModels
 
         public EquipmentDetailViewModel SelectedEquipment { get; set; }
 
-        public ObservableCollection<FacilityAttachmentViewModel> Attachments { get; private set; }
+        public ObservableCollection<AttachmentDetailViewModel> Attachments { get; private set; }
 
         public EquipmentDetailViewModel SelecteAttachment { get; set; }
 
@@ -190,7 +190,7 @@ namespace Client.ViewModels
             FacilityInfoViewModel.Model = savedFacility;
             DisplayName = savedFacility.Facility_;
             this.Equipments = new ObservableCollection<EquipmentDetailViewModel>(savedFacility.InvEquipments.OrderBy(x => x.EquipmentName).Select(x => new EquipmentDetailViewModel(x, _applicationContext, EventAggregator)));
-            this.Attachments = new ObservableCollection<FacilityAttachmentViewModel>(savedFacility.InvFacilityAttachments.OrderBy(x => x.Title).Select(x => new FacilityAttachmentViewModel(x, _applicationContext, EventAggregator)));
+            this.Attachments = new ObservableCollection<AttachmentDetailViewModel>(savedFacility.InvFacilityAttachments.OrderBy(x => x.Title).Select(x => new AttachmentDetailViewModel(x, _applicationContext, EventAggregator, _facilitiesService)));
             SelectedTabIndex = 0;
 
             SelectedEquipment = null;
@@ -219,7 +219,7 @@ namespace Client.ViewModels
             return new EquipmentDetailViewModel(equipment, this._applicationContext, EventAggregator);
         }
 
-        private FacilityAttachmentViewModel AddFacilityAttachment(InvFacility facility)
+        private AttachmentDetailViewModel AddFacilityAttachment(InvFacility facility)
         {
             var attahcment = new InvFacilityAttachment()
             {
@@ -234,7 +234,7 @@ namespace Client.ViewModels
             var windowManager = IoC.Get<IInvWindowManager>();
             var facilityService = IoC.Get<IFacilitiesService>();
             var applicationContext = IoC.Get<IApplicationContext>();
-            var attachmentVm = new FacilityAttachmentViewModel(attahcment, applicationContext, eventAggreggor);
+            var attachmentVm = new AttachmentDetailViewModel(attahcment, applicationContext, eventAggreggor, _facilitiesService);
             var vm = new AttachmentCreateViewModel(attachmentVm, eventAggreggor, windowManager);
             var settings = new Dictionary<string, object>
                                {

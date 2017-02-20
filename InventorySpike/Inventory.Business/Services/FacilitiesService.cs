@@ -15,6 +15,8 @@ namespace Inventory.Business.Services
 
         InvFacility AddOrUpdateInvFacility(InvFacility facility, bool addOrUpdate);
 
+        InvFacilityAttachment AddOrUpdateInvFacilityAttachment(InvFacilityAttachment facilityAttachment, bool addOrUpdate);
+
         List<InvBuilding> GetBuildings();
 
     }
@@ -188,6 +190,13 @@ namespace Inventory.Business.Services
             }
 
             return saved;
+        }
+
+        public InvFacilityAttachment AddOrUpdateInvFacilityAttachment(InvFacilityAttachment facilityAttachment,
+            bool addOrUpdate)
+        {
+
+            return null;
         }
 
         public List<InvBuilding> GetBuildings()

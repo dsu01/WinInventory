@@ -31,10 +31,10 @@
         <TextBlock Grid.Row="0"  Grid.Column="0" Text="Title" Style="{StaticResource LeftLabelStyle}"/>
         <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Model.Title}" Style="{StaticResource BigTextBoxStyle}" />
 
-        <TextBlock Grid.Row="1"  Grid.Column="0" Text="Title" Style="{StaticResource LeftLabelStyle}"/>
-        <StackPanel Orientation="Horizontal" Margin="5">
-            <TextBox Text="{Binding Model.FileName}" Style="{StaticResource BigTextBoxStyle}" />
-            <Button x:Name="PickFile" />
+        <TextBlock Grid.Row="1"  Grid.Column="0" Text="File" Style="{StaticResource LeftLabelStyle}"/>
+        <StackPanel Grid.Row="1"  Grid.Column="1"  Orientation="Horizontal" Margin="5">
+            <TextBox Text="{Binding Model.FileName}" Style="{StaticResource BigTextBoxStyle}" Width="250"/>
+            <Button x:Name="PickFile" Content="..." />
         </StackPanel>
     </Grid>
 </UserControl>

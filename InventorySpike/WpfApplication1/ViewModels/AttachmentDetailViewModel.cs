@@ -26,6 +26,7 @@ namespace Client.ViewModels
     public class AttachmentDetailViewModel : EntityViewModel<InvFacilityAttachment>
     {
         private static ILog logger = LogManager.GetLogger(typeof(AttachmentDetailViewModel));
+        private readonly IFacilitiesService _facilitiesService;
 
         #region Constructors
 
@@ -42,10 +43,14 @@ namespace Client.ViewModels
         /// </summary>
         public AttachmentDetailViewModel(InvFacilityAttachment facilityAttachment,
                         IApplicationContext applicationContext,
-                        IEventAggregator eventAggregator)
+                        IEventAggregator eventAggregator,
+                        IFacilitiesService facilitiesService
+            )
             : base(facilityAttachment, eventAggregator)
         {
             ApplicationContext = applicationContext;
+            _facilitiesService = facilitiesService;
+
             this.SubscribeToEvents();
 
             Init();
@@ -68,6 +73,19 @@ namespace Client.ViewModels
         public void PickFile()
         {
             
+        }
+
+        public void SaveAttachment(bool addOrUpdate, Action<InvFacilityAttachment> successAction, System.Action failedAction)
+        {
+            var saved = _facilitiesService.AddOrUpdateInvFacilityAttachment(this.Model, addOrUpdate);
+            if (saved != null && successAction != null)
+            {
+                successAction(saved);
+            }
+            else if (saved == null && failedAction != null)
+            {
+                failedAction();
+            }
         }
 
         #endregion

@@ -40,9 +40,6 @@ namespace Client.ViewModels
             Init();
         }
 
-        /// <summary>
-        /// Initializes a new instance of the MainWindowViewModel class.
-        /// </summary>
         public FacilityCreateViewModel(FacilityDetailViewModel facility,
                         IEventAggregator eventAggregator,
                         IInvWindowManager windowManager
