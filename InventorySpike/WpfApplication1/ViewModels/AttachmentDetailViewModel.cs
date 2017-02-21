@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -27,6 +28,7 @@ namespace Client.ViewModels
     {
         private static ILog logger = LogManager.GetLogger(typeof(AttachmentDetailViewModel));
         private readonly IFacilitiesService _facilitiesService;
+        private readonly IInvWindowManager _windowManager;
 
         #region Constructors
 
@@ -44,11 +46,13 @@ namespace Client.ViewModels
         public AttachmentDetailViewModel(InvFacilityAttachment facilityAttachment,
                         IApplicationContext applicationContext,
                         IEventAggregator eventAggregator,
+                        IInvWindowManager windowManager,
                         IFacilitiesService facilitiesService
             )
             : base(facilityAttachment, eventAggregator)
         {
             ApplicationContext = applicationContext;
+            _windowManager = windowManager;
             _facilitiesService = facilitiesService;
 
             this.SubscribeToEvents();
@@ -66,17 +70,47 @@ namespace Client.ViewModels
 
         public IApplicationContext ApplicationContext { get; private set; }
 
+        public string FileName
+        {
+            get { return Model.FileName; }
+            set { Model.FileName = value; }
+        }
+
         #endregion
 
         #region Public Methods
 
         public void PickFile()
         {
-            
+            var result = _windowManager.GetOpenFileDialogNames("Upload File (.*)|*.*", "Select a File", false);
+            if (!result.Any())
+            {
+                return;
+            }
+
+            FileName = result[0];
         }
 
-        public void SaveAttachment(bool addOrUpdate, Action<InvFacilityAttachment> successAction, System.Action failedAction)
+        public void SaveAttachment(bool addOrUpdate, Action<InvFacilityAttachment> successAction,
+            System.Action failedAction)
         {
+            // get content
+            var success = true;
+            try
+            {
+                Model.Data = File.ReadAllBytes(Model.FileName);
+            }
+            catch (IOException ex)
+            {
+                success = false;
+            }
+
+            if (!success || Model.Data.Length == 0)
+            {
+                _windowManager.ShowError("Save Attachment", "File No Content");
+                return;
+            }
+
             var saved = _facilitiesService.AddOrUpdateInvFacilityAttachment(this.Model, addOrUpdate);
             if (saved != null && successAction != null)
             {

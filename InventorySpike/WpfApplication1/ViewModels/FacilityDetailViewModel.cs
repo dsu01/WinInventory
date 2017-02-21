@@ -168,7 +168,7 @@ namespace Client.ViewModels
 
         public void AddAttachment()
         {
-            var attachment = AddFacilityAttachment(Model);
+            var attachment = InternalAddFacilityAttachment(Model);
             if (attachment != null)
             {
                 Attachments.Add(attachment);
@@ -190,7 +190,7 @@ namespace Client.ViewModels
             FacilityInfoViewModel.Model = savedFacility;
             DisplayName = savedFacility.Facility_;
             this.Equipments = new ObservableCollection<EquipmentDetailViewModel>(savedFacility.InvEquipments.OrderBy(x => x.EquipmentName).Select(x => new EquipmentDetailViewModel(x, _applicationContext, EventAggregator)));
-            this.Attachments = new ObservableCollection<AttachmentDetailViewModel>(savedFacility.InvFacilityAttachments.OrderBy(x => x.Title).Select(x => new AttachmentDetailViewModel(x, _applicationContext, EventAggregator, _facilitiesService)));
+            this.Attachments = new ObservableCollection<AttachmentDetailViewModel>(savedFacility.InvFacilityAttachments.OrderBy(x => x.Title).Select(x => new AttachmentDetailViewModel(x, _applicationContext, EventAggregator,  _windowManager, _facilitiesService)));
             SelectedTabIndex = 0;
 
             SelectedEquipment = null;
@@ -219,7 +219,7 @@ namespace Client.ViewModels
             return new EquipmentDetailViewModel(equipment, this._applicationContext, EventAggregator);
         }
 
-        private AttachmentDetailViewModel AddFacilityAttachment(InvFacility facility)
+        private AttachmentDetailViewModel InternalAddFacilityAttachment(InvFacility facility)
         {
             var attahcment = new InvFacilityAttachment()
             {
@@ -227,6 +227,8 @@ namespace Client.ViewModels
                 IsActive = true,
                 Title = "Attachment-00",
                 InvFacilityID = Model.SYNC_ID,
+                //CreatedBy = ApplicationContext.,
+                CreatedOn = DateTime.Now,
             }
             ;
 
@@ -234,7 +236,7 @@ namespace Client.ViewModels
             var windowManager = IoC.Get<IInvWindowManager>();
             var facilityService = IoC.Get<IFacilitiesService>();
             var applicationContext = IoC.Get<IApplicationContext>();
-            var attachmentVm = new AttachmentDetailViewModel(attahcment, applicationContext, eventAggreggor, _facilitiesService);
+            var attachmentVm = new AttachmentDetailViewModel(attahcment, applicationContext, eventAggreggor, _windowManager, _facilitiesService);
             var vm = new AttachmentCreateViewModel(attachmentVm, eventAggreggor, windowManager);
             var settings = new Dictionary<string, object>
                                {

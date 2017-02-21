@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -139,7 +140,7 @@ namespace Inventory.Business.Services
                             existingAttachment.IsActive = attachment.IsActive;
                             existingAttachment.Title = attachment.Title;
                             existingAttachment.InvFacilityID = attachment.InvFacilityID;
-                            
+
                             attachmentsToSave.Add(existingAttachment);
                         }
                         else
@@ -195,8 +196,40 @@ namespace Inventory.Business.Services
         public InvFacilityAttachment AddOrUpdateInvFacilityAttachment(InvFacilityAttachment facilityAttachment,
             bool addOrUpdate)
         {
+            var success = true;
+            InvFacilityAttachment saved = null;
 
-            return null;
+            try
+            {
+                var fileInfo = new FileInfo(facilityAttachment.FileName);
+                if (!fileInfo.Exists)
+                    return null;
+
+                facilityAttachment.ContentType = fileInfo.Extension;
+
+                using (var dbContext = new InventoryEntities())
+                {
+                    if (addOrUpdate) // add
+                    {
+
+                        dbContext.InvFacilityAttachments.Add(facilityAttachment);
+                    }
+                    else // update
+                    {
+                    }
+
+                    dbContext.SaveChanges();
+                    saved = dbContext.InvFacilityAttachments
+                        .Where(x => x.ID == facilityAttachment.ID)
+                        .FirstOrDefault();
+                }
+            }
+            catch (Exception e)
+            {
+                saved = null;
+            }
+
+            return saved;
         }
 
         public List<InvBuilding> GetBuildings()
