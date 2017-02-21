@@ -36,6 +36,31 @@
                 <Setter Property="TextWrapping" Value="NoWrap" />
                 <Setter Property="TextTrimming" Value="WordEllipsis" />
             </Style>
+
+            <Style TargetType="ItemsControl" x:Key="AttachmentItemsControlStyle">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ItemsControl}">
+                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="ItemsPanel">
+                    <Setter.Value>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                <Setter Property="VerticalContentAlignment" Value="Top" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Setter Property="Background" Value="Transparent" />
+                <Style.Triggers>
+                </Style.Triggers>
+            </Style>
+
         </Grid.Resources>
 
         <Grid.RowDefinitions>
@@ -177,6 +202,15 @@
                             <Button x:Name="AddAttachment" Content="Add Attachment" />
                             <Button x:Name="DeleteAttachment" Content="Delete Attachment" />
                         </StackPanel>
+
+                        <ItemsControl x:Name="Attachments" Style="{StaticResource AttachmentItemsControlStyle}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <controls:ImageButton ImageSize="64" Style="{StaticResource Cancel_ImageButton}" ToolTip="{Binding Model.Title}" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
                     </StackPanel>
                 </wpfEditors:SuperTabItem>
             </wpfEditors:SuperTabControl>
