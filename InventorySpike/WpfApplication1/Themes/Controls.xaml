@@ -402,16 +402,15 @@
                 Background="{TemplateBinding Background}"
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}"
-                CornerRadius="3"
->
+                CornerRadius="3">                   
 
                 <StackPanel Orientation="Horizontal" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
                     <Image x:Name="ButtonImage"
-               Source="{Binding NormalImage, RelativeSource={RelativeSource TemplatedParent}}"
-               Height="{Binding ImageSize, RelativeSource={RelativeSource TemplatedParent}}"
-               Width="{Binding ImageSize, RelativeSource={RelativeSource TemplatedParent}}"
-               ToolTip="{TemplateBinding ToolTip}"
+                           Source="{Binding NormalImage, RelativeSource={RelativeSource TemplatedParent}}"
+                           Height="{Binding ImageSize, RelativeSource={RelativeSource TemplatedParent}}"
+                           Width="{Binding ImageSize, RelativeSource={RelativeSource TemplatedParent}}"
+                           ToolTip="{TemplateBinding ToolTip}"
                            RenderTransformOrigin="0.5,0.5"
                            Margin="0 0 1 0"
  />

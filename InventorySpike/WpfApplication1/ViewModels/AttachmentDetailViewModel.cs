@@ -111,6 +111,9 @@ namespace Client.ViewModels
                 return;
             }
 
+            // shorten file name
+            Model.FileName = new FileInfo(FileName).Name;
+
             var saved = _facilitiesService.AddOrUpdateInvFacilityAttachment(this.Model, addOrUpdate);
             if (saved != null && successAction != null)
             {

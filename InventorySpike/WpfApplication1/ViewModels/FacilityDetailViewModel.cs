@@ -181,6 +181,14 @@ namespace Client.ViewModels
 
         }
 
+        public void SelectAttachment(object dataContext)
+        {
+            var vm = dataContext as AttachmentDetailViewModel;
+            if (vm == null) return;
+
+
+        }
+
         #endregion
 
         #region Private Methods
@@ -190,7 +198,7 @@ namespace Client.ViewModels
             FacilityInfoViewModel.Model = savedFacility;
             DisplayName = savedFacility.Facility_;
             this.Equipments = new ObservableCollection<EquipmentDetailViewModel>(savedFacility.InvEquipments.OrderBy(x => x.EquipmentName).Select(x => new EquipmentDetailViewModel(x, _applicationContext, EventAggregator)));
-            this.Attachments = new ObservableCollection<AttachmentDetailViewModel>(savedFacility.InvFacilityAttachments.OrderBy(x => x.Title).Select(x => new AttachmentDetailViewModel(x, _applicationContext, EventAggregator,  _windowManager, _facilitiesService)));
+            this.Attachments = new ObservableCollection<AttachmentDetailViewModel>(savedFacility.InvFacilityAttachments.OrderBy(x => x.Title).Select(x => new AttachmentDetailViewModel(x, _applicationContext, EventAggregator, _windowManager, _facilitiesService)));
             SelectedTabIndex = 0;
 
             SelectedEquipment = null;

@@ -37,7 +37,21 @@
                 <Setter Property="TextTrimming" Value="WordEllipsis" />
             </Style>
 
+            <DataTemplate x:Key="AttachmentItemTemplate">
+                <Border x:Name="Background" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" CornerRadius="3" Margin="10 5" Padding="0">
+                    <Image x:Name="ContentImage" Source="/Resources/Images/newsplash-2.png" Stretch="Uniform" Cursor="Hand" 
+                               Width="128" ToolTip="{Binding Model.Title}" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                               micro:Message.Attach="[Event MouseLeftButtonDown] = [Action SelectAttachment($dataContext)]"/>
+                </Border>
+                <DataTemplate.Triggers>
+                    <Trigger Property="IsMouseOver" Value="true">
+                        <Setter TargetName="Background" Property="BorderBrush" Value="DarkGoldenrod" />
+                    </Trigger>
+                </DataTemplate.Triggers>
+            </DataTemplate>
+
             <Style TargetType="ItemsControl" x:Key="AttachmentItemsControlStyle">
+                <Setter Property="ItemTemplate" Value="{StaticResource AttachmentItemTemplate}" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type ItemsControl}">
@@ -203,13 +217,7 @@
                             <Button x:Name="DeleteAttachment" Content="Delete Attachment" />
                         </StackPanel>
 
-                        <ItemsControl x:Name="Attachments" Style="{StaticResource AttachmentItemsControlStyle}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <controls:ImageButton ImageSize="64" Style="{StaticResource Cancel_ImageButton}" ToolTip="{Binding Model.Title}" />
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
+                        <ItemsControl x:Name="Attachments" Style="{StaticResource AttachmentItemsControlStyle}"  />
 
                     </StackPanel>
                 </wpfEditors:SuperTabItem>

@@ -109,12 +109,6 @@ namespace Client.ViewModels
                         this.FacilityAttachment.Model = facilityAttachment;
                         _windowManager.Inform("Create Attachment", "Attachment saved successfully");
                         this.DialogResult = true;
-
-                        //EventAggregator.PublishOnUIThread(new FacilityUpdatedMessage()
-                        //{
-                        //    FacilityUpdateType = FacilityUpdateType.Create,
-                        //    Facility = facilityAttachment,
-                        //});
                     },
                     delegate
                     {
