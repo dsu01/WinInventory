@@ -38,7 +38,7 @@
             </Style>
 
             <DataTemplate x:Key="AttachmentItemTemplate">
-                <Border x:Name="Background" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" CornerRadius="3" Margin="10 5" Padding="0">
+                <Border x:Name="Background" Background="Transparent" BorderBrush="Transparent" BorderThickness="2" CornerRadius="3" Margin="10 5" Padding="0">
                     <Image x:Name="ContentImage" Source="/Resources/Images/newsplash-2.png" Stretch="Uniform" Cursor="Hand" 
                                Width="128" ToolTip="{Binding Model.Title}" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top" 
                                micro:Message.Attach="[Event MouseLeftButtonDown] = [Action SelectAttachment($dataContext)]"/>
@@ -47,6 +47,15 @@
                     <Trigger Property="IsMouseOver" Value="true">
                         <Setter TargetName="Background" Property="BorderBrush" Value="DarkGoldenrod" />
                     </Trigger>
+                    <DataTrigger Binding="{Binding Model.ContentType}" Value=".PNG">
+                        <Setter Property="Source" Value="{Binding ImageSource}" TargetName="ContentImage" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Model.ContentType}" Value=".JPG">
+                        <Setter Property="Source" Value="{Binding ImageSource}" TargetName="ContentImage" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Model.ContentType}" Value=".TIF">
+                        <Setter Property="Source" Value="{Binding ImageSource}" TargetName="ContentImage" />
+                    </DataTrigger>
                 </DataTemplate.Triggers>
             </DataTemplate>
 
@@ -63,6 +72,7 @@
                     <Setter.Value>
                         <ItemsPanelTemplate>
                             <VirtualizingStackPanel Orientation="Horizontal"/>
+                            <!--<WrapPanel FlowDirection="LeftToRight" ItemWidth="150" />-->
                         </ItemsPanelTemplate>
                     </Setter.Value>
                 </Setter>

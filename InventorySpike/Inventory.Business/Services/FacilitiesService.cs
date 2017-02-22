@@ -201,11 +201,6 @@ namespace Inventory.Business.Services
 
             try
             {
-                var fileInfo = new FileInfo(facilityAttachment.FileName);
-                if (!fileInfo.Exists)
-                    return null;
-
-                facilityAttachment.ContentType = fileInfo.Extension;
 
                 using (var dbContext = new InventoryEntities())
                 {

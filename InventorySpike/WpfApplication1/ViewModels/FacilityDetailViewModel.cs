@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -15,6 +16,7 @@ using Client.Properties;
 using Client.ViewModels.Messages;
 using Inventory.Business;
 using Inventory.Business.Services;
+using Microsoft.Practices.EnterpriseLibrary.Common.Utility;
 using Microsoft.Practices.ServiceLocation;
 using PropertyChanged;
 using Action = System.Action;
@@ -32,6 +34,7 @@ namespace Client.ViewModels
         private readonly IInvWindowManager _windowManager;
         private readonly IFacilitiesService _facilitiesService;
         private readonly IApplicationContext _applicationContext;
+        private const string _TempImagePath = @"C:\temp";
 
         #region Constructors
 
@@ -69,6 +72,8 @@ namespace Client.ViewModels
 
         private void Init()
         {
+            if (!Directory.Exists(_TempImagePath))
+                Directory.CreateDirectory(_TempImagePath);
         }
 
         #endregion
@@ -171,6 +176,7 @@ namespace Client.ViewModels
             var attachment = InternalAddFacilityAttachment(Model);
             if (attachment != null)
             {
+                LoadAttachment(attachment);
                 Attachments.Add(attachment);
                 SelecteAttachment = null;
             }
@@ -203,6 +209,33 @@ namespace Client.ViewModels
 
             SelectedEquipment = null;
             SelecteAttachment = null;
+
+            LoadAttachments();
+        }
+
+        private void LoadAttachments()
+        {
+            Attachments.ForEach(x => LoadAttachment(x));
+        }
+
+        private void LoadAttachment(AttachmentDetailViewModel facilityAttachment)
+        {
+            try
+            {
+                if (facilityAttachment.Model.Data == null) return;
+
+                var fileName = Path.Combine(_TempImagePath, Guid.NewGuid().ToString() + facilityAttachment.Model.ContentType);
+                if (File.Exists(fileName))
+                    File.Delete(fileName);
+
+                File.WriteAllBytes(fileName, facilityAttachment.Model.Data);
+
+                facilityAttachment.ImageSource = fileName;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+            }
         }
 
         private void ReLoadFacility()

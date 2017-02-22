@@ -76,6 +76,8 @@ namespace Client.ViewModels
             set { Model.FileName = value; }
         }
 
+        public string ImageSource { get; set; }
+
         #endregion
 
         #region Public Methods
@@ -112,6 +114,7 @@ namespace Client.ViewModels
             }
 
             // shorten file name
+            Model.ContentType = (new FileInfo(FileName)).Extension.ToUpper();
             Model.FileName = new FileInfo(FileName).Name;
 
             var saved = _facilitiesService.AddOrUpdateInvFacilityAttachment(this.Model, addOrUpdate);
