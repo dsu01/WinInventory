@@ -99,35 +99,53 @@ namespace Client.ViewModels
         public void SaveAttachment(bool addOrUpdate, Action<InvFacilityAttachment> successAction,
             System.Action failedAction)
         {
-            // get content
-            var success = true;
             try
             {
                 Model.Data = File.ReadAllBytes(Model.FileName);
+
+                if (Model.Data.Length == 0)
+                {
+                    _windowManager.ShowError("Save Attachment", "File No Content");
+                    return;
+                }
+
+                // shorten file name
+                Model.ContentType = (new FileInfo(FileName)).Extension.ToUpper();
+                Model.FileName = new FileInfo(FileName).Name;
+
+                var saved = _facilitiesService.AddOrUpdateInvFacilityAttachment(this.Model, addOrUpdate);
+                if (saved != null && successAction != null)
+                {
+                    successAction(saved);
+                }
+                else if (saved == null && failedAction != null)
+                {
+                    failedAction();
+                }
+            }
+            catch (IOException ex)
+            {
+            }
+        }
+
+        public void DeleteAttachment(Action<InvFacilityAttachment> successAction, System.Action failedAction)
+        {
+            var success = true;
+            try
+            {
+                success = _facilitiesService.DeleteFacilityAttachment(this.Model);
+                if (success && successAction != null)
+                {
+                    successAction(this.Model);
+                }
+                else if (!success && failedAction != null)
+                {
+                    failedAction();
+                }
             }
             catch (IOException ex)
             {
                 success = false;
-            }
-
-            if (!success || Model.Data.Length == 0)
-            {
-                _windowManager.ShowError("Save Attachment", "File No Content");
-                return;
-            }
-
-            // shorten file name
-            Model.ContentType = (new FileInfo(FileName)).Extension.ToUpper();
-            Model.FileName = new FileInfo(FileName).Name;
-
-            var saved = _facilitiesService.AddOrUpdateInvFacilityAttachment(this.Model, addOrUpdate);
-            if (saved != null && successAction != null)
-            {
-                successAction(saved);
-            }
-            else if (saved == null && failedAction != null)
-            {
-                failedAction();
             }
         }
 

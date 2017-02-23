@@ -203,7 +203,24 @@ namespace Client.ViewModels
 
         public void DeleteAttachment()
         {
+            if (SelectedAttachment == null || !_windowManager.Confirm("Delete Attachment", "Delete this attachment?"))
+                return;
 
+            CursorHelper.ExecuteWithWaitCursor(() =>
+            {
+                this.SelectedAttachment.DeleteAttachment(
+                    delegate (InvFacilityAttachment facilityAttachment)
+                    {
+                        _windowManager.Inform("Delete Attachment", "Attachment deleted successfully");
+                        UnloadAttachment(SelectedAttachment);
+                        Attachments.Remove(SelectedAttachment);
+                        SelectedAttachment = null;
+                    },
+                    delegate
+                    {
+                        _windowManager.ShowError("Delete Attachment", "Attachment delete failed");
+                    });
+            });
         }
 
         public void SelectAttachment(object dataContext)
@@ -250,6 +267,20 @@ namespace Client.ViewModels
                 File.WriteAllBytes(fileName, facilityAttachment.Model.Data);
 
                 facilityAttachment.ImageSource = fileName;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+            }
+        }
+
+        private void UnloadAttachment(AttachmentDetailViewModel facilityAttachment)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(facilityAttachment.ImageSource)) return;
+
+                File.Delete(facilityAttachment.ImageSource);
             }
             catch (Exception ex)
             {
@@ -329,7 +360,19 @@ namespace Client.ViewModels
                 SelectedAttachment.IsSelected = true;
 
                 if (!IsImageAttachement(SelectedAttachment))
-                    Process.Start(SelectedAttachment.ImageSource);
+                {
+                    CursorHelper.ExecuteWithWaitCursor(() =>
+                    {
+                        try
+                        {
+                            Process.Start(SelectedAttachment.ImageSource);
+                        }
+                        catch
+                        {
+                            _windowManager.ShowError("Open Attachment", "Windows cannot open this document.");
+                        }
+                    });
+                }
             }
         }
 

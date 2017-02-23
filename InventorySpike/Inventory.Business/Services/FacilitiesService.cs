@@ -18,6 +18,8 @@ namespace Inventory.Business.Services
 
         InvFacilityAttachment AddOrUpdateInvFacilityAttachment(InvFacilityAttachment facilityAttachment, bool addOrUpdate);
 
+        bool DeleteFacilityAttachment(InvFacilityAttachment facilityAttachment);
+
         List<InvBuilding> GetBuildings();
 
     }
@@ -220,6 +222,32 @@ namespace Inventory.Business.Services
             }
 
             return saved;
+        }
+
+        public bool DeleteFacilityAttachment(InvFacilityAttachment facilityAttachment)
+        {
+            var success = true;
+            try
+            {
+
+                using (var dbContext = new InventoryEntities())
+                {
+                    var existing = dbContext.InvFacilityAttachments
+                            .Where(x => x.ID == facilityAttachment.ID)
+                            .FirstOrDefault();
+                    if (existing == null)
+                        return false;
+
+                    dbContext.InvFacilityAttachments.Remove(existing);
+                    dbContext.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                success = false;
+            }
+
+            return success;
         }
 
         public List<InvBuilding> GetBuildings()
