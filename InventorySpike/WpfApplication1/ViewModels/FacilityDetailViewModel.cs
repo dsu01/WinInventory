@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -34,7 +35,7 @@ namespace Client.ViewModels
         private readonly IInvWindowManager _windowManager;
         private readonly IFacilitiesService _facilitiesService;
         private readonly IApplicationContext _applicationContext;
-        private const string _TempImagePath = @"C:\temp";
+        private const string _TempImagePath = @"C:\temp\Inventory";
 
         #region Constructors
 
@@ -90,13 +91,31 @@ namespace Client.ViewModels
 
         public ObservableCollection<AttachmentDetailViewModel> Attachments { get; private set; }
 
-        public EquipmentDetailViewModel SelecteAttachment { get; set; }
+        public AttachmentDetailViewModel SelectedAttachment { get; set; }
 
         public bool IsDetailVisible { get { return SelectedEquipment != null; } }
+
+        public bool IsAttachmentImageVisible
+        {
+            get
+            {
+                return SelectedAttachment != null && IsImageAttachement(SelectedAttachment);
+            }
+        }
 
         public bool CanSave { get { return true; } }
 
         public bool CanCancel { get { return true; } }
+
+        public bool CanAddAttachment { get { return true; } }
+
+        public bool CanDeleteAttachment
+        {
+            get
+            {
+                return SelectedAttachment != null;
+            }
+        }
 
         #endregion
 
@@ -178,7 +197,7 @@ namespace Client.ViewModels
             {
                 LoadAttachment(attachment);
                 Attachments.Add(attachment);
-                SelecteAttachment = null;
+                SelectedAttachment = null;
             }
         }
 
@@ -192,7 +211,7 @@ namespace Client.ViewModels
             var vm = dataContext as AttachmentDetailViewModel;
             if (vm == null) return;
 
-
+            SelectedAttachment = vm.IsSelected ? null : vm;
         }
 
         #endregion
@@ -208,7 +227,7 @@ namespace Client.ViewModels
             SelectedTabIndex = 0;
 
             SelectedEquipment = null;
-            SelecteAttachment = null;
+            SelectedAttachment = null;
 
             LoadAttachments();
         }
@@ -290,6 +309,29 @@ namespace Client.ViewModels
                 return null;
         }
 
+        private bool IsImageAttachement(AttachmentDetailViewModel attachment)
+        {
+            return attachment.Model.ContentType == ".JPG"
+                   || attachment.Model.ContentType == ".TIF"
+                   || attachment.Model.ContentType == ".PNG"
+                ;
+        }
+
+        private void OnSelectedAttachmentChanged()
+        {
+            Attachments.ForEach((x) =>
+            {
+                x.IsSelected = false;
+            });
+
+            if (SelectedAttachment != null)
+            {
+                SelectedAttachment.IsSelected = true;
+
+                if (!IsImageAttachement(SelectedAttachment))
+                    Process.Start(SelectedAttachment.ImageSource);
+            }
+        }
 
         #endregion
 

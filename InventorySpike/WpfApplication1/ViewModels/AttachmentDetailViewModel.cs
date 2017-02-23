@@ -62,6 +62,7 @@ namespace Client.ViewModels
 
         private void Init()
         {
+            IsSelected = false;
         }
 
         #endregion
@@ -77,6 +78,8 @@ namespace Client.ViewModels
         }
 
         public string ImageSource { get; set; }
+
+        public bool IsSelected { get; set; }
 
         #endregion
 

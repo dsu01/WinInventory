@@ -125,7 +125,6 @@ namespace Inventory.Business.Services
                     }
 
                     // attachments
-                    List<InvFacilityAttachment> attachmentsToSave = new List<InvFacilityAttachment>();
                     foreach (var attachment in facility.InvFacilityAttachments)
                     {
                         var existingAttachment = dbContext.InvFacilityAttachments
@@ -139,22 +138,16 @@ namespace Inventory.Business.Services
                             existingAttachment.Data = attachment.Data;
                             existingAttachment.IsActive = attachment.IsActive;
                             existingAttachment.Title = attachment.Title;
-                            existingAttachment.InvFacilityID = attachment.InvFacilityID;
-
-                            attachmentsToSave.Add(existingAttachment);
                         }
                         else
                         {
-                            // new
-                            dbContext.InvFacilityAttachments.Add(attachment);
-                            attachmentsToSave.Add(attachment);
+                            // shouldn't be here
                         }
                     }
 
                     if (addOrUpdate) // add
                     {
                         facility.InvEquipments = listToSave;
-                        facility.InvFacilityAttachments = attachmentsToSave;
                         dbContext.InvFacilities.Add(facility);
                     }
                     else    // update
@@ -183,6 +176,7 @@ namespace Inventory.Business.Services
                     saved = dbContext.InvFacilities
                         .Where(x => x.SYNC_ID == facility.SYNC_ID)
                         .Include(x => x.InvEquipments)
+                        .Include(x => x.InvFacilityAttachments)
                         .FirstOrDefault();
                 }
             }
@@ -211,6 +205,7 @@ namespace Inventory.Business.Services
                     }
                     else // update
                     {
+                        // shouldn't be here
                     }
 
                     dbContext.SaveChanges();
