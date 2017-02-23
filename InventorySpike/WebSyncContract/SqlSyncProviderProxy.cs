@@ -18,8 +18,8 @@ namespace WebSyncContract
         protected override void CreateProxy()
         {
             WSHttpBinding binding = new WSHttpBinding();
-            binding.ReaderQuotas.MaxArrayLength = 10485760;
-            binding.MaxReceivedMessageSize = 10485760;
+            binding.ReaderQuotas.MaxArrayLength = 2147483647;
+            binding.MaxReceivedMessageSize = 2147483647;
             ChannelFactory<ISqlSyncContract> factory = new ChannelFactory<ISqlSyncContract>(binding, new EndpointAddress(SyncUtils.SqlSyncServiceUri));
             base.proxy = factory.CreateChannel();
             this.dbProxy = base.proxy as ISqlSyncContract;

@@ -198,7 +198,6 @@ namespace WebSyncContract
             SyncSessionStatistics stats = this.proxy.ApplyChanges(resolutionPolicy, sourceChanges, changeDataRetriever);
             sessionStatistics.ChangesApplied += stats.ChangesApplied;
             sessionStatistics.ChangesFailed += stats.ChangesFailed;
-
         }
 
         public override void ProcessFullEnumerationChangeBatch(ConflictResolutionPolicy resolutionPolicy, FullEnumerationChangeBatch sourceChanges, object changeDataRetriever, SyncCallbacks syncCallbacks, SyncSessionStatistics sessionStatistics)

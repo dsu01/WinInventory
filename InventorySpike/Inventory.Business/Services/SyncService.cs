@@ -18,7 +18,7 @@ namespace Inventory.Business.Services
 
     public class SyncService : ISyncService
     {
-        private const int _batchSize = 0;
+        private const int _batchSize = 2147483647;
         private const string _batchFolder = @"E:\temp\_syncBatch";
 
         private string _scopeName;
