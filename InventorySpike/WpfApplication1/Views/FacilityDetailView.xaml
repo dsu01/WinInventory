@@ -40,8 +40,8 @@
             <DataTemplate x:Key="AttachmentItemTemplate">
                 <Border x:Name="Background" Background="Transparent" BorderBrush="Transparent" BorderThickness="2" CornerRadius="2" Margin="10 5" Padding="0"
                                 HorizontalAlignment="Left" VerticalAlignment="Top">
-                    <Image x:Name="ContentImage" Source="/Resources/Images/newsplash-2.png" Stretch="Uniform" Cursor="Hand" 
-                               Width="128" ToolTip="{Binding Model.Title}" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                    <Image x:Name="ContentImage" Source="/Resources/Images/attachments/file.png" Stretch="Uniform" Cursor="Hand" 
+                               Width="64" ToolTip="{Binding Model.Title}" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top" 
                                micro:Message.Attach="[Event MouseLeftButtonDown] = [Action SelectAttachment($dataContext)]"/>
                 </Border>
                 <DataTemplate.Triggers>
@@ -59,6 +59,24 @@
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Model.ContentType}" Value=".TIF">
                         <Setter Property="Source" Value="{Binding ImageSource}" TargetName="ContentImage" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Model.ContentType}" Value=".DOCX">
+                        <Setter Property="Source" Value="/Resources/Images/attachments/word.png" TargetName="ContentImage" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Model.ContentType}" Value=".DOC">
+                        <Setter Property="Source" Value="/Resources/Images/attachments/word.png" TargetName="ContentImage" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Model.ContentType}" Value=".XLSX">
+                        <Setter Property="Source" Value="/Resources/Images/attachments/excel.png" TargetName="ContentImage" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Model.ContentType}" Value=".XLX">
+                        <Setter Property="Source" Value="/Resources/Images/attachments/excel.png" TargetName="ContentImage" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Model.ContentType}" Value=".PPT">
+                        <Setter Property="Source" Value="/Resources/Images/attachments/powerpoint.png" TargetName="ContentImage" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Model.ContentType}" Value=".PDF">
+                        <Setter Property="Source" Value="/Resources/Images/attachments/pdf.png" TargetName="ContentImage" />
                     </DataTrigger>
                 </DataTemplate.Triggers>
             </DataTemplate>
