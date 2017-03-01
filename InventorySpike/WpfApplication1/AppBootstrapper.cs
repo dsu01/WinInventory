@@ -191,6 +191,7 @@ namespace Client
                 return;
 
             applicationContext.Buildings = (facilityService as IFacilitiesService).GetBuildings();
+            applicationContext.InvFacilitySystems = (facilityService as IFacilitiesService).GetInvFacilitySystems();
         }
 
         #endregion

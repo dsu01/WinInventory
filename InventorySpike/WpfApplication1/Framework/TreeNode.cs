@@ -11,9 +11,12 @@ namespace Client.Framework
 {
     public enum TreeNodeType
     {
-        System = 0,
-        Equipment = 1,
-        Component = 2,
+        Site = 0,
+        Building = 1,
+        SystemGroup = 2,
+        SystemGroupType = 3,
+        System = 4,
+        Component = 5,
     }
 
     public interface ITreeNode

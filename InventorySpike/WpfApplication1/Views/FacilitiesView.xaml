@@ -33,10 +33,22 @@
                 <TextBlock x:Name="TreeNodeLabel" Foreground="Black" Text="{Binding Path=Value, Converter={StaticResource FacilityToHeaderConverter}}" />
             </StackPanel>
             <DataTemplate.Triggers>
-                <!--<DataTrigger Binding="{Binding Path=TreeNodeType}" Value="0">
+                <DataTrigger Binding="{Binding Path=TreeNodeType}" Value="{x:Static framework:TreeNodeType.Site}" >
                     <Setter TargetName="TreeNodeImage" Property="Source" Value="../../../Resources/Images/folder_16x16.gif" />
-                    <Setter TargetName="TreeNodeLabel" Property="FontSize" Value="13" />
-                </DataTrigger>-->
+                    <Setter TargetName="TreeNodeLabel" Property="Text" Value="{Binding Path=Value}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=TreeNodeType}" Value="{x:Static framework:TreeNodeType.Building}" >
+                    <Setter TargetName="TreeNodeImage" Property="Source" Value="../../../Resources/Images/folder_16x16.gif" />
+                    <Setter TargetName="TreeNodeLabel" Property="Text" Value="{Binding Path=Value}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=TreeNodeType}" Value="{x:Static framework:TreeNodeType.SystemGroup}" >
+                    <Setter TargetName="TreeNodeImage" Property="Source" Value="../../../Resources/Images/folder_16x16.gif" />
+                    <Setter TargetName="TreeNodeLabel" Property="Text" Value="{Binding Path=Value}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=TreeNodeType}" Value="{x:Static framework:TreeNodeType.SystemGroupType}" >
+                    <Setter TargetName="TreeNodeImage" Property="Source" Value="../../../Resources/Images/folder_16x16.gif" />
+                    <Setter TargetName="TreeNodeLabel" Property="Text" Value="{Binding Path=Value}" />
+                </DataTrigger>
                 <MultiDataTrigger>
                     <MultiDataTrigger.Conditions>
                         <Condition Binding="{Binding Path=TreeNodeType}" Value="{x:Static framework:TreeNodeType.System}" />
@@ -54,7 +66,7 @@
                     <Setter TargetName="TreeNodeLabel" Property="FontWeight" Value="Bold" />
                 </MultiDataTrigger>
 
-                <MultiDataTrigger>
+                <!--<MultiDataTrigger>
                     <MultiDataTrigger.Conditions>
                         <Condition Binding="{Binding Path=TreeNodeType}" Value="{x:Static framework:TreeNodeType.Equipment}" />
                         <Condition Binding="{Binding Path=IsOpen}" Value="false" />
@@ -69,7 +81,7 @@
                     </MultiDataTrigger.Conditions>
                     <Setter TargetName="TreeNodeImage" Property="Source" Value="../../../Resources/Images/Open_16x16.png" />
                     <Setter TargetName="TreeNodeLabel" Property="FontWeight" Value="Bold" />
-                </MultiDataTrigger>
+                </MultiDataTrigger>-->
 
                 <MultiDataTrigger>
                     <MultiDataTrigger.Conditions>
@@ -139,7 +151,7 @@
 
         <Grid Grid.Row="1" >
             <controls:CommandBar Margin="5 0" >
-                <TextBlock Text="Search:" VerticalAlignment="Center" x:Name="SearchStringTitle" />
+                <TextBlock Text="Filter:" VerticalAlignment="Center" x:Name="SearchStringTitle" />
                 <TextBox Text="" VerticalAlignment="Center" x:Name="SearchString" TextWrapping="Wrap" Width="200"/>
                 <Separator Style="{StaticResource CmdBarSeparatorStyle}" />
                 <Button x:Name="Refresh" Width="80" MinWidth="45" Style="{StaticResource CommandBarButtonStyle}" ToolTip="Refresh Facilities" >
@@ -152,6 +164,12 @@
         </Grid>
 
         <wpfEditors:SuperTabControl ControlBoxTabMenuVisibility="Visible" TabStripPlacement="Bottom" Margin="4" Grid.Row="2">
+            <wpfEditors:SuperTabItem Header="Facilities" IsSelected="{Binding IsFacilitiesSelected, Mode=TwoWay}" ToolTip="Facilities" AutomationProperties.Name="">
+                <TreeView ItemsSource="{Binding Facilities}" />
+            </wpfEditors:SuperTabItem>
+            <wpfEditors:SuperTabItem Header="Search" IsSelected="{Binding IsSearchSelected, Mode=TwoWay}" ToolTip="Search" AutomationProperties.Name="">
+                <TextBlock Text="Search" />
+            </wpfEditors:SuperTabItem>
             <wpfEditors:SuperTabItem Header="E Systems" IsSelected="{Binding IsElectricalSystemsSelected, Mode=TwoWay}" ToolTip="Electrical Systems" AutomationProperties.Name="">
                 <TreeView ItemsSource="{Binding ElectricalSystems}" />
             </wpfEditors:SuperTabItem>

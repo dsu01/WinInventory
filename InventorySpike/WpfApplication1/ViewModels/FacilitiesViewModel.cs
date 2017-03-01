@@ -68,16 +68,22 @@ namespace Client.ViewModels
 
         private void Init()
         {
-            IsElectricalSystemsSelected = true;
+            IsFacilitiesSelected = true;
         }
 
         #endregion
 
         #region Properties
 
+        public bool IsFacilitiesSelected { get; set; }
+
+        public bool IsSearchSelected { get; set; }
+
         public bool IsElectricalSystemsSelected { get; set; }
 
         public BindableCollection<TreeNode<object>> ElectricalSystems { get; set; }
+
+        public BindableCollection<TreeNode<object>> Facilities { get; set; }
 
         #endregion
 
@@ -139,7 +145,11 @@ namespace Client.ViewModels
 
         public void Refresh()
         {
-            if (IsElectricalSystemsSelected)
+            if (IsFacilitiesSelected)
+            {
+                LoadFacilities();
+            }
+            else if (IsElectricalSystemsSelected)
             {
                 LoadElectricalSystems();
             }
@@ -169,6 +179,120 @@ namespace Client.ViewModels
 
         #region Private Methods
 
+        private void OnIsFacilitiesSelectedChanged()
+        {
+            if (IsFacilitiesSelected)
+            {
+                LoadFacilities();
+            }
+        }
+
+        private void LoadFacilities()
+        {
+            CursorHelper.ExecuteWithWaitCursor(LoadFacilitiesInternal);
+        }
+
+        private void LoadFacilitiesInternal()
+        {
+            var facilities = _facilitiesService.GetFacilities();
+            var buildings = _applicationContext.Buildings.ToList();
+            var sites = buildings.Where(x => x.Property != null).Select(x => x.Property).Distinct().OrderBy(x => x).ToList();
+            var facilitySystems = _applicationContext.InvFacilitySystems;
+            var systemGroups = facilitySystems.Select(x => x.SystemGroup).Distinct().OrderBy(x => x).ToList();
+
+            var items = new BindableCollection<TreeNode<object>>();
+
+            foreach (var site in sites)
+            {
+                var siteNode = new TreeNode<object>
+                {
+                    HiearchyLevel = 0,
+                    Value = site,
+                    TreeNodeType = TreeNodeType.Site,
+                    Parent = null,
+                    IsOpen = true,
+                    Children = new BindableCollection<ITreeNode<object>>(),
+                };
+
+                foreach (var building in buildings.Where(x => x.Property == site).Select(x => x.Building).Distinct().OrderBy(x => x))
+                {
+                    var buildingNode = new TreeNode<object>
+                    {
+                        HiearchyLevel = 1,
+                        Value = building,
+                        TreeNodeType = TreeNodeType.Building,
+                        Parent = siteNode,
+                        IsOpen = true,
+                        Children = new BindableCollection<ITreeNode<object>>(),
+                    };
+                    siteNode.Children.Add(buildingNode);
+
+                    foreach (var systemGroup in systemGroups)
+                    {
+                        var systemGroupNode = new TreeNode<object>
+                        {
+                            HiearchyLevel = 2,
+                            Value = systemGroup,
+                            TreeNodeType = TreeNodeType.SystemGroup,
+                            Parent = buildingNode,
+                            IsOpen = true,
+                            Children = new BindableCollection<ITreeNode<object>>(),
+                        };
+                        buildingNode.Children.Add(systemGroupNode);
+
+                        foreach (
+                            var systemGroupType in
+                            facilitySystems.Where(x => x.SystemGroup == systemGroup)
+                                .Select(x => x.SystemTitle)
+                                .Distinct()
+                                .OrderBy(x => x))
+                        {
+                            var systemGroupTypeNode = new TreeNode<object>
+                            {
+                                HiearchyLevel = 3,
+                                Value = systemGroupType,
+                                TreeNodeType = TreeNodeType.SystemGroupType,
+                                Parent = systemGroupNode,
+                                IsOpen = true,
+                                Children = new BindableCollection<ITreeNode<object>>(),
+                            };
+                            systemGroupNode.Children.Add(systemGroupTypeNode);
+
+                            foreach (var facility in facilities.Where(x => x.Property == site && x.Building == building && x.FacilityGroup == systemGroup && x.FacilitySystem == systemGroupType).OrderBy(x => x.Facility_))
+                            {
+                                var facilityNode = new TreeNode<object>
+                                {
+                                    HiearchyLevel = 4,
+                                    Value = facility,
+                                    TreeNodeType = TreeNodeType.System,
+                                    Parent = systemGroupTypeNode,
+                                    IsOpen = true,
+                                    Children = new BindableCollection<ITreeNode<object>>(),
+                                };
+                                systemGroupTypeNode.Children.Add(facilityNode);
+
+                                foreach (var component in facility.InvEquipments.OrderBy(x => x.EquipmentName))
+                                {
+                                    var equipmentNode = new TreeNode<object>
+                                    {
+                                        HiearchyLevel = 5,
+                                        Value = component,
+                                        TreeNodeType = TreeNodeType.Component,
+                                        Parent = facilityNode,
+                                        IsOpen = true,
+                                    };
+                                    facilityNode.Children.Add(equipmentNode);
+                                }
+                            }
+                        }
+                    }
+                }
+                items.Add(siteNode);
+            }
+
+            Facilities = items;
+        }
+
         private void OnIsElectricalSystemsSelectedChanged()
         {
             if (IsElectricalSystemsSelected)
@@ -184,7 +308,7 @@ namespace Client.ViewModels
 
         private void LoadElectricalSystemsInternal()
         {
-            var list = _facilitiesService.GetFacilities();
+            var list = _facilitiesService.GetElectricalSystems();
 
             var items = new BindableCollection<TreeNode<object>>();
 

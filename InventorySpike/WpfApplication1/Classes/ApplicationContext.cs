@@ -17,6 +17,8 @@ namespace Client.Classes
         string ActiveUser { get; set; }
 
         List<InvBuilding> Buildings { get; set; }
+
+        List<InvFacilitySystem> InvFacilitySystems { get; set; }
     }
 
     [ImplementPropertyChanged]
@@ -30,5 +32,7 @@ namespace Client.Classes
         public string ActiveUser { get; set; }
 
         public List<InvBuilding> Buildings { get; set; }
+
+        public List<InvFacilitySystem> InvFacilitySystems { get; set; }
     }
 }

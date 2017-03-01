@@ -12,6 +12,8 @@ namespace Inventory.Business.Services
     {
         List<InvFacility> GetFacilities();
 
+        List<InvFacility> GetElectricalSystems();
+
         InvFacility GetFacility(Guid id);
 
         InvFacility AddOrUpdateInvFacility(InvFacility facility, bool addOrUpdate);
@@ -22,6 +24,7 @@ namespace Inventory.Business.Services
 
         List<InvBuilding> GetBuildings();
 
+        List<InvFacilitySystem> GetInvFacilitySystems();
     }
 
     public class FacilitiesService : IFacilitiesService
@@ -29,6 +32,27 @@ namespace Inventory.Business.Services
         public FacilitiesService() { }
 
         public List<InvFacility> GetFacilities()
+        {
+            try
+            {
+                using (var dbContext = new InventoryEntities())
+                {
+                    var list = dbContext.InvFacilities
+                        .Include(x => x.InvEquipments)
+                        .OrderBy(x => x.Facility_)
+                        .ToList();
+
+                    return list;
+                }
+            }
+            catch (Exception e)
+            {
+            }
+
+            return null;
+        }
+
+        public List<InvFacility> GetElectricalSystems()
         {
             try
             {
@@ -258,6 +282,28 @@ namespace Inventory.Business.Services
                 {
                     var list = dbContext.InvBuildings
                         .OrderBy(x => x.Building)
+                        .ToList();
+
+                    return list;
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+
+            return null;
+        }
+
+        public List<InvFacilitySystem> GetInvFacilitySystems()
+        {
+            try
+            {
+                using (var dbContext = new InventoryEntities())
+                {
+                    var list = dbContext.InvFacilitySystems
+                        .OrderBy(x => x.SystemGroup)
+                        .OrderBy(x => x.SystemTitle)
                         .ToList();
 
                     return list;
