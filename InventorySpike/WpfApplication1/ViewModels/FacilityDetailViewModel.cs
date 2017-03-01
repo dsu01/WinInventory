@@ -103,6 +103,8 @@ namespace Client.ViewModels
             }
         }
 
+        public bool IsAttachmentDetailVisible { get { return SelectedAttachment != null; } }
+
         public bool CanSave { get { return true; } }
 
         public bool CanCancel { get { return true; } }
@@ -318,7 +320,7 @@ namespace Client.ViewModels
                 IsActive = true,
                 Title = "Attachment-00",
                 InvFacilityID = Model.SYNC_ID,
-                //CreatedBy = ApplicationContext.,
+                CreatedBy = _applicationContext.ActiveUser,
                 CreatedOn = DateTime.Now,
             }
             ;

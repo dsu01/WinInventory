@@ -167,8 +167,18 @@
             <wpfEditors:SuperTabItem Header="Facilities" IsSelected="{Binding IsFacilitiesSelected, Mode=TwoWay}" ToolTip="Facilities" AutomationProperties.Name="">
                 <TreeView ItemsSource="{Binding Facilities}" />
             </wpfEditors:SuperTabItem>
-            <wpfEditors:SuperTabItem Header="Search" IsSelected="{Binding IsSearchSelected, Mode=TwoWay}" ToolTip="Search" AutomationProperties.Name="">
-                <TextBlock Text="Search" />
+            <wpfEditors:SuperTabItem Header="Quick Search" IsSelected="{Binding IsSearchSelected, Mode=TwoWay}" ToolTip="Search" AutomationProperties.Name="">
+                <controls:CommandBar Margin="5 10" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <TextBlock Text="Bar Code:" VerticalAlignment="Center" />
+                    <TextBox Text="" VerticalAlignment="Top" x:Name="SearchBarcode" TextWrapping="Wrap" Width="250"/>
+                    <Separator Style="{StaticResource CmdBarSeparatorStyle}" />
+                    <Button x:Name="ScanBarcode" Width="80" MinWidth="45" Style="{StaticResource CommandBarButtonStyle}" ToolTip="" >
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Scan" />
+                            <Image Source="/Resources/Images/ButtonImages/book_open.png" Height="16" Width="25" />
+                        </StackPanel>
+                    </Button>
+                </controls:CommandBar>
             </wpfEditors:SuperTabItem>
             <wpfEditors:SuperTabItem Header="E Systems" IsSelected="{Binding IsElectricalSystemsSelected, Mode=TwoWay}" ToolTip="Electrical Systems" AutomationProperties.Name="">
                 <TreeView ItemsSource="{Binding ElectricalSystems}" />

@@ -36,12 +36,19 @@
                 <Setter Property="TextWrapping" Value="NoWrap" />
                 <Setter Property="TextTrimming" Value="WordEllipsis" />
             </Style>
+            <Style TargetType="TextBlock" x:Key="ValueStyle" BasedOn="{StaticResource {x:Type TextBlock}}">
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="Margin" Value="2 2" />
+            </Style>
 
             <DataTemplate x:Key="AttachmentItemTemplate">
                 <Border x:Name="Background" Background="Transparent" BorderBrush="Transparent" BorderThickness="2" CornerRadius="2" Margin="10 5" Padding="0"
                                 HorizontalAlignment="Left" VerticalAlignment="Top">
                     <Image x:Name="ContentImage" Source="/Resources/Images/attachments/file.png" Stretch="Uniform" Cursor="Hand" 
-                               Width="64" ToolTip="{Binding Model.Title}" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                               Width="48" ToolTip="{Binding Model.Title}" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top" 
                                micro:Message.Attach="[Event MouseLeftButtonDown] = [Action SelectAttachment($dataContext)]"/>
                 </Border>
                 <DataTemplate.Triggers>
@@ -53,30 +60,39 @@
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Model.ContentType}" Value=".PNG">
                         <Setter Property="Source" Value="{Binding ImageSource}" TargetName="ContentImage" />
+                        <Setter Property="Width" Value="64" TargetName="ContentImage"/>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Model.ContentType}" Value=".JPG">
                         <Setter Property="Source" Value="{Binding ImageSource}" TargetName="ContentImage" />
+                        <Setter Property="Width" Value="64" TargetName="ContentImage"/>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Model.ContentType}" Value=".TIF">
                         <Setter Property="Source" Value="{Binding ImageSource}" TargetName="ContentImage" />
+                        <Setter Property="Width" Value="64" TargetName="ContentImage"/>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Model.ContentType}" Value=".DOCX">
                         <Setter Property="Source" Value="/Resources/Images/attachments/word.png" TargetName="ContentImage" />
+                        <Setter Property="Width" Value="48" TargetName="ContentImage"/>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Model.ContentType}" Value=".DOC">
                         <Setter Property="Source" Value="/Resources/Images/attachments/word.png" TargetName="ContentImage" />
+                        <Setter Property="Width" Value="48" TargetName="ContentImage"/>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Model.ContentType}" Value=".XLSX">
                         <Setter Property="Source" Value="/Resources/Images/attachments/excel.png" TargetName="ContentImage" />
+                        <Setter Property="Width" Value="48" TargetName="ContentImage"/>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Model.ContentType}" Value=".XLX">
                         <Setter Property="Source" Value="/Resources/Images/attachments/excel.png" TargetName="ContentImage" />
+                        <Setter Property="Width" Value="48" TargetName="ContentImage"/>
                     </DataTrigger>
-                    <DataTrigger Binding="{Binding Model.ContentType}" Value=".PPT">
+                    <DataTrigger Binding="{Binding Model.ContentType}" Value=".PPTX">
                         <Setter Property="Source" Value="/Resources/Images/attachments/powerpoint.png" TargetName="ContentImage" />
+                        <Setter Property="Width" Value="48" TargetName="ContentImage"/>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Model.ContentType}" Value=".PDF">
                         <Setter Property="Source" Value="/Resources/Images/attachments/pdf.png" TargetName="ContentImage" />
+                        <Setter Property="Width" Value="48" TargetName="ContentImage"/>
                     </DataTrigger>
                 </DataTemplate.Triggers>
             </DataTemplate>
@@ -245,6 +261,7 @@
                 <wpfEditors:SuperTabItem Header="Attachments" IsSelected="false" ToolTip="Attachments" AutomationProperties.Name="">
                     <DockPanel LastChildFill="True" Margin="5 0" >
                         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5 10" >
+                            <Button x:Name="TakePhoto" Content="Take Photo" />
                             <Button x:Name="AddAttachment" Content="Add Attachment" />
                             <Button x:Name="DeleteAttachment" Content="Delete Attachment" />
                         </StackPanel>
@@ -253,14 +270,40 @@
                             <ItemsControl x:Name="Attachments" Style="{StaticResource AttachmentItemsControlStyle}"  />
                         </GroupBox>
 
-                        <Border DockPanel.Dock="Top" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" CornerRadius="5" Margin="15 30" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Border.Effect>
-                                <DropShadowEffect BlurRadius="0" ShadowDepth="5" Color="DarkGray" Opacity="0.75"/>
-                            </Border.Effect>
-                            <Image Source="{Binding SelectedAttachment.ImageSource}" Stretch="Uniform"
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Visibility="{Binding IsAttachmentDetailVisible, Converter={StaticResource BoolToCollapsedConverter}}" >
+                            <Border Background="Transparent" BorderBrush="Transparent" BorderThickness="0" CornerRadius="5" Margin="15 30" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="0" ShadowDepth="5" Color="DarkGray" Opacity="0.75"/>
+                                </Border.Effect>
+                                <Image Source="{Binding SelectedAttachment.ImageSource}" Stretch="Uniform"
                                    Width="640" ToolTip="{Binding SelectedAttachment.Model.Title}" Margin="10 10" HorizontalAlignment="Left" VerticalAlignment="Top"
                                    Visibility="{Binding IsAttachmentImageVisible, Converter={StaticResource BoolToCollapsedConverter}}"/>
-                        </Border>
+                            </Border>
+
+                            <Grid Margin="10 35" DataContext="{Binding SelectedAttachment}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Row="0"  Text="Title" Style="{StaticResource LeftLabelStyle}"/>
+                                <TextBlock Grid.Row="1"  Text="File Name"  Style="{StaticResource LeftLabelStyle}"/>
+                                <TextBlock Grid.Row="2"  Text="Created By"  Style="{StaticResource LeftLabelStyle}"/>
+                                <TextBlock Grid.Row="3"  Text="Created On"  Style="{StaticResource LeftLabelStyle}"/>
+
+                                <TextBlock Grid.Row="0"  Grid.Column="1" Text="{Binding Model.Title}" Style="{StaticResource ValueStyle}"/>
+                                <TextBlock Grid.Row="1"  Grid.Column="1" Text="{Binding FileName}" Style="{StaticResource ValueStyle}"/>
+                                <TextBlock Grid.Row="2"  Grid.Column="1" Text="{Binding Model.CreatedBy}" Style="{StaticResource ValueStyle}"/>
+                                <TextBlock Grid.Row="3"  Grid.Column="1" Text="{Binding Model.CreatedOn}" Style="{StaticResource ValueStyle}"/>
+                            </Grid>
+                        </StackPanel>
                     </DockPanel>
                 </wpfEditors:SuperTabItem>
             </wpfEditors:SuperTabControl>
