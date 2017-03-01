@@ -279,7 +279,7 @@ namespace Client.ViewModels
                                         Value = component,
                                         TreeNodeType = TreeNodeType.Component,
                                         Parent = facilityNode,
-                                        IsOpen = true,
+                                        IsOpen = false,
                                     };
                                     facilityNode.Children.Add(equipmentNode);
                                 }
@@ -335,7 +335,6 @@ namespace Client.ViewModels
                     };
                     facilitySystemNode.Children.Add(equipmentNode);
                 }
-
                 items.Add(facilitySystemNode);
             }
 

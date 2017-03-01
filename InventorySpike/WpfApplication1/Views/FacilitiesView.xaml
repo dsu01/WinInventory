@@ -62,7 +62,7 @@
                         <Condition Binding="{Binding Path=TreeNodeType}" Value="{x:Static framework:TreeNodeType.System}" />
                         <Condition Binding="{Binding Path=IsOpen}" Value="true" />
                     </MultiDataTrigger.Conditions>
-                    <Setter TargetName="TreeNodeImage" Property="Source" Value="../../../Resources/Images/Open_16x16.png" />
+                    <Setter TargetName="TreeNodeImage" Property="Source" Value="../../../Resources/Images/FI_16x16.png" />
                     <Setter TargetName="TreeNodeLabel" Property="FontWeight" Value="Bold" />
                 </MultiDataTrigger>
 
